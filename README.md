@@ -1,6 +1,7 @@
 App contains files to run the app. 
-To run app:
-  cd .\App             (you should be in ...\App\App)
+
+To run app: 
+  cd .\App             (you should be in ...\App\App)  
   npx expo run         
 
 To test app on the phone:
