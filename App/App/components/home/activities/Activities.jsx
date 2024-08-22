@@ -1,0 +1,45 @@
+import React from "react";
+import { useRouter } from "expo-router";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+
+import styles from "./Activities.style";
+import { COLORS } from "../../../constants";
+import ActivitiesCard from "../../common/cards/activities/activitiesCard";
+import { getAllActivities } from "../../../services/getData";
+import useSupabase from "../../../services/useSupabase";
+
+const Activities = () => {
+  const router = useRouter();
+  const { data, isLoading, error } = useSupabase(getAllActivities);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Activities</Text>
+        <TouchableOpacity>
+          <Text style={styles.headerBtn}>Show all</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.cardsContainer}>
+        {
+          isLoading ? (
+            <ActivityIndicator size='large' color={COLORS.primary} />
+          ) : error ? (
+            <Text>Something went wrong</Text>
+          ) : (
+            data?.map((item) => (
+              <ActivitiesCard
+                item={item}
+                key={`${item.id}`}
+                handleNavigate={() => router.push(`/${item.id}/activities`)}
+              />  
+            ))
+          )
+        }
+      </View>
+    </View>
+  );
+};
+
+export default Activities;

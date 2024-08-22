@@ -2,6 +2,23 @@ import { StyleSheet } from "react-native";
 
 import { COLORS, FONT, SIZES } from "../../../constants";
 
+const getTabColors = (item) => {
+  switch(item) {
+      case 'Swimming':
+          return '#C0EDFD'
+      case 'Fishing':
+          return '#79F3CC'
+      case 'Paddling':
+          return '#FF979E'
+      case 'Boating and Sailing':
+          return '#D6B7FF'
+      case 'Hiking, Walk, & Run':
+          return '#FECEFF'
+      default:
+          return '#C0EDFD'
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     width: "100%",
@@ -56,17 +73,21 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: SIZES.medium,
   },
-  tab: (activeJobType, item) => ({
+  tab: (item) => ({
     paddingVertical: SIZES.small / 2,
     paddingHorizontal: SIZES.small,
-    borderRadius: SIZES.medium,
-    borderWidth: 1,
-    borderColor: activeJobType === item ? COLORS.secondary : COLORS.gray2,
+    borderRadius: 10,
+    backgroundColor: getTabColors(item),
+    gap: 5,
+    flexDirection: "row",
+    alignItems: "center",
   }),
-  tabText: (activeJobType, item) => ({
-    fontFamily: FONT.medium,
-    color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
-  }),
+  tabText: {
+    color: "#000",
+    fontFamily: "Roboto Flex",
+    fontWeight: "200",
+    fontSize: 18,
+  },
 });
 
 export default styles;

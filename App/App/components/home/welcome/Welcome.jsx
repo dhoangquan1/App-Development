@@ -12,25 +12,32 @@ import { useRouter } from "expo-router";
 import styles from "./welcome.style";
 import { icons, SIZES } from "../../../constants";
 
-const categories = ["Boating", "Fishing", "Hiking"];
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
+const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
-  const [activeJobType, setActiveJobType] = useState("Boating");
+  const [activeJobType, setActiveJobType] = useState("Swimming");
+
+  const iconSelect = {
+    "Swimming": (props) => <FontAwesome6 name="person-swimming" size={24} color="black" {...props}/>,
+    "Fishing": (props) => <FontAwesome6 name="fish-fins" size={24} color="black" {...props}/>,
+    "Paddling": (props) => <MaterialIcons name="kayaking" size={24} color="black" {...props}/>,
+    "Boating and Sailing": (props) => <FontAwesome6 name="sailboat" size={24} color="black" {...props}/>,
+    "Hiking, Walk, & Run": (props) => <FontAwesome6 name="person-walking" size={24} color="black" {...props}/>,
+  }
 
   return (
     <View>
-      <View style={styles.container}>
-        <Text style={styles.userName}>Hello Quan</Text>
-        <Text style={styles.welcomeMessage}>Exlore your rivers</Text>
-      </View>
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
             value={searchTerm}
             onChangeText={(text) => setSearchTerm(text)}
-            placeholder='What are you looking for?'
+            placeholder='Find your river adventure...'
           />
         </View>
 
@@ -48,18 +55,24 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
           data={categories}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={styles.tab(activeJobType, item)}
+              style={styles.tab(item)}
               onPress={() => {
                 setActiveJobType(item);
                 router.push(`/search/${item}`);
               }}
             >
-              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
+              {
+                iconSelect[item]({
+                  color: '#000'
+                })
+              }
+              <Text style={styles.tabText}>{item}</Text>
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item}
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
+          showsHorizontalScrollIndicator = 'false'
         />
       </View>
     </View>

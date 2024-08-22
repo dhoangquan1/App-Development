@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+/*import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useFetch = (endpoint, query) => {
@@ -8,7 +8,7 @@ const useFetch = (endpoint, query) => {
 
   const options = {
     method: "GET",
-    url: `http://192.168.1.246:3000/rivers`,
+    url: `http://192.168.1.13:3000${endpoint}`,
     headers: {
       'content-type' : 'application/json',
     },
@@ -42,4 +42,4 @@ const useFetch = (endpoint, query) => {
   return { data, isLoading, error, refetch};
 };
 
-export default useFetch;
+export default useFetch;*/
