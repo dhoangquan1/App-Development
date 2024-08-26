@@ -48,21 +48,21 @@ const styles = StyleSheet.create({
     },
     riverName: {
         fontSize: 36,
-        fontFamily: "RobotoFlex-Regular",
+        fontFamily: FONT.flex,
         color: "#000",
         textAlign: "left",
         paddingBottom: 15
     },
     riverDescription: {
         fontSize: 20,
-        fontFamily: "Roboto-Regular",
+        fontFamily: FONT.regular,
         color: "#000",
         textAlign: "left",
     },
     activitiesTitle: {
         fontSize: 24,
         fontWeight: "700",
-        fontFamily: "Roboto Flex",
+        fontFamily: FONT.flex,
         color: "#000",
         textAlign: "left",
         paddingBottom: 15,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     }),
     tabText: {
         color: "#000",
-        fontFamily: "Roboto Flex",
+        fontFamily: FONT.flex,
         fontWeight: "200",
         fontSize: 20,
     },

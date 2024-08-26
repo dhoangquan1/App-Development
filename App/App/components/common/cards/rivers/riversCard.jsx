@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, Image, ImageBackground } from "react-nati
 
 import styles from "./riversCard.style";
 import { icons } from "../../../../constants";
-import { checkImageURL } from "../../../../utils";
 import Entypo from '@expo/vector-icons/Entypo';
 
 const RiversCard = ({ item, handleCardPress }) => {

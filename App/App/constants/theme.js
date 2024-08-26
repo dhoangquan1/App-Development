@@ -11,9 +11,13 @@ const COLORS = {
 };
 
 const FONT = {
-  regular: "DMRegular",
-  medium: "DMMedium",
-  bold: "DMBold",
+  thin: "RobotoThin",
+  light: "RobotoLight",
+  regular: "RobotoRegular",
+  medium: "RobotoMedium",
+  bold: "RobotoBold",
+  serifBlack: "RobotoSerifBlack",
+  flex: "RobotoFlex"
 };
 
 const SIZES = {

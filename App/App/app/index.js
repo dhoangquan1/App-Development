@@ -2,6 +2,7 @@ import { StyleSheet, SafeAreaView, View, Text, ImageBackground, TouchableOpacity
 import React from 'react'
 import images from "../constants/images"
 import { router } from "expo-router";
+import { FONT } from '../constants';
 
 const OnBoard = () => {
   return (
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
         fontSize: 32,
         lineHeight: 38,
         fontWeight: "900",
-        fontFamily: "RobotoSerif-Black",
+        fontFamily: FONT.serifBlack,
         color: '#294dab',
         textAlign: "center",
     },
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
         fontSize: 64,
         lineHeight: 75,
         fontWeight: "900",
-        fontFamily: "RobotoSerif-Black",
+        fontFamily: FONT.serifBlack,
         color: '#fff',
         textAlign: "center",
         textShadowColor: 'rgba(0, 0, 0, 0.25)',

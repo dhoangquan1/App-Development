@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, SHADOWS, SIZES } from "../../../../constants";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
 const getTabColors = (item) => {
   switch(item) {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   activityName: {
     fontSize: 20,
     fontWeight: "700",
-    fontFamily: "Roboto-Bold",
+    fontFamily: FONT.bold,
     color: '#000',
     alignItems: "center",
   },
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   detailsText: {
     fontSize: 16,
-    fontFamily: "Roboto-Regular",
+    fontFamily: FONT.regular,
     color: '#000',
     alignItems: "center",
   },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   }),
   categoryText: {
     color: "#000",
-    fontFamily: "Roboto Flex",
+    fontFamily: FONT.flex,
     fontWeight: "200",
     fontSize: 14,
   },

@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
     bigText: {
         fontSize: 30,
         fontWeight: "700",
-        fontFamily: "Roboto",
+        fontFamily: FONT.bold,
         color: '#fbfaf5',
     },
     smallText: {
         fontSize: 20,
         fontWeight: "300",
-        fontFamily: "Roboto",
+        fontFamily: FONT.light,
         color: '#fbfaf5',
     },
     searchContainer: {
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     createText: {
         fontSize: 20,
         fontWeight: "500",
-        fontFamily: "Roboto",
+        fontFamily: FONT.medium,
         color: '#fbfaf5',
         textAlign: "center",
     },
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     mainTitle: {
         fontSize: 40,
         fontWeight: "700",
-        fontFamily: "Roboto",
+        fontFamily: FONT.bold,
         alignItems: "center",
     }
 });

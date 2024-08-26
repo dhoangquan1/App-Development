@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Dimensions, 
 import React, { useState } from 'react'
 
 
-import images from "../../constants/images"
+import {images, FONT} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link } from 'expo-router'
 import { supabase } from '../../lib/supabase'
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 48,
     fontWeight: "900",
-    fontFamily: "RobotoSerif-Black",
+    fontFamily: FONT.serifBlack,
     color: '#fff',
     textAlign: "center",
     display: "flex",
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 15,
     fontWeight: "900",
-    fontFamily: "RobotoSerif-Black",
+    fontFamily: FONT.serifBlack,
     color: '#fff',
     textAlign: "center"
   },
@@ -161,13 +161,13 @@ const styles = StyleSheet.create({
   bottomText: {
     fontSize: 15,
     fontWeight: "700",
-    fontFamily: "Roboto-Bold",
+    fontFamily: FONT.bold,
     color: '#000',
   },
   bottomLink: {
     fontSize: 15,
     fontWeight: "700",
-    fontFamily: "Roboto-Bold",
+    fontFamily: FONT.bold,
     color: '#5c99af',
   }
 });

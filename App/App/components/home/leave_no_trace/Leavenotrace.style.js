@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "700",
-    fontFamily: "Roboto Flex",
+    fontFamily: FONT.flex,
     color: '#fff',
   },
   image: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 10,
     fontSize: 16,
-    fontFamily: "RobotoFlex-Regular",
+    fontFamily: FONT.flex,
     color: '#bfbfbf',
     textAlign: "left",
     width: 223
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   learnMore: {
     fontSize: 16,
-    fontFamily: "RobotoFlex-Regular",
+    fontFamily: FONT.flex,
     textAlign: 'center',
     color: '#000',
   }

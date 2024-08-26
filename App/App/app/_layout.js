@@ -31,9 +31,13 @@ const Layout = () => {
   }, [])
 
   const [fontsLoaded] = useFonts({
-    DMBold: require("../assets/fonts/DMSans-Bold.ttf"),
-    DMMedium: require("../assets/fonts/DMSans-Medium.ttf"),
-    DMRegular: require("../assets/fonts/DMSans-Regular.ttf"),
+    RobotoLight: require("../assets/fonts/Roboto-Light.ttf"),
+    RobotoThin: require("../assets/fonts/Roboto-Thin.ttf"),
+    RobotoRegular: require("../assets/fonts/Roboto-Regular.ttf"),
+    RobotoMedium: require("../assets/fonts/Roboto-Medium.ttf"),
+    RobotoBold: require("../assets/fonts/Roboto-Bold.ttf"),
+    RobotoSerifBlack: require("../assets/fonts/RobotoSerif-Black.ttf"),
+    RobotoFlex: require("../assets/fonts/RobotoFlex-Regular.ttf"),
   });
 
   if (!fontsLoaded) {

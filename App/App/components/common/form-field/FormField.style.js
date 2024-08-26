@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { FONT } from "../../../constants";
 
 const styles = StyleSheet.create({
     container: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 15,
         fontWeight: "700",
-        fontFamily: "RobotoSerif-Bold",
+        fontFamily: FONT.bold,
         color: '#000',
     },
     textBox: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         fontSize: 15,
-        fontFamily: "Roboto-Regular",
+        fontFamily: FONT.regular,
         color: '#000',
         flex: 1,
     },

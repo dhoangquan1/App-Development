@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   }),
   tabText: {
     color: "#000",
-    fontFamily: "Roboto Flex",
+    fontFamily: FONT.flex,
     fontWeight: "200",
     fontSize: 18,
   },
