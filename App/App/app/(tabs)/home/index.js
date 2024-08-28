@@ -16,7 +16,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FBFAF5' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
       
       <ScrollView>
         <View

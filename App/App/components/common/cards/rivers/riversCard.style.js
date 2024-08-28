@@ -4,8 +4,8 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
 const styles = StyleSheet.create({
   riverImage: {
-    height: 275,
-    width: 250,
+    height: 350,
+    width: 275,
     flex: 1,
     alignContent: "space-between",
     borderRadius: SIZES.xSmall,
@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     height: 75,
-    width: 230,
+    width: 255,
     bottom: 10,
     display: 'flex',
     position: 'absolute',
-    backgroundColor: 'rgba(25, 79, 62, 0.8)',
+    backgroundColor: 'rgba(	185, 196, 112, 0.8)',
     paddingLeft: 10,
     alignContent: "space-between",
     justifyContent: 'center',
@@ -36,12 +36,13 @@ const styles = StyleSheet.create({
   riverAddress: {
     fontSize: SIZES.medium,
     fontFamily: FONT.regular,
-    color: COLORS.gray2,
+    color: COLORS.primary,
   },
   riverName: {
     fontSize: SIZES.large,
     fontFamily: FONT.medium,
-    color: COLORS.white,
+    color: COLORS.primary,
+    paddingTop: 3,
   },
   
 });

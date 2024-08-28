@@ -1,13 +1,9 @@
 const COLORS = {
-  primary: "#312651",
-  secondary: "#444262",
-  tertiary: "#FF7754",
+  primary: "#03310E",
+  secondary: "#546021",
+  tertiary: "#B9C470",
 
-  gray: "#83829A",
-  gray2: "#C1C0C8",
-
-  white: "#F3F4F8",
-  lightWhite: "#FAFAFC",
+  neutral: "#F2ECDD",
 };
 
 const FONT = {
@@ -31,14 +27,14 @@ const SIZES = {
 
 const SHADOWS = {
   small: {
-    shadowColor: "#000",
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 2,
+    shadowRadius: 4,
+    elevation: 4,
+    shadowOpacity: 1,
   },
   medium: {
     shadowColor: "#000",

@@ -16,7 +16,6 @@ import {
   ScreenHeaderBtn,
 } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
-import useFetch from "../../hook/useFetch.js";
 import styles from "./RiversDetails.style.js";
 import { getRiver } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";

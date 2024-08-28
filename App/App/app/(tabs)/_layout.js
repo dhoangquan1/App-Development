@@ -4,9 +4,9 @@ import { useAuth } from '../../context/AuthContext';
 import { StatusBar } from 'react-native';
 
 export default function TabLayout() {
-  const {user} = useAuth();
+  const {setAuth} = useAuth();
 
-  if(user === null) return <Redirect href="/sign-in" />;
+  if(setAuth === null) return <Redirect href="/sign-in" />;
   
   return (
     <Tabs tabBar={props => <TabBar {...props}/>}>

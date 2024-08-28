@@ -15,7 +15,7 @@ const Activities = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Activities</Text>
+        <Text style={styles.headerTitle}>Find activities</Text>
         <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
         </TouchableOpacity>

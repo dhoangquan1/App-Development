@@ -1,18 +1,10 @@
 import { StyleSheet } from "react-native";
 
-import { FONT, SIZES, COLORS } from "../../../constants";
+import { FONT, SIZES, COLORS, SHADOWS } from "../../../constants";
 
 const styles = StyleSheet.create({
   container: {
     marginTop: SIZES.xLarge,
-    shadowColor: 'rgba(0, 0, 0, 0.25)',
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowRadius: 4,
-    elevation: 4,
-    shadowOpacity: 1,
     borderRadius: 15,
   },
   header: {
@@ -21,17 +13,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerTitle: {
-    fontSize: SIZES.large,
+    fontSize: 24,
     fontFamily: FONT.medium,
     color: COLORS.primary,
   },
   headerBtn: {
     fontSize: SIZES.medium,
     fontFamily: FONT.medium,
-    color: COLORS.gray,
+    color: COLORS.secondary,
   },
   cardsContainer: {
     marginTop: SIZES.medium,
+    ...SHADOWS.small,
   },
 });
 

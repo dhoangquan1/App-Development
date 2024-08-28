@@ -3,10 +3,10 @@ import { useFonts } from "expo-font";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
-import { getUserData } from "../services/getData";
-// import * as SplashScreen from "expo-splash-screen";
+import { getUserData } from "../services/getData"; 
+//import * as SplashScreen from "expo-splash-screen";
 
-// SplashScreen.preventAutoHideAsync();
+//SplashScreen.preventAutoHideAsync();
 
 const Layout = () => {
   const {setAuth, setUserData} = useAuth();

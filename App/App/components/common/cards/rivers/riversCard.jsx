@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, ImageBackground } from "react-native";
 
 import styles from "./riversCard.style";
-import { icons } from "../../../../constants";
+import { COLORS, icons } from "../../../../constants";
 import Entypo from '@expo/vector-icons/Entypo';
 
 const RiversCard = ({ item, handleCardPress }) => {
@@ -17,7 +17,7 @@ const RiversCard = ({ item, handleCardPress }) => {
 
       <View style={styles.infoContainer}>
         <View style={styles.addressContainer}>
-          <Entypo name="location" size={16} color="black" />
+          <Entypo name="location" size={16} color={COLORS.primary} />
           <Text style={styles.riverAddress} numberOfLines={1}>
             {item.address}
           </Text>

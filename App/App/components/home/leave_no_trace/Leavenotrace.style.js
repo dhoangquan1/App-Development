@@ -1,20 +1,13 @@
 import { StyleSheet } from "react-native";
 
-import { FONT, SIZES, COLORS } from "../../../constants";
+import { FONT, SIZES, COLORS, SHADOWS } from "../../../constants";
 
 const styles = StyleSheet.create({
   container: {
     marginTop: SIZES.xLarge,
-    shadowColor: 'rgba(0, 0, 0, 0.25)',
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowRadius: 4,
-    elevation: 4,
-    shadowOpacity: 1,
+    ...SHADOWS.small,
     borderRadius: 15,
-    backgroundColor: '#194f3e',
+    backgroundColor: COLORS.primary,
     flex: 1,
     width: "100%",
   },
@@ -25,30 +18,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "700",
-    fontFamily: FONT.flex,
-    color: '#fff',
+    fontFamily: FONT.bold,
+    color: COLORS.neutral,
   },
   image: {
     flex: 1,
-    width: 145 - SIZES.medium,
-    height: 145 - SIZES.medium,
+    width: 125 - SIZES.medium,
+    height: 125 - SIZES.medium,
   },
   text: {
-    marginTop: 10,
-    fontSize: 16,
+    marginTop: 5,
+    fontSize: 14,
     fontFamily: FONT.flex,
-    color: '#bfbfbf',
-    textAlign: "left",
-    width: 223
+    color: COLORS.tertiary,
+    width: 210
   },
   button: {
     marginTop: 10,
     borderRadius: 30,
-    backgroundColor: '#43cea2',
-    width: 150,
-    height: 40,
+    backgroundColor: COLORS.secondary,
+    width: 130,
+    height: 35,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -56,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: FONT.flex,
     textAlign: 'center',
-    color: '#000',
+    color: COLORS.neutral,
   }
   
 });

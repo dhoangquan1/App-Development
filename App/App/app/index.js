@@ -1,10 +1,13 @@
 import { StyleSheet, SafeAreaView, View, Text, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react'
 import images from "../constants/images"
-import { router } from "expo-router";
+import { router, Redirect } from "expo-router";
 import { FONT } from '../constants';
+import { useAuth } from '../context/AuthContext';
 
 const OnBoard = () => {
+    const {user} = useAuth();
+    if(user !== null) return <Redirect href="/home" />;
   return (
     <View style={styles.container}>
         <ImageBackground

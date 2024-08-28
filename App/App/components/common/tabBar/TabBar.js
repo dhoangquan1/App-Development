@@ -1,17 +1,17 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './TabBar.style';
-import { icons } from '../../../constants';
+import { COLORS, icons } from '../../../constants';
 
 import Feather from '@expo/vector-icons/Feather';
 
 const TabBar = ({ state, descriptors, navigation }) => {
   
   const iconSelect = {
-    home: (props) => <Feather name="home" size={24} color="#808080" {...props}/>,
-    explore: (props) => <Feather name="compass" size={24} color="#808080" {...props}/>,
-    map: (props) => <Feather name="map" size={24} color="#808080" {...props}/>,
-    bookmark: (props) => <Feather name="bookmark" size={24} color="#808080" {...props}/>,
-    notification: (props) => <Feather name="bell" size={24} color="#808080" {...props}/>,
+    home: (props) => <Feather name="home" size={24} color={COLORS.primary} {...props}/>,
+    explore: (props) => <Feather name="compass" size={24} color={COLORS.primary} {...props}/>,
+    map: (props) => <Feather name="map" size={24} color={COLORS.primary} {...props}/>,
+    bookmark: (props) => <Feather name="bookmark" size={24} color={COLORS.primary} {...props}/>,
+    notification: (props) => <Feather name="bell" size={24} color={COLORS.primary} {...props}/>,
   }
 
   return (
@@ -59,10 +59,10 @@ const TabBar = ({ state, descriptors, navigation }) => {
           >
             {
               iconSelect[route.name]({
-                color: isFocused ? '#194f3e' : '#808080'
+                color: isFocused ? COLORS.primary : COLORS.secondary
               })
             }
-            <Text style={{ color: isFocused ? '#194f3e' : '#808080' }}>
+            <Text style={{ color: isFocused ? COLORS.primary : COLORS.secondary }}>
               {label}
             </Text>
           </TouchableOpacity>

@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: 15,
-    backgroundColor: "#FFF",
+    backgroundColor: COLORS.tertiary,
   },
   imageContainer: {
     width: '100%',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     flex: 1,
-    height: 175
+    height: 225
   },
   textContainer: {
     flex: 1,
@@ -40,8 +40,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     fontFamily: FONT.bold,
-    color: '#000',
+    color: COLORS.primary,
     alignItems: "center",
+    paddingVertical: 3,
   },
   detailsContainer: {
     gap: 5,
@@ -50,8 +51,9 @@ const styles = StyleSheet.create({
   },
   detailsText: {
     fontSize: 16,
+    topPadding: 5,
     fontFamily: FONT.regular,
-    color: '#000',
+    color: COLORS.primary,
     alignItems: "center",
   },
   categoryContainer: (item) => ({
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   }),
   categoryText: {
-    color: "#000",
+    color: COLORS.primary,
     fontFamily: FONT.flex,
     fontWeight: "200",
     fontSize: 14,

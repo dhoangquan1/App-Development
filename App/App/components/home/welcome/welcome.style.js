@@ -23,16 +23,18 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
   },
-  userName: {
-    fontFamily: FONT.regular,
-    fontSize: SIZES.large,
-    color: COLORS.secondary,
-  },
-  welcomeMessage: {
-    fontFamily: FONT.bold,
-    fontSize: SIZES.xLarge,
+  username: {
+    paddingTop: 20,
+    fontSize: 20,
+    fontWeight: "300",
+    fontFamily: FONT.light,
     color: COLORS.primary,
-    marginTop: 2,
+  },
+  welcome: {
+    fontSize: 30,
+    fontWeight: "700",
+    fontFamily: FONT.bold,
+    color: COLORS.primary,
   },
   searchContainer: {
     justifyContent: "center",
@@ -40,21 +42,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: SIZES.large,
     height: 50,
+    
   },
   searchWrapper: {
     flex: 1,
-    backgroundColor: COLORS.white,
-    marginRight: SIZES.small,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: SIZES.medium,
     height: "100%",
+    borderWidth: 2,
+    borderColor: COLORS.primary,
+    backgroundColor: COLORS.neutral,
+    flexDirection: 'row',
+    paddingHorizontal: 40,
   },
   searchInput: {
     fontFamily: FONT.regular,
+    fontSize: 16,
     width: "100%",
     height: "100%",
     paddingHorizontal: SIZES.medium,
+
   },
   searchBtn: {
     width: 50,
@@ -63,6 +71,8 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.medium,
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 2,
+    borderColor: COLORS.primary,
   },
   searchBtnImage: {
     width: "50%",
@@ -81,12 +91,14 @@ const styles = StyleSheet.create({
     gap: 5,
     flexDirection: "row",
     alignItems: "center",
+    borderColor: COLORS.primary,
+    borderWidth: 2,
   }),
   tabText: {
-    color: "#000",
+    color: COLORS.primary,
     fontFamily: FONT.flex,
     fontWeight: "200",
-    fontSize: 18,
+    fontSize: 16,
   },
 });
 

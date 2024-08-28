@@ -5,6 +5,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { COLORS } from "../../../../constants";
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 const iconSelect = {
@@ -22,7 +23,7 @@ const ActivitiesCard = ({ item, handleNavigate }) => {
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
         <Image
           source={{
-            uri: (item.image),
+            uri: item.image,
           }}
           resizeMode='cover'
           style={styles.imageContainer}
@@ -52,13 +53,13 @@ const ActivitiesCard = ({ item, handleNavigate }) => {
           {item.name}
         </Text>
         <View style = {styles.detailsContainer}>
-          <Entypo name="location" size={16} color="black" />
+          <Entypo name="location" size={16} color={COLORS.primary} />
           <Text style={styles.detailsText}>
             {item.town}
           </Text>
         </View>
         <View style = {styles.detailsContainer}>
-          <FontAwesome5 name="water" size={16} color="black" />
+          <FontAwesome5 name="water" size={16} color={COLORS.primary} />
           <Text style={styles.detailsText}>
             {item.rivers.name}
           </Text>
