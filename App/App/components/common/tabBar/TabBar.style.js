@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   icon: {
     height: 26,
     width: 26,
-    color: '#808080',
+    color: COLORS.primary,
     
   }
   

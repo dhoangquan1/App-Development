@@ -6,6 +6,7 @@ import {images, FONT} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link } from 'expo-router'
 import { supabase } from '../../lib/supabase'
+import { useAuth } from '../../context/AuthContext'
 
 const LogIn = () => {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -26,7 +27,9 @@ const LogIn = () => {
         email: form.email,
         password: form.password,
       })
-
+      if(error){
+        Alert.alert("Error", error.message);
+      }
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {

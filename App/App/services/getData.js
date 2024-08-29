@@ -7,7 +7,13 @@ export async function getUserData (userId) {
         .select('*')
         .eq('id', userId)
         .single();
-        return data;
+        if(error){
+            return {
+                success: false,
+                error: error?.message
+            }
+        }
+        return {success: true, data};
     } catch (error) {
         return {
             success: false,

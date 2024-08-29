@@ -6,6 +6,7 @@ import {images, FONT} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link, router } from 'expo-router'
 import { supabase } from '../../lib/supabase'
+import { useAuth } from '../../context/AuthContext'
 
 const SignUp = () => {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -35,9 +36,10 @@ const SignUp = () => {
         }
       })
 
-      Alert.alert("Success", "User have successfully created an account");
-      router.replace('/log-in');
-
+      if(error){
+        Alert.alert("Error", error.message);
+      }
+      
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {

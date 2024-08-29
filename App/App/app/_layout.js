@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from "../context/AuthContext";
 import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
 import { getUserData } from "../services/getData"; 
+import { setEnabled } from "react-native/Libraries/Performance/Systrace";
 //import * as SplashScreen from "expo-splash-screen";
 
 //SplashScreen.preventAutoHideAsync();
@@ -11,17 +12,12 @@ import { getUserData } from "../services/getData";
 const Layout = () => {
   const {setAuth, setUserData} = useAuth();
   const router = useRouter();
-
-  const updateUserData = async (user) => {
-    let res = await getUserData(user.id);
-    if(res.success) setUserData(res.data);
-  }
-
+  
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
       if(session){
-        setAuth(session.user);
-        updateUserData(session.user);
+        setAuth(session?.user);
+        updateUserData(session?.user);
         router.replace('/home');
       } else{
         setAuth(null);
@@ -29,6 +25,11 @@ const Layout = () => {
       }
     })
   }, [])
+
+  const updateUserData = async (user) => {
+    let res = await getUserData(user?.id);
+    if(res.success) setUserData(res.data);
+  }
 
   const [fontsLoaded] = useFonts({
     RobotoLight: require("../assets/fonts/Roboto-Light.ttf"),
@@ -45,7 +46,7 @@ const Layout = () => {
   }
 
   return (
-      <Stack>
+      <Stack initialRouteName="index">
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />

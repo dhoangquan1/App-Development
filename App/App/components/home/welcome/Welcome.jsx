@@ -36,7 +36,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
     <View>
       <View>
         <Text style={styles.username}>
-          Welcome, 
+          Welcome, {user?.user_metadata?.name}
         </Text>
         <Text style={styles.welcome}>
           Explore your rivers!
