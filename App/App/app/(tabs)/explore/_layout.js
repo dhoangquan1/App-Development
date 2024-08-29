@@ -4,6 +4,13 @@ import { useFonts } from "expo-font";
 
 // SplashScreen.preventAutoHideAsync();
 
+// TODO: Document explore page layout
+
+/**
+ * Layout Component for the Explore Page
+ * @returns {JSX.Element}
+ */
+
 const Layout = () => {
 
   return (

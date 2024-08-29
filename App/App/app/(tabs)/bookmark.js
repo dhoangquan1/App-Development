@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text } from 'react-native'
+import React from 'react'
 
-class bookmark extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
+// TODO: Document bookmark component
 
-  render() {
-    return (
-      <View>
-        <Text> bookmark </Text>
-      </View>
-    );
-  }
+/**
+ * Bookmark Component for saving activities and rivers
+ * @returns {} bookmark page
+ */
+
+const bookmark = () => {
+  return (
+    <View>
+      <Text>bookmark</Text>
+    </View>
+  )
 }
 
-export default bookmark;
+export default bookmark

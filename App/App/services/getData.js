@@ -1,5 +1,12 @@
 import { supabase } from "../lib/supabase"
+// TODO: Document data retrieval methods
 
+
+/**
+ * Retrieves user data from the database
+ * @param {*} userId - The ID of the user to retrieve data for
+ * @returns 
+ */
 export async function getUserData (userId) {
     try {
         const {data, error} = await supabase

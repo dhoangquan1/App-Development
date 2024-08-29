@@ -4,11 +4,17 @@ import { useFonts } from "expo-font";
 
 // SplashScreen.preventAutoHideAsync();
 
+// TODO: Document home page layout
+
 export const unstable_settings = {
   // Ensure any route can link back to `/`
   initialRouteName: "home",
 };
 
+/**
+ * Layout Component for the Home Page
+ * @returns {JSX.Element} 
+ */
 const Layout = () => {
 
   return (

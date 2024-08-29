@@ -7,6 +7,13 @@ import FormField from '../../components/common/form-field/FormField'
 import { Link } from 'expo-router'
 import { supabase } from '../../lib/supabase'
 
+// TODO: Document LogIn component
+
+/**
+ * LogIn Component allows users to log in to their account
+ * @returns {JSX.Element} The log in page.
+ */
+
 const LogIn = () => {
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
@@ -14,6 +21,10 @@ const LogIn = () => {
     password: '',
   })
 
+  /**
+   * Handles log in form submission
+   * @returns {Promise<void>} The result of the log in form submission
+   */
   const submit = async () => {
     if (form.email === "" || form.password === "") {
       Alert.alert("Error", "Please fill in all fields");

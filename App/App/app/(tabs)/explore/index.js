@@ -3,7 +3,15 @@ import React, { useState } from 'react'
 import styles from './index.style'
 import { Stack, useRouter } from "expo-router";
 
+// TODO: Document explore component
 
+/**
+ * Explore Component for viewing community posts and creating new posts
+ * @param {string} searchTerm - what the user is searching for
+ * @param {function} setSearchTerm - sets the search term
+ * @param {function} handleClick - handles click event for search
+ * @returns the explore page
+ */
 const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter()
 

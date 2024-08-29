@@ -3,6 +3,12 @@ import React from 'react'
 import { supabase } from '../../lib/supabase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+// TODO: Document notification component
+
+/**
+ * Notification Component for displaying user notifications
+ * @returns {JSX.Element} The notification page.
+ */
 const notification = () => {
   
   const onLogOut = async () => {

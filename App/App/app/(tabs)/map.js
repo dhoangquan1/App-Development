@@ -8,7 +8,12 @@ import useSupabase from '../../services/useSupabase';
 import { getAllActivities } from '../../services/getData';
 import { COLORS } from '../../constants';
 
+// TODO: Document map component
 
+/**
+ * Map Component for displaying activities on the map
+ * @returns map page
+ */
 const map = () => {
   const [userLocation, setUserLocation] = useState(null);
   const { data, isLoading, error } = useSupabase(getAllActivities);
@@ -19,7 +24,9 @@ const map = () => {
     longitudeDelta: 2,
     latitudeDelta: 2,
   }
-
+  /**
+   * Get user location
+   */
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();

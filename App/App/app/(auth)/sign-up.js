@@ -7,6 +7,12 @@ import FormField from '../../components/common/form-field/FormField'
 import { Link, router } from 'expo-router'
 import { supabase } from '../../lib/supabase'
 
+// TODO: Document SignUp component
+
+/**
+ * SignUp Component allows users to create an account.
+ * @returns {JSX.Element} The sign up page.
+ */
 const SignUp = () => {
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({

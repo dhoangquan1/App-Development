@@ -2,8 +2,13 @@ import {StyleSheet } from "react-native";
 
 import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 
+// TODO: Document explore style
+
 const spacerHeight = 1000;
 
+/**
+ * Style Sheet for the Explore Component
+ */
 const styles = StyleSheet.create({
     topBackground: {
         flex: 1,

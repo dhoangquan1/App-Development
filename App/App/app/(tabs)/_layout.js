@@ -3,6 +3,13 @@ import TabBar from '../../components/common/tabBar/TabBar';
 import { useAuth } from '../../context/AuthContext';
 import { StatusBar } from 'react-native';
 
+// TODO : Document TabLayout component
+
+/**
+ * Layout Component for the Navigation Tabs
+ * @returns {JSX.Element} The navigation tab bar.
+ */
+
 export default function TabLayout() {
   const {setAuth} = useAuth();
 

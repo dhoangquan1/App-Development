@@ -1,6 +1,7 @@
 import { supabase } from "../lib/supabase";
 import uuid from "react-native-uuid"
 
+// TODO: Document data upload methods
 export async function uploadPostImageToStorage (event, userID, postID) {
     let file = event.target.files[0];
 

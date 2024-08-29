@@ -11,6 +11,13 @@ import {
   Welcome,
 } from "../../../components";
 
+// TODO: Document home component
+
+/**
+ * description of Home
+ * This component contains a search bar and displays various sections of the app.
+ * @returns {JSX.Element} The home page.
+ */
 const Home = () => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("");
