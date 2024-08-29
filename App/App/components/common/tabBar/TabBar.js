@@ -2,16 +2,17 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './TabBar.style';
 import { COLORS, icons } from '../../../constants';
 
-import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const TabBar = ({ state, descriptors, navigation }) => {
   
   const iconSelect = {
-    home: (props) => <Feather name="home" size={24} color={COLORS.primary} {...props}/>,
-    explore: (props) => <Feather name="compass" size={24} color={COLORS.primary} {...props}/>,
-    map: (props) => <Feather name="map" size={24} color={COLORS.primary} {...props}/>,
-    bookmark: (props) => <Feather name="bookmark" size={24} color={COLORS.primary} {...props}/>,
-    notification: (props) => <Feather name="bell" size={24} color={COLORS.primary} {...props}/>,
+    home: (props) => <Ionicons name="home" size={24} color={COLORS.primary} {...props}/>,
+    explore: (props) => <Ionicons name="compass" size={24} color={COLORS.primary} {...props}/>,
+    map: (props) => <Ionicons name="map-sharp" size={24} color={COLORS.primary} {...props}/>,
+    bookmark: (props) => <Ionicons name="bookmark" size={24} color={COLORS.primary} {...props}/>,
+    profile: (props) => <MaterialCommunityIcons name="account" size={24} color={COLORS.primary} {...props}/>,
   }
 
   return (
@@ -59,10 +60,10 @@ const TabBar = ({ state, descriptors, navigation }) => {
           >
             {
               iconSelect[route.name]({
-                color: isFocused ? COLORS.primary : COLORS.secondary
+                color: isFocused ? COLORS.neutral : COLORS.secondary
               })
             }
-            <Text style={{ color: isFocused ? COLORS.primary : COLORS.secondary }}>
+            <Text style={{ color: isFocused ? COLORS.neutral : COLORS.secondary }}>
               {label}
             </Text>
           </TouchableOpacity>

@@ -3,7 +3,8 @@ import React from 'react'
 import { supabase } from '../../lib/supabase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../context/AuthContext';
-const notification = () => {
+
+const Profile = () => {
   const {user} = useAuth();
   
   const onLogOut = async () => {
@@ -23,4 +24,4 @@ const notification = () => {
   )
 }
 
-export default notification
+export default Profile

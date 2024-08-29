@@ -10,7 +10,7 @@ const RiversCard = ({ item, handleCardPress }) => {
       onPress={() => handleCardPress(item)}
     >
       <ImageBackground
-          source={{uri: (item.image)}}
+          source={{uri: item.image ? item.image : 'https://t3.ftcdn.net/jpg/01/13/46/78/360_F_113467839_JA7ZqfYTcIFQWAkwMf3mVmhqXr7ZOgEX.jpg'}}
           resizeMode='cover'
           style={styles.riverImage}
       >

@@ -38,9 +38,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="notification"
+        name="profile"
         options={{
-          title: 'Notif',
+          title: 'Profile',
         }}
       />
 
