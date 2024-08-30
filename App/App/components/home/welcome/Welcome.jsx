@@ -16,6 +16,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAuth } from "../../../context/AuthContext";
+import CategoryButton from "../../common/categoryButton/CategoryButton.js";
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
@@ -24,13 +25,6 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const {user} = useAuth();
   const [activeJobType, setActiveJobType] = useState("Swimming");
 
-  const iconSelect = {
-    "Swimming": (props) => <FontAwesome6 name="person-swimming" size={24} color={COLORS.primary} {...props}/>,
-    "Fishing": (props) => <FontAwesome6 name="fish-fins" size={24} color={COLORS.primary} {...props}/>,
-    "Paddling": (props) => <MaterialIcons name="kayaking" size={24} color={COLORS.primary} {...props}/>,
-    "Boating and Sailing": (props) => <FontAwesome6 name="sailboat" size={24} color={COLORS.primary} {...props}/>,
-    "Hiking, Walk, & Run": (props) => <FontAwesome6 name="person-walking" size={24} color={COLORS.primary} {...props}/>,
-  }
 
   return (
     <View>
@@ -65,26 +59,17 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
         <FlatList
           data={categories}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.tab(item)}
-              onPress={() => {
-                setActiveJobType(item);
-                router.push(`/search/${item}`);
-              }}
-            >
-              {
-                iconSelect[item]({
-                  color: COLORS.primary
-                })
-              }
-              <Text style={styles.tabText}>{item}</Text>
-            </TouchableOpacity>
+            <CategoryButton 
+              item = {item}
+              handlePress = {handleClick}
+            />
           )}
           keyExtractor={(item) => item}
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
         />
       </View>
+
     </View>
   );
 };
