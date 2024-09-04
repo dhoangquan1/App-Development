@@ -17,6 +17,9 @@ const RiversCard = ({ item, handleCardPress }) => {
 
       <View style={styles.infoContainer}>
         <View style={styles.addressContainer}>
+          <Text style={styles.riverAddress}>
+            {item.activities[0].count}
+          </Text>
           <Entypo name="location" size={16} color={COLORS.primary} />
           <Text style={styles.riverAddress} numberOfLines={1}>
             {item.address}

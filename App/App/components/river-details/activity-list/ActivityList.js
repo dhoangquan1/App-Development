@@ -4,7 +4,6 @@ import styles from './ActivityList.style'
 import useSupabase from '../../../services/useSupabase'
 import {getActivityByCategoryAndRiver } from '../../../services/getData'
 import { COLORS, SIZES } from '../../../constants'
-import ActivitiesCard from '../../common/cards/activities/activitiesCard'
 import { useRouter } from 'expo-router'
 import MiniActivitiesCard from '../../common/cards/mini-activities/miniActivitiesCard'
 
@@ -13,7 +12,7 @@ const ActivityList = ({category, riverID}) => {
     const {data, isLoading, error} = useSupabase(() => getActivityByCategoryAndRiver(category, riverID))
 
     return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} nestedScrollEnabled={true}>
         <View style={styles.cardsContainer}>
             {isLoading ? (
                 <ActivityIndicator size='large' color={COLORS.primary} />
@@ -24,7 +23,7 @@ const ActivityList = ({category, riverID}) => {
                 <MiniActivitiesCard
                     item={item}
                     key={`${item.id}`}
-                    handleNavigate={() => router.push(`/${item.id}/activities`)}
+                    handleNavigate={() => router.push(`/activities/${item.id}`)}
                 />  
                 ))
             )}

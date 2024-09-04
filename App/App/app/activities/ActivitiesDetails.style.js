@@ -31,15 +31,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         flex: 1,
     },
-    riverName: {
-        fontSize: 30,
+    activityName: {
+        fontSize: 28,
         fontFamily: FONT.bold,
         color: COLORS.primary,
         textAlign: "left",
     },
-    riverDescription: {
+    activityDescription: {
         marginTop: 20,
-        fontSize: 16,
+        fontSize: 18,
         fontFamily: FONT.regular,
         color: COLORS.primary,
     },
@@ -55,10 +55,6 @@ const styles = StyleSheet.create({
         fontWeight: "350",
         fontFamily: FONT.light,
         color: COLORS.primary,
-    },
-    tabsContainer: {
-        width: "100%",
-        marginTop: 10,
     },
     
 });

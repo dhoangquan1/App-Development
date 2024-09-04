@@ -13,7 +13,6 @@ import styles from "./welcome.style";
 import { COLORS, icons, SIZES } from "../../../constants";
 
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAuth } from "../../../context/AuthContext";
 import CategoryButton from "../../common/categoryButton/CategoryButton.js";
@@ -30,7 +29,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
     <View>
       <View>
         <Text style={styles.username}>
-          Welcome, {user.name}
+          Welcome, {user?.name ? user.name : 'Guest' }
         </Text>
         <Text style={styles.welcome}>
           Explore your rivers!

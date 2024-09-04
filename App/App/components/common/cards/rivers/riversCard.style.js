@@ -4,25 +4,24 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
 const styles = StyleSheet.create({
   riverImage: {
-    height: 350,
+    height: 325,
     width: 275,
     flex: 1,
     alignContent: "space-between",
-    borderRadius: SIZES.xSmall,
+    borderRadius: 15,
     overflow: 'hidden',
   },
   infoContainer: {
     height: 75,
-    width: 255,
-    bottom: 10,
+    width: '100%',
+    bottom: 0,
     display: 'flex',
     position: 'absolute',
-    backgroundColor: 'rgba(	185, 196, 112, 0.8)',
+    backgroundColor: COLORS.tertiary,
     paddingLeft: 10,
     alignContent: "space-between",
     justifyContent: 'center',
-    alignSelf: 'center',
-    borderRadius: SIZES.xSmall,
+    borderRadius: 15,
   },
   addressContainer: {
     gap: 5,

@@ -26,7 +26,7 @@ export async function getAllRivers () {
     try {
         const {data, error} = await supabase
         .from('rivers')
-        .select('*');
+        .select(`*, activities(count)`);
         return data;
     } catch (error) {
         return {
@@ -59,6 +59,21 @@ export async function getRiver (riverId) {
         .select('*')
         .eq('id', riverId)
         .single();
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getOrganizations (riverId) {
+    try {
+        const {data, error} = await supabase
+        .from('organizations')
+        .select('*')
+        .eq('river_id', riverId);
         return data;
     } catch (error) {
         return {

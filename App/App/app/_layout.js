@@ -1,10 +1,11 @@
-import { useRouter,router, Stack } from "expo-router";
+import { useRouter, Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
 import { getUserData } from "../services/getData"; 
-import { setEnabled } from "react-native/Libraries/Performance/Systrace";
+
+
 //import * as SplashScreen from "expo-splash-screen";
 
 //SplashScreen.preventAutoHideAsync();
