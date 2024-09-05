@@ -5,8 +5,6 @@ import { router, Redirect } from "expo-router";
 import { FONT } from '../constants';
 import { useAuth } from '../context/AuthContext';
 
-// TODO: Document OnBoard component
-
 const OnBoard = () => {
     const {user} = useAuth();
     if(user !== null) return <Redirect href="/home" />;

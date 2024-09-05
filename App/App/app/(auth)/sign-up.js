@@ -1,13 +1,14 @@
+/**
+ * @fileOverview This is a component for the Sign Up page, which allows users to create an account.
+ * @module (Auth)/SignUp
+ */
+
 import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Dimensions, Alert } from 'react-native'
 import React, { useState } from 'react'
-
-
 import {images, FONT} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link, router } from 'expo-router'
 import { supabase } from '../../lib/supabase'
-
-// TODO: Document SignUp component
 
 /**
  * SignUp Component allows users to create an account.
@@ -22,6 +23,10 @@ const SignUp = () => {
     username: '',
   })
 
+  /**
+   * Handles sign up form submission
+   * @returns {Promise<void>} The result of the sign up form submission
+   */
   const submit = async () => {
     if (form.email === "" || form.password === "") {
       Alert.alert("Error", "Please fill in all fields");

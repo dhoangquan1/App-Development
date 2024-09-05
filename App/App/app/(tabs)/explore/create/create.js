@@ -1,18 +1,23 @@
+/**
+ * @fileOverview This file defines the Create component for the Explore page.
+ * It provides a form for users to create new posts within the community.
+ * 
+ * @module (Tabs)/Home/CreatePost
+ */
+
 import { View, Text, ScrollView,SafeAreaView } from 'react-native'
 import React from 'react'
 import styles from '../create/create.style'
 import FormField from '../../../../components/common/form-field/FormField'
 
-// TODO: Document create component
-
 /**
- * Create Component for making a new post
- * @returns {JSX.Element} The post creation page.
+ * Create Component for creating new posts.
+ * This component provides a form with fields that users can fill out to create a new post.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered Create post page component.
  */
 const create = () => {
-  /**
-   * Handles form submission
-   */
     const submit = async () => {
     
     }

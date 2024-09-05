@@ -1,13 +1,18 @@
+/**
+ * @fileOverview This file contains styles for the Explore page component.
+ * The styles are organized using React Native's StyleSheet for easy and efficient styling management.
+ * It includes styles for layout, text, buttons, images, and other UI elements used in the Explore component.
+ * 
+ * @module (Tabs)/ExploreStyles
+ */
+
 import {StyleSheet } from "react-native";
-
 import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
-
-// TODO: Document explore style
 
 const spacerHeight = 1000;
 
 /**
- * Style Sheet for the Explore Component
+ * Styles for the Explore page component.
  */
 const styles = StyleSheet.create({
     topBackground: {

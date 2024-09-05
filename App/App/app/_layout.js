@@ -8,8 +8,6 @@ import { getUserData } from "../services/getData";
 
 //SplashScreen.preventAutoHideAsync();
 
-// TODO: Document app layout
-
 const Layout = () => {
   const {setAuth, setUserData} = useAuth();
   const router = useRouter();

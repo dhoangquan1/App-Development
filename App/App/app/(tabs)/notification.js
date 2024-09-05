@@ -1,9 +1,12 @@
+/**
+ * @fileOverview This is a component for the Home page, which displays various sections of the app.
+ * @module (Tabs)/Notification
+ */
+
 import { View, Text, Alert, Touchable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { supabase } from '../../lib/supabase';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-// TODO: Document notification component
 
 /**
  * Notification Component for displaying user notifications

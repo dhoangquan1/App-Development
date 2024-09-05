@@ -1,19 +1,19 @@
+/**
+ * @fileOverview This is a component for the LogIn page, which allows users to log in to their account.
+ * @module (Auth)/LogIn
+ */
+
 import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Dimensions, Alert } from 'react-native'
 import React, { useState } from 'react'
-
-
 import {images, FONT} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link } from 'expo-router'
 import { supabase } from '../../lib/supabase'
 
-// TODO: Document LogIn component
-
 /**
  * LogIn Component allows users to log in to their account
  * @returns {JSX.Element} The log in page.
  */
-
 const LogIn = () => {
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({

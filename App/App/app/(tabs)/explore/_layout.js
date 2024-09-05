@@ -1,14 +1,16 @@
+/**
+ * @fileOverview This is a component for the Explore page, which allows users to search for posts and create new posts.
+ */
+
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
-// import * as SplashScreen from "expo-splash-screen";
-
-// SplashScreen.preventAutoHideAsync();
-
-// TODO: Document explore page layout
 
 /**
- * Layout Component for the Explore Page
- * @returns {JSX.Element}
+ * The Layout component for the Explore Page.
+ *
+ * @component
+ * 
+ * @returns {JSX.Element} The layout component with a configured navigation stack.
  */
 
 const Layout = () => {

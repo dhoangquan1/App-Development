@@ -1,3 +1,8 @@
+/**
+ * @fileOverview This is a component for the Map page, which displays a map with nearby activities.
+ * @module (Tabs)/Map
+ */
+
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Platform, Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
@@ -8,11 +13,9 @@ import useSupabase from '../../services/useSupabase';
 import { getAllActivities } from '../../services/getData';
 import { COLORS } from '../../constants';
 
-// TODO: Document map component
-
 /**
  * Map Component for displaying activities on the map
- * @returns map page
+ * @returns {JSX.Element} The map page
  */
 const map = () => {
   const [userLocation, setUserLocation] = useState(null);

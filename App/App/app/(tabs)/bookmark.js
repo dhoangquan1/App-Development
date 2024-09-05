@@ -1,11 +1,14 @@
+/**
+ * @fileOverview This is a component for the Bookmark page, which displays a user's bookmarked posts / activities.
+ * @module (Tabs)/Bookmark
+ */
+
 import { View, Text } from 'react-native'
 import React from 'react'
 
-// TODO: Document bookmark component
-
 /**
  * Bookmark Component for saving activities and rivers
- * @returns {} bookmark page
+ * @returns {JSX.Element} bookmark page
  */
 
 const bookmark = () => {

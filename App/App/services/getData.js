@@ -1,6 +1,4 @@
 import { supabase } from "../lib/supabase"
-// TODO: Document data retrieval methods
-
 
 /**
  * Retrieves user data from the database
