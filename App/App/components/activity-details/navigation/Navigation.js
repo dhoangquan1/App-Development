@@ -15,29 +15,18 @@ import { COLORS } from '../../../constants';
  * @returns a small map window
  */
 const Navigation = ({item}) => {
-  const [userLocation, setUserLocation] = useState(null);
-
-  const marker = {
-    longitude: item.longitude,
-    latitude: item.latitude,
+  const [userLocation, setUserLocation] = useState({
+    longitude: 0,
+    latitude: 0,
     longitudeDelta: 0.02,
     latitudeDelta: 0.02,
-  }
+  });
 
-  const getDirection = async() => {
-    const scheme = Platform.select({ ios: 'maps://0,0?q=', android: 'geo:0,0?q=' });
-    const latLng = `${item.latitude},${item.longitude}}`;
-    const label = `${item.name}`;
-    const url = Platform.select({
-        ios: `${scheme}${label}@${latLng}`,
-        android: `${scheme}${latLng}(${label})`
-    });
-   try {
-    Linking.openURL(url);
-   } catch (error) {
-    Alert.alert('Error', error.message)
-   }
-    
+  const marker = {
+    longitude: item.longitude ? item.longitude : 0,
+    latitude: item.latitude ? item.latitude: 0,
+    longitudeDelta: 0.02,
+    latitudeDelta: 0.02,
   }
 
   useEffect(() => {
@@ -50,11 +39,26 @@ const Navigation = ({item}) => {
       setUserLocation({
         longitude: location.coords.longitude,
         latitude: location.coords.latitude,
-        longitudeDelta: 2,
-        latitudeDelta: 2,
+        longitudeDelta: 0.1,
+        latitudeDelta: 0.1,
       })
     })()
   }, [])
+
+  const getDirection = async() => {
+   try {
+    const scheme = Platform.select({ ios: 'maps://0,0?q=', android: 'geo:0,0?q=' });
+    const latLng = `${item.latitude},${item.longitude}}`;
+    const label = `${item.name}`;
+    const url = Platform.select({
+        ios: `${scheme}${label}@${latLng}`,
+        android: `${scheme}${latLng}(${label})`
+    });
+    Linking.openURL(url);
+   } catch (error) {
+    Alert.alert('Error', error.message)
+   }
+  }
 
   return (
     <View style={styles.container}>
@@ -77,7 +81,7 @@ const Navigation = ({item}) => {
           <Text style={styles.text}> Get Direction </Text>  
         </TouchableOpacity>
     </View>
-);
+  );
 }
 
 export default Navigation
