@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./Activities.style";
 import { COLORS } from "../../../constants";
-import ActivitiesCard from "../../common/cards/activities/activitiesCard";
+import ActivitiesCard from "../../common/cards/home-activities/activitiesCard";
 import { getAllActivities } from "../../../services/getData";
 import useSupabase from "../../../services/useSupabase";
 
@@ -32,7 +32,7 @@ const Activities = () => {
               <ActivitiesCard
                 item={item}
                 key={`${item.id}`}
-                handleNavigate={() => router.push(`/${item.id}/activities`)}
+                handleNavigate={() => router.push(`/activities/${item.id}`)}
               />  
             ))
           )

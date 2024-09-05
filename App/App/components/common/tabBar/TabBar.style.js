@@ -5,14 +5,16 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
   tabBar: {
     position: 'absolute',
-    bottom: 25,
+    bottom: 0, //25
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: COLORS.tertiary,
-    marginHorizontal: 20,
-    paddingVertical: 15,
-    borderRadius: 25,
+    backgroundColor: COLORS.primary,
+    //marginHorizontal: 20,
+    paddingVertical: 10,
+    //borderRadius: 25,
+    //borderTopColor: COLORS.tertiary,
+    //borderWidth: 2,
     borderCurve: 'continuous',
     shadowColor: 'black',
     shadowOffset: {
@@ -27,12 +29,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   icon: {
     height: 26,
     width: 26,
-    color: '#808080',
+    color: COLORS.primary,
     
   }
   

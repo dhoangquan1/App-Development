@@ -12,7 +12,13 @@ export async function getUserData (userId) {
         .select('*')
         .eq('id', userId)
         .single();
-        return data;
+        if(error){
+            return {
+                success: false,
+                error: error?.message
+            }
+        }
+        return {success: true, data};
     } catch (error) {
         return {
             success: false,
@@ -25,7 +31,7 @@ export async function getAllRivers () {
     try {
         const {data, error} = await supabase
         .from('rivers')
-        .select('*');
+        .select(`*, activities(count)`);
         return data;
     } catch (error) {
         return {
@@ -67,6 +73,21 @@ export async function getRiver (riverId) {
     }
 }
 
+export async function getOrganizations (riverId) {
+    try {
+        const {data, error} = await supabase
+        .from('organizations')
+        .select('*')
+        .eq('river_id', riverId);
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
 export async function getActivity (activityId) {
     try {
         const {data, error} = await supabase
@@ -74,6 +95,39 @@ export async function getActivity (activityId) {
         .select('*')
         .eq('id', activityId)
         .single();
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getActivityByCategory(category) {
+    try {
+        const {data, error} = await supabase
+        .from('activities')
+        .select('*')
+        .eq('activity', category);
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getActivityByCategoryAndRiver(category, riverID) {
+    try {
+        const {data, error} = await supabase
+        .from('activities')
+        .select(`
+            *, 
+            rivers( name )`)
+        .eq('river_id', riverID)
+        .eq('activity', category);
         return data;
     } catch (error) {
         return {

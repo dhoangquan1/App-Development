@@ -14,22 +14,20 @@ import {
 
 import {
   ScreenHeaderBtn,
-} from "../../components";
-import { COLORS, icons, SIZES } from "../../constants";
-import styles from "./RiversDetails.style.js";
-import { getRiver } from "../../services/getData.js";
+} from "../../components/index.js";
+import { COLORS, icons, SIZES } from "../../constants/index.js";
+import styles from "./ActivitiesDetails.style.js";
+import { getActivity, getRiver } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
-import CategoryButton from "../../components/common/categoryButton/CategoryButton.js";
-import ActivityList from "../../components/river-details/activity-list/ActivityList.js";
-import OrganizationList from "../../components/river-details/organization-list/OrganizationList.js";
+import Navigation from "../../components/activity-details/navigation/Navigation.js";
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
-const RiverDetails = () => {
+const ActivitiesDetails = () => {
   const {id} = useLocalSearchParams();
   const router = useRouter();
 
-  const { data, refetch, error } = useSupabase(() => getRiver(`${id}`));
+  const { data, refetch, error } = useSupabase(() => getActivity(`${id}`));
   const [activeTab, setActiveTab] = useState(categories[0]);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -65,6 +63,7 @@ const RiverDetails = () => {
       />
       <ScrollView 
         showsVerticalScrollIndicator={false}
+        styles={{position: 'absolute'}}
         refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
@@ -78,49 +77,25 @@ const RiverDetails = () => {
         <View style = {styles.infoMainContainer}> 
             <View style = {styles.infoContainer}>
 
-              {/* General description Section */}
               <View style = {styles.infoTextContainer}>
-                <Text style = {styles.riverName}> 
+                <Text style = {styles.activityName}> 
                   {data.name} 
                 </Text>
-                <Text style = {styles.riverDescription}>
-                  The Ipswich River supplies the municipal water for Boxford, Wilmington, Ipswich, Lynnfield, Middleton, Danvers, Topsfield, Beverly, Salem, Lynn, Peabody, Hamilton, and Wenham. Additionally, all communities within the watershed have private wells that draw from the river's aquifer. 
+                <Text style = {styles.activityDescription}>
+                  {data.description}
+                </Text>
+                <Text style = {styles.activityDescription}>
+                  Note: {data.note}
                 </Text>
               </View>
 
-              {/* Activities Section */}
+              {/*Navigation Section */}
               <View style = {styles.infoTextContainer}>
                 <Text style = {styles.title}>
-                  Activities
+                  Navigation
                 </Text>
-                <View style={styles.tabsContainer}>
-                  <FlatList
-                    data={categories}
-                    renderItem={({ item }) => (
-                      <CategoryButton 
-                        item = {item}
-                        handlePress = {onPressCategory}
-                      />
-                    )}
-                    keyExtractor={(item) => item}
-                    contentContainerStyle={{ columnGap: SIZES.small }}
-                    horizontal
-                  />
-                </View>
-                <ActivityList key={activeTab} category={activeTab} riverID={id}/>
+                <Navigation item={data} />
               </View>
-
-              {/* Organization Section */}
-              <View style = {styles.infoTextContainer}> 
-                <Text style = {styles.title}>
-                  Organizations
-                </Text>
-                <Text style = {styles.subTitle}>
-                  Check out what the organizations been up to!
-                </Text>
-                <OrganizationList riverID={id}/>
-              </View>
-
 
             </View>
           </View>
@@ -129,4 +104,4 @@ const RiverDetails = () => {
   );
 };
 
-export default RiverDetails;
+export default ActivitiesDetails;

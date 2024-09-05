@@ -5,22 +5,28 @@
 
 import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Dimensions, Alert } from 'react-native'
 import React, { useState } from 'react'
-import {images, FONT} from "../../constants"
+import {images, FONT, SHADOWS, COLORS} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link } from 'expo-router'
 import { supabase } from '../../lib/supabase'
+import { useAuth } from '../../context/AuthContext'
+import { useRouter } from 'expo-router'
 
 /**
  * LogIn Component allows users to log in to their account
  * @returns {JSX.Element} The log in page.
  */
 const LogIn = () => {
+  const router = useRouter()
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     email: '',
     password: '',
   })
 
+  const signInGuest = () => {
+    router.replace('/home');
+  }
   /**
    * Handles log in form submission
    * @returns {Promise<void>} The result of the log in form submission
@@ -37,7 +43,9 @@ const LogIn = () => {
         email: form.email,
         password: form.password,
       })
-
+      if(error){
+        Alert.alert("Error", error.message);
+      }
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
@@ -55,6 +63,14 @@ const LogIn = () => {
         <Text style={styles.title}>
           Log in
         </Text>
+
+        <TouchableOpacity 
+            style={styles.button}
+            onPress={signInGuest}>
+            <Text style={styles.buttonText}>
+              Continue as Guest
+            </Text>
+          </TouchableOpacity>
         
         <>
           <View style={styles.logInContainer}>
@@ -103,8 +119,6 @@ export default LogIn
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: '100%',
-    widtht: '100%'
   },
   background: {
     width: '100%',
@@ -117,35 +131,26 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     fontFamily: FONT.serifBlack,
     color: '#fff',
-    textAlign: "center",
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: 210,
     textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {
     width: 0,
     height: 4
     },
     textShadowRadius: 4,
-    paddingBottom: 40,
+    marginBottom: 20,
   },
   logInContainer: {
     borderRadius: 30,
     width: 300,
     height: 300,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.neutral,
     justifyContent: 'center',
     paddingVertical: 40,
     paddingHorizontal: 25,
-    shadowColor: 'rgba(67, 206, 162, 0.25)',
-    shadowOffset: {
-    width: 0,
-    height: 4
-    },
-    shadowRadius: 4,
-    elevation: 4,
-    shadowOpacity: 1,
+    marginBottom: 20,
+    ...SHADOWS.small,
   },
   button: {
     borderRadius: 50,
@@ -153,10 +158,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     height: 55,
     justifyContent: 'center',
-    //calculation: middle of screen + half height of parent box - half height of the child box
-    position: 'absolute',
-    top: (Dimensions.get('window').height)/2 + (300+20)/2 - 55/2
-},
+    marginBottom: 20,
+  },
   buttonText: {
     fontSize: 15,
     fontWeight: "900",
@@ -165,7 +168,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   bottomContainer: {
-    paddingTop: 40,
     alignItems: 'center',
     gap: 4,
   },

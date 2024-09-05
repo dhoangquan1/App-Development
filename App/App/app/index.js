@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 const OnBoard = () => {
     const {user} = useAuth();
     if(user !== null) return <Redirect href="/home" />;
+    
   return (
     <View style={styles.container}>
         <ImageBackground
