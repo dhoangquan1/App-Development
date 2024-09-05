@@ -1,3 +1,8 @@
+/**
+ * @fileOverview This is a component for the Home page, which displays various sections of the app.
+ * @module (Tabs)/Home
+ */
+
 import { useState } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
@@ -11,6 +16,10 @@ import {
   Welcome,
 } from "../../../components";
 
+/**
+ * Home Component contains a search bar and displays various sections of the app.
+ * @returns {JSX.Element} The home page.
+ */
 const Home = () => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("");

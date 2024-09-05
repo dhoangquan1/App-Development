@@ -1,7 +1,10 @@
+/**
+ * @fileOverview This is a component for the LogIn page, which allows users to log in to their account.
+ * @module (Auth)/LogIn
+ */
+
 import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Dimensions, Alert } from 'react-native'
 import React, { useState } from 'react'
-
-
 import {images, FONT, SHADOWS, COLORS} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link } from 'expo-router'
@@ -9,6 +12,10 @@ import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../context/AuthContext'
 import { useRouter } from 'expo-router'
 
+/**
+ * LogIn Component allows users to log in to their account
+ * @returns {JSX.Element} The log in page.
+ */
 const LogIn = () => {
   const router = useRouter()
   const [isSubmitting, setSubmitting] = useState(false);
@@ -20,6 +27,10 @@ const LogIn = () => {
   const signInGuest = () => {
     router.replace('/home');
   }
+  /**
+   * Handles log in form submission
+   * @returns {Promise<void>} The result of the log in form submission
+   */
   const submit = async () => {
     if (form.email === "" || form.password === "") {
       Alert.alert("Error", "Please fill in all fields");

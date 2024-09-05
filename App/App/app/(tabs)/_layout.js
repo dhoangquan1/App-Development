@@ -1,8 +1,17 @@
+/**
+ * @fileOverview This is a component for the Tabs layout, which provides a tab bar for navigation.
+ */
+
 import { Redirect, Tabs } from 'expo-router';
 import TabBar from '../../components/common/tabBar/TabBar';
 import { useAuth } from '../../context/AuthContext';
 import { StatusBar } from 'expo-status-bar';
 import { COLORS } from '../../constants';
+
+/**
+ * Layout Component for the Navigation Tabs
+ * @returns {JSX.Element} The navigation tab bar.
+ */
 
 export default function TabLayout() {
   
