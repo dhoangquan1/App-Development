@@ -22,13 +22,13 @@ const MiniActivitiesCard = ({ item, handleNavigate }) => {
   if(item.name !== 'special')
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
-        <Image
-          source={{
-            uri: item.image,
-          }}
-          resizeMode='cover'
-          style={styles.imageContainer}
-        />
+      <Image
+        source={{
+          uri: item.image,
+        }}
+        resizeMode='cover'
+        style={styles.imageContainer}
+      />
 
       <View style={styles.textContainer}>
         

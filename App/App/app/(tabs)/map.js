@@ -7,11 +7,16 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useSupabase from '../../services/useSupabase';
 import { getAllActivities } from '../../services/getData';
 import { COLORS } from '../../constants';
+import MiniActivitiesCard from '../../components/common/cards/mini-activities/miniActivitiesCard';
+// import { Site } from '../../components/site.js';
 
 
 const map = () => {
   const [userLocation, setUserLocation] = useState(null);
   const { data, isLoading, error } = useSupabase(getAllActivities);
+
+  const [show, setShow] = useState(false);
+  const [activity, setActivity] = useState(null);
 
   const massRivers = {
     longitude: 42.40776531464709,
@@ -36,6 +41,11 @@ const map = () => {
     })()
   }, [])
 
+  const showActivity = (activity) => {
+    setShow(true);
+    setActivity(activity);
+  }
+
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -44,26 +54,38 @@ const map = () => {
           <Text>Something went wrong</Text>
         ) : (
           <View style={styles.container} >
+            {/* <Site /> */}
             <MapView 
               style={StyleSheet.absoluteFill}
               region={userLocation}
               showsUserLocation={true}
             >
-            {data?.map((item) => {
-              if(item.longitude !== null)
-                return (
-                  <Marker
-                    key={`${item.id}`}
-                    coordinate={{
-                      longitude: item.longitude,
-                      latitude: item.latitude,
-                    }}
-                  >
-                    {<FontAwesome name="map-marker" size={24} color='red' />}
-                  </Marker>
-                )
-            })}
+              {data?.map((item) => {
+                if(item.longitude !== null)
+                  return (
+                    <Marker
+                      key={`${item.id}`}
+                      coordinate={{
+                        longitude: item.longitude,
+                        latitude: item.latitude,
+                      }}
+                      title={item.name}
+                      // description='Details'
+                      onPress = {() => {showActivity(item), console.log('Marker clicked.')}}
+                    >
+                      {<FontAwesome name="map-marker" size={24} color='red' />}
+                    </Marker>
+                  )
+              })}
             </MapView>
+
+            {show ?
+              (<MiniActivitiesCard 
+                item = {activity}
+                handleNavigate={() => router.push(`../../app/activities/${activity.id}`)}
+                />)
+              : (<></>) }
+            
           </View>      
         )
       }
