@@ -11,13 +11,10 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
-
-import {
-  ScreenHeaderBtn,
-} from "../../components/index.js";
+import { ScreenHeaderBtn} from "../../components/index.js";
 import { COLORS, icons, SIZES } from "../../constants/index.js";
 import styles from "./ActivitiesDetails.style.js";
-import { getActivity, getRiver } from "../../services/getData.js";
+import { getActivity } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
 import Navigation from "../../components/activity-details/navigation/Navigation.js";
 
@@ -28,7 +25,6 @@ const ActivitiesDetails = () => {
   const router = useRouter();
 
   const { data, refetch, error } = useSupabase(() => getActivity(`${id}`));
-  const [activeTab, setActiveTab] = useState(categories[0]);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
@@ -36,10 +32,6 @@ const ActivitiesDetails = () => {
     refetch()
     setRefreshing(false)
   }, []);
-
-  const onPressCategory = (item) => {
-    setActiveTab(item)
-  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
@@ -74,18 +66,30 @@ const ActivitiesDetails = () => {
         >
           <View style={styles.stomach}/>
         </ImageBackground>
+        
         <View style = {styles.infoMainContainer}> 
             <View style = {styles.infoContainer}>
 
+              {/*Top Catergory and Ratings Section */}
+              <View style={styles.infoTextContainer}>
+                <View style={styles.infoTopContainer}>
+                  <View style={styles.category(data.activity)}>
+                    {icons.IconSelect(data.activity, 24)}
+                    <Text style={styles.categoryText}>{data.activity}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.categoryText}> Ratings</Text>
+                  </View>
+                </View>
+              </View>
+
+              {/*Description Section */}
               <View style = {styles.infoTextContainer}>
                 <Text style = {styles.activityName}> 
                   {data.name} 
                 </Text>
                 <Text style = {styles.activityDescription}>
                   {data.description}
-                </Text>
-                <Text style = {styles.activityDescription}>
-                  Note: {data.note}
                 </Text>
               </View>
 
