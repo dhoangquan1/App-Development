@@ -4,17 +4,9 @@ import styles from "./activitiesCard.style";
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { COLORS } from "../../../../constants";
+import { COLORS, icons } from "../../../../constants";
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
-const iconSelect = {
-  "Swimming": (props) => <FontAwesome6 name="person-swimming" size={12} color="black" {...props}/>,
-  "Fishing": (props) => <FontAwesome6 name="fish-fins" size={12} color="black" {...props}/>,
-  "Paddling": (props) => <MaterialIcons name="kayaking" size={12} color="black" {...props}/>,
-  "Boating and Sailing": (props) => <FontAwesome6 name="sailboat" size={12} color="black" {...props}/>,
-  "Hiking, Walk, & Run": (props) => <FontAwesome6 name="person-walking" size={12} color="black" {...props}/>,
-}
 
 const ActivitiesCard = ({ item, handleNavigate }) => {
 
@@ -33,15 +25,11 @@ const ActivitiesCard = ({ item, handleNavigate }) => {
         
         <View style = {styles.detailsContainer}>
           <View style={styles.categoryContainer(item.activity)}>
-            {
-              iconSelect[item.activity]({
-                color: '#000'
-              })
-            }
+            {icons.IconSelect(item.activity, 12)}
             <Text style={styles.categoryText}>{item.activity}</Text>
           </View>
           {
-            (item.wc_parking) ? (
+            (item.activities_tags.some(tag => tag.tag === "Wheelchair Parking")) ? (
               <FontAwesome6 name="wheelchair" size={15} color="black" />
             ) : (
               null
