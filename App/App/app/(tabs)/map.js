@@ -1,3 +1,8 @@
+/**
+ * @fileOverview This is a component for the Map page, which displays a map with nearby activities.
+ * @module (Tabs)/Map
+ */
+
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Platform, Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
@@ -10,7 +15,10 @@ import { COLORS } from '../../constants';
 import MiniActivitiesCard from '../../components/common/cards/mini-activities/miniActivitiesCard';
 // import { Site } from '../../components/site.js';
 
-
+/**
+ * Map Component for displaying activities on the map
+ * @returns {JSX.Element} The map page
+ */
 const map = () => {
   const [userLocation, setUserLocation] = useState(null);
   const { data, isLoading, error } = useSupabase(getAllActivities);
@@ -24,7 +32,9 @@ const map = () => {
     longitudeDelta: 2,
     latitudeDelta: 2,
   }
-
+  /**
+   * Get user location
+   */
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();

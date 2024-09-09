@@ -1,5 +1,10 @@
 import { supabase } from "../lib/supabase"
 
+/**
+ * Retrieves user data from the database
+ * @param {*} userId - The ID of the user to retrieve data for
+ * @returns 
+ */
 export async function getUserData (userId) {
     try {
         const {data, error} = await supabase
@@ -42,7 +47,8 @@ export async function getAllActivities () {
         .from('activities')
         .select(`
             *, 
-            rivers( name )`);
+            rivers( name ),
+            activities_tags( tag )`);
         return data;
     } catch (error) {
         return {
@@ -87,7 +93,7 @@ export async function getActivity (activityId) {
     try {
         const {data, error} = await supabase
         .from('activities')
-        .select('*')
+        .select(`*, activities_tags( tag )`)
         .eq('id', activityId)
         .single();
         return data;
@@ -103,7 +109,7 @@ export async function getActivityByCategory(category) {
     try {
         const {data, error} = await supabase
         .from('activities')
-        .select('*')
+        .select(`*, activities_tags( tag )`)
         .eq('activity', category);
         return data;
     } catch (error) {
@@ -120,7 +126,8 @@ export async function getActivityByCategoryAndRiver(category, riverID) {
         .from('activities')
         .select(`
             *, 
-            rivers( name )`)
+            rivers( name ),
+            activities_tags( tag )`)
         .eq('river_id', riverID)
         .eq('activity', category);
         return data;

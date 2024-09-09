@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+/**
+ * @fileOverview This is a component for the Bookmark page, which displays a user's bookmarked posts / activities.
+ * @module (Tabs)/Bookmark
+ */
 
-class bookmark extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
+import { View, Text } from 'react-native'
+import React from 'react'
 
-  render() {
-    return (
-      <View>
-        <Text> bookmark </Text>
-      </View>
-    );
-  }
+/**
+ * Bookmark Component for saving activities and rivers
+ * @returns {JSX.Element} bookmark page
+ */
+
+const bookmark = () => {
+  return (
+    <View>
+      <Text>bookmark</Text>
+    </View>
+  )
 }
 
-export default bookmark;
+export default bookmark
