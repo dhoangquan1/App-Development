@@ -36,6 +36,21 @@ export async function getAllRivers () {
     }
 }
 
+export async function getAverageRating (activityId) {
+    try {
+        const {data, error} = await supabase
+        .rpc('get_average_rating', {
+            id: activityId
+        });
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
 export async function getAllActivities () {
     try {
         const {data, error} = await supabase
@@ -43,7 +58,8 @@ export async function getAllActivities () {
         .select(`
             *, 
             rivers( name ),
-            activities_tags( tag )`);
+            activities_tags( tag ),
+            reviews( count )`);
         return data;
     } catch (error) {
         return {
@@ -88,7 +104,9 @@ export async function getActivity (activityId) {
     try {
         const {data, error} = await supabase
         .from('activities')
-        .select(`*, activities_tags( tag )`)
+        .select(`
+            *, 
+            activities_tags( tag )`)
         .eq('id', activityId)
         .single();
         return data;

@@ -12,6 +12,13 @@ const Activities = () => {
   const router = useRouter();
   const { data, isLoading, error } = useSupabase(getAllActivities);
 
+  const handleNavigate = (item) => {
+    router.push({
+      pathname: `/activities/[id]`,
+      params: {id : item.id}
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -32,7 +39,7 @@ const Activities = () => {
               <ActivitiesCard
                 item={item}
                 key={`${item.id}`}
-                handleNavigate={() => router.push(`/activities/${item.id}`)}
+                handleNavigate={handleNavigate}
               />  
             ))
           )

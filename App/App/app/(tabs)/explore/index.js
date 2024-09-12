@@ -2,6 +2,7 @@ import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Imag
 import React, { useState } from 'react'
 import styles from './index.style'
 import { Stack, useRouter } from "expo-router";
+import { COLORS } from '../../../constants';
 
 
 const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
@@ -14,7 +15,7 @@ const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   return (
     <View style={{flex : 1}} contentContainerStyle={{ flexGrow: 1 }}>
       
-      <ScrollView style={{backgroundColor: '#FBFAF5'}}>
+      <ScrollView style={{backgroundColor: COLORS.neutral}}>
         <View style={styles.topPadding}></View>
         <View style={styles.topBackground}>
           <View style={styles.topContainer}>
