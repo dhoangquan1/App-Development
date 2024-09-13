@@ -73,7 +73,7 @@ let filterByRivers = null;
 let filterByActivities = null;
 
 export async function getFilteredActivities () {
-    const rivers = [];
+    const rivers = [nashua];
     const activities = [];
     const riverQuery = riverString(rivers);
     const activityQuery = activityString(activities);
