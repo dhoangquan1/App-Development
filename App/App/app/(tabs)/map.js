@@ -10,9 +10,10 @@ import * as Location from 'expo-location';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useSupabase from '../../services/useSupabase';
-import { getAllActivities } from '../../services/getData';
+import { getAllActivities, getFilteredActivities } from '../../services/getData';
 import { COLORS } from '../../constants';
 import MiniActivitiesCard from '../../components/common/cards/mini-activities/miniActivitiesCard';
+import { Button, CheckBox } from '@rneui/themed';
 // import { Site } from '../../components/site.js';
 
 /**
@@ -20,8 +21,12 @@ import MiniActivitiesCard from '../../components/common/cards/mini-activities/mi
  * @returns {JSX.Element} The map page
  */
 const map = () => {
+  let rivers = [];
+  let activities = [];
+
   const [userLocation, setUserLocation] = useState(null);
-  const { data, isLoading, error } = useSupabase(getAllActivities);
+  const { allActivities, isLoadingA, errorA } = useSupabase(getAllActivities);
+  const { data, isLoading, error } = useSupabase(getFilteredActivities);
 
   const [show, setShow] = useState(false);
   const [activity, setActivity] = useState(null);
@@ -54,6 +59,19 @@ const map = () => {
   const showActivity = (activity) => {
     setShow(true);
     setActivity(activity);
+  }
+
+  const [landOn, setLandOn] = useState(false);
+  const [swimmingOn, setSwimmingOn] = useState(false);
+  const [paddlingOn, setPaddlingOn] = useState(false);
+  const [fishingOn, setFishingOn] = useState(false);
+
+  const [showFilters, setShowFilters] = useState(false);
+  const [showRivers, setShowRivers] = useState(false);
+  const [showActivities, setShowActivities] = useState(false);
+
+  const sendFilter = () => {
+    getFilteredActivities(rivers, activities);
   }
 
   return (
@@ -89,12 +107,61 @@ const map = () => {
               })}
             </MapView>
 
-            {show ?
-              (<MiniActivitiesCard 
-                item = {activity}
-                handleNavigate={() => router.push(`../../app/activities/${activity.id}`)}
-                />)
-              : (<></>) }
+            <View style={{position: 'absolute', top: 150}}>
+              <Button onPress={() => {setShowFilters(true)}} title="Search..."/>
+                {showFilters ? 
+                  (<View>
+                    <Button onPress={() => {setShowRivers(true)}} title="Rivers..."/>
+                    {showRivers ? 
+                    (<></>) 
+                    : <></>}
+                    <Button onPress={() => {setShowActivities(true)}} title="Activities..."/>
+                    {showActivities ? 
+                    (<View>
+                      {isLoadingA ? (
+                        <ActivityIndicator size='large' color={COLORS.primary} />
+                      ) : errorA ? (
+                        <Text>Something went wrong</Text>
+                      ) : (
+                        <View>
+                          <CheckBox 
+                            title="Land Activities" 
+                            checked={landOn}
+                            onPressIn={() => setLandOn(!landOn)}
+                          />
+                          <CheckBox 
+                            title="Swimming" 
+                            checked={swimmingOn}
+                            onPressIn={() => setSwimmingOn(!swimmingOn)}
+                          />
+                          <CheckBox 
+                            title="Paddling" 
+                            checked={paddlingOn}
+                            onPressIn={() => setPaddlingOn(!paddlingOn)}
+                          />
+                          <CheckBox 
+                            title="Fishing" 
+                            checked={fishingOn}
+                            onPressIn={() => setFishingOn(!fishingOn)}
+                          />
+                        </View>
+                      )}
+                    </View>) 
+                    : <></>}
+                    <Button title="Submit" onPress={() => {sendFilter()}}/>
+                  </View>
+                  )
+                : (<></>)}
+            </View>
+
+            <View style={{position: 'absolute', bottom: 75}}>
+              {show ?
+                (<MiniActivitiesCard 
+                  item = {activity}
+                  handleNavigate={() => router.push(`../../app/activities/${activity.id}`)}
+                  />)
+                : (<></>) }
+            </View>
             
           </View>      
         )
