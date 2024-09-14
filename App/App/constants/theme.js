@@ -1,3 +1,22 @@
+const getTabColors = (item) => {
+  switch(item) {
+      case 'Nearby' :
+        return '#FFEF9F'
+      case 'Swimming':
+          return '#C0EDFD'
+      case 'Fishing':
+          return '#79F3CC'
+      case 'Paddling':
+          return '#FF979E'
+      case 'Boating and Sailing':
+          return '#D6B7FF'
+      case 'Hiking, Walk, & Run':
+          return '#FECEFF'
+      default:
+          return '#FCAB64'
+  }
+}
+
 const COLORS = {
   primary: "#03310E",
   secondary: "#546021",
@@ -48,4 +67,4 @@ const SHADOWS = {
   },
 };
 
-export { COLORS, FONT, SIZES, SHADOWS };
+export { COLORS, FONT, SIZES, SHADOWS, getTabColors };

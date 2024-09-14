@@ -4,6 +4,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { COLORS, FONT } from './theme';
 const IconSelect = (activity, size, ...props) => {
   const icons = {
+    "Nearby" : <FontAwesome6 name="location-arrow" size={24} size={size} color={COLORS.primary} {...props}/>,
     "Swimming": <FontAwesome6 name="person-swimming" size={size} color={COLORS.primary} {...props}/>,
     "Fishing": <FontAwesome6 name="fish-fins" size={size} color={COLORS.primary} {...props}/>,
     "Paddling": <MaterialIcons name="kayaking" size={size} color={COLORS.primary} {...props}/>,

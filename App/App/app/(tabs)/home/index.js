@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { SafeAreaView, ScrollView, View, Text } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
 import { COLORS, icons, images, SIZES } from "../../../constants";
@@ -9,11 +9,15 @@ import {
   Activities,
   ScreenHeaderBtn,
   Welcome,
+  CategoryList
 } from "../../../components";
+
+const categories = ["Nearby", "Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
 const Home = () => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeTab, setActiveTab] = useState(categories[0]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
@@ -34,10 +38,11 @@ const Home = () => {
               }
             }}
           />
-
+          <CategoryList categories={categories} setActiveTab={setActiveTab}/>
+          <Text>{activeTab}</Text>
           <Leavenotrace />
           <Rivers />
-          <Activities />
+          <Activities key={activeTab} category={activeTab}/>
           
         </View>
       </ScrollView>

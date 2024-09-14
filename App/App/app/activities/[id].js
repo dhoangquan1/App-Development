@@ -28,7 +28,6 @@ const ActivitiesDetails = () => {
   const router = useRouter();
 
   const { data, refetch, isLoading, error } = useSupabase(() => getActivity(`${id}`));
-  const { data: rating, isLoading: ave_isCalculating} = useSupabase(() => getAverageRating(`${id}`));
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -64,7 +63,7 @@ const ActivitiesDetails = () => {
         refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
-        {isLoading || ave_isCalculating ? (
+        {isLoading ? (
           <ActivityIndicator size='large' color={COLORS.primary} />
         ) : error ? (
           <Text>Something went wrong</Text>
@@ -98,13 +97,13 @@ const ActivitiesDetails = () => {
                   </Text>
                   <View style={styles.rating}>
                     <StarRatingDisplay
-                      rating={rating[0].average_rating}
+                      rating={data.ave_rating}
                       color={COLORS.secondary}
                       starSize={25}
                       starStyle={{marginHorizontal: 2}}
                     />
-                    <Text style={styles.aveRatingText}> {rating[0].average_rating.toFixed(1)} </Text>
-                    <Text style={styles.reviewNumText}>({rating[0].review_count} reviews)</Text>
+                    <Text style={styles.aveRatingText}> {data.ave_rating.toFixed(1)} </Text>
+                    <Text style={styles.reviewNumText}>({data.rating_count} reviews)</Text>
                   </View>
                   <View style={styles.address}>
                     <Entypo name="location" size={16} color={COLORS.primary} />

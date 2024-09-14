@@ -5,12 +5,13 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import styles from "./Activities.style";
 import { COLORS } from "../../../constants";
 import ActivitiesCard from "../../common/cards/home-activities/activitiesCard";
-import { getAllActivities } from "../../../services/getData";
+import { getActivityByCategory } from "../../../services/getData";
 import useSupabase from "../../../services/useSupabase";
 
-const Activities = () => {
+const Activities = ({category}) => {
   const router = useRouter();
-  const { data, isLoading, error } = useSupabase(getAllActivities);
+  const { data, isLoading, refetch, error } = useSupabase(() => getActivityByCategory(category));
+
 
   const handleNavigate = (item) => {
     router.push({
