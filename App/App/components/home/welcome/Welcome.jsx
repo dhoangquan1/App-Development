@@ -15,7 +15,6 @@ import { COLORS, icons, SIZES } from "../../../constants";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAuth } from "../../../context/AuthContext";
-import CategoryButton from "../../common/categoryButton/CategoryButton.js";
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
@@ -54,20 +53,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
         </View>
       </View>
 
-      <View style={styles.tabsContainer}>
-        <FlatList
-          data={categories}
-          renderItem={({ item }) => (
-            <CategoryButton 
-              item = {item}
-              handlePress = {handleClick}
-            />
-          )}
-          keyExtractor={(item) => item}
-          contentContainerStyle={{ columnGap: SIZES.small }}
-          horizontal
-        />
-      </View>
+      
 
     </View>
   );

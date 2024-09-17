@@ -12,7 +12,7 @@ const ActivitiesCard = ({ item, handleNavigate }) => {
 
   if(item.name !== 'special')
   return (
-    <TouchableOpacity style={styles.container} onPress={handleNavigate}>
+    <TouchableOpacity style={styles.container} onPress={() => handleNavigate(item)}>
         <Image
           source={{
             uri: item.image,

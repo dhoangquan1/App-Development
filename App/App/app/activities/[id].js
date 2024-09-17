@@ -13,10 +13,13 @@ import {
 } from "react-native";
 import { ScreenHeaderBtn} from "../../components/index.js";
 import { COLORS, icons, SIZES } from "../../constants/index.js";
+import {StarRatingDisplay} from 'react-native-star-rating-widget';
 import styles from "./ActivitiesDetails.style.js";
-import { getActivity } from "../../services/getData.js";
+import Entypo from '@expo/vector-icons/Entypo';
+import { getActivity, getAverageRating } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
 import Navigation from "../../components/activity-details/navigation/Navigation.js";
+import AmenitiesList from "../../components/activity-details/amenities/AmenitiesList.js";
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
@@ -24,7 +27,8 @@ const ActivitiesDetails = () => {
   const {id} = useLocalSearchParams();
   const router = useRouter();
 
-  const { data, refetch, error } = useSupabase(() => getActivity(`${id}`));
+  const { data, refetch, isLoading, error } = useSupabase(() => getActivity(`${id}`));
+
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
@@ -59,50 +63,101 @@ const ActivitiesDetails = () => {
         refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
-        <ImageBackground
-          source = {{uri: (data.image)}}
-          resizeMode= 'cover'
-          style = {styles.backgroundRiver}
-        >
-          <View style={styles.stomach}/>
-        </ImageBackground>
-        
-        <View style = {styles.infoMainContainer}> 
-            <View style = {styles.infoContainer}>
+        {isLoading ? (
+          <ActivityIndicator size='large' color={COLORS.primary} />
+        ) : error ? (
+          <Text>Something went wrong</Text>
+        ) : (
+          <>
+          <ImageBackground
+            source = {{uri: (data.image)}}
+            resizeMode= 'cover'
+            style = {styles.backgroundRiver}
+          >
+            <View style={styles.stomach}/>
+          </ImageBackground>
+          
+          <View style = {styles.infoMainContainer}> 
+              <View style = {styles.infoContainer}>
 
-              {/*Top Catergory and Ratings Section */}
-              <View style={styles.infoTextContainer}>
-                <View style={styles.infoTopContainer}>
-                  <View style={styles.category(data.activity)}>
-                    {icons.IconSelect(data.activity, 24)}
-                    <Text style={styles.categoryText}>{data.activity}</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.categoryText}> Ratings</Text>
+                {/*Top Catergory Section */}
+                <View style={styles.infoTextContainer}>
+                  <View style={styles.infoTopContainer}>
+                    <View style={styles.category(data.activity)}>
+                      {icons.IconSelect(data.activity, 12)}
+                      <Text style={styles.categoryText}>{data.activity}</Text>
+                    </View>
                   </View>
                 </View>
-              </View>
 
-              {/*Description Section */}
-              <View style = {styles.infoTextContainer}>
-                <Text style = {styles.activityName}> 
-                  {data.name} 
-                </Text>
-                <Text style = {styles.activityDescription}>
-                  {data.description}
-                </Text>
-              </View>
+                {/*Name and Ratings Section */}
+                <View style={styles.infoTextContainer}>
+                  <Text style = {styles.activityName}> 
+                    {data.name} 
+                  </Text>
+                  <View style={styles.rating}>
+                    <StarRatingDisplay
+                      rating={data.ave_rating}
+                      color={COLORS.secondary}
+                      starSize={25}
+                      starStyle={{marginHorizontal: 2}}
+                    />
+                    <Text style={styles.aveRatingText}> {data.ave_rating.toFixed(1)} </Text>
+                    <Text style={styles.reviewNumText}>({data.rating_count} reviews)</Text>
+                  </View>
+                  <View style={styles.address}>
+                    <Entypo name="location" size={16} color={COLORS.primary} />
+                    <Text style={styles.addressText}>{data.address}</Text>
+                  </View>
+                </View>
 
-              {/*Navigation Section */}
-              <View style = {styles.infoTextContainer}>
-                <Text style = {styles.title}>
-                  Navigation
-                </Text>
-                <Navigation item={data} />
-              </View>
+                {/*About Section */}
+                {data.description && (
+                  <View style={styles.infoTextContainer}>
+                    <Text style = {styles.title}>
+                      About
+                    </Text>
+                    <Text style = {styles.activityDescription}>
+                      {data.description}
+                    </Text>
+                  </View>
+                )}
 
+                {/*Website Link Button */}
+                {data.link && (
+                  <View style={styles.infoTextContainer}>
+                    <TouchableOpacity 
+                      style={styles.button}
+                      handleNavigate={() => Linking.openURL(`${data.link}`)}
+                    >
+                      <Text style={styles.buttonText}>Visit website</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+
+                {/*Amenities */}
+                {data.activities_tags[0] && (
+                  <View style = {styles.infoTextContainer}>
+                    <Text style = {styles.title}>
+                      Amenities
+                    </Text>
+                    <AmenitiesList data={data.activities_tags}/>
+                  </View>
+                )}
+                
+                
+                {/*Navigation Section */}
+                <View style = {styles.infoTextContainer}>
+                  <Text style = {styles.title}>
+                    Navigation
+                  </Text>
+                  <Navigation item={data} />
+                </View>
+
+              </View>
             </View>
-          </View>
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

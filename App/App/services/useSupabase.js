@@ -24,7 +24,7 @@ const useSupabase = (fn) => {
 
   const refetch = () => fetchData();
 
-  return { data, isLoading, refetch };
+  return { data, isLoading, error, refetch };
 };
 
 export default useSupabase;

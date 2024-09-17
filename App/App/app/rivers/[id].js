@@ -13,13 +13,13 @@ import {
 } from "react-native";
 
 import {
+  CategoryList,
   ScreenHeaderBtn,
 } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "./RiversDetails.style.js";
 import { getRiver } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
-import CategoryButton from "../../components/common/categoryButton/CategoryButton.js";
 import ActivityList from "../../components/river-details/activity-list/ActivityList.js";
 import OrganizationList from "../../components/river-details/organization-list/OrganizationList.js";
 
@@ -38,10 +38,6 @@ const RiverDetails = () => {
     refetch()
     setRefreshing(false)
   }, []);
-
-  const onPressCategory = (item) => {
-    setActiveTab(item)
-  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
@@ -93,20 +89,7 @@ const RiverDetails = () => {
                 <Text style = {styles.title}>
                   Activities
                 </Text>
-                <View style={styles.tabsContainer}>
-                  <FlatList
-                    data={categories}
-                    renderItem={({ item }) => (
-                      <CategoryButton 
-                        item = {item}
-                        handlePress = {onPressCategory}
-                      />
-                    )}
-                    keyExtractor={(item) => item}
-                    contentContainerStyle={{ columnGap: SIZES.small }}
-                    horizontal
-                  />
-                </View>
+                <CategoryList categories={categories} setActiveTab={setActiveTab}/>
                 <ActivityList key={activeTab} category={activeTab} riverID={id}/>
               </View>
 

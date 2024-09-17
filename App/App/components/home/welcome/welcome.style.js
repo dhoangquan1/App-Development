@@ -2,23 +2,6 @@ import { StyleSheet } from "react-native";
 
 import { COLORS, FONT, SIZES } from "../../../constants";
 
-const getTabColors = (item) => {
-  switch(item) {
-      case 'Swimming':
-          return '#C0EDFD'
-      case 'Fishing':
-          return '#79F3CC'
-      case 'Paddling':
-          return '#FF979E'
-      case 'Boating and Sailing':
-          return '#D6B7FF'
-      case 'Hiking, Walk, & Run':
-          return '#FECEFF'
-      default:
-          return '#C0EDFD'
-  }
-}
-
 const styles = StyleSheet.create({
   container: {
     width: "100%",
@@ -78,10 +61,6 @@ const styles = StyleSheet.create({
     width: "50%",
     height: "50%",
     tintColor: COLORS.white,
-  },
-  tabsContainer: {
-    width: "100%",
-    marginTop: SIZES.medium,
   },
 });
 

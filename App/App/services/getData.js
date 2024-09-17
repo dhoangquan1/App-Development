@@ -48,7 +48,8 @@ export async function getAllActivities () {
         .select(`
             *, 
             rivers( name ),
-            activities_tags( tag )`);
+            activities_tags( tag ),
+            reviews( count )`);
         return data;
     } catch (error) {
         return {
@@ -93,7 +94,9 @@ export async function getActivity (activityId) {
     try {
         const {data, error} = await supabase
         .from('activities')
-        .select(`*, activities_tags( tag )`)
+        .select(`
+            *, 
+            activities_tags( tag )`)
         .eq('id', activityId)
         .single();
         return data;
@@ -107,10 +110,26 @@ export async function getActivity (activityId) {
 
 export async function getActivityByCategory(category) {
     try {
-        const {data, error} = await supabase
+        let query = supabase
         .from('activities')
-        .select(`*, activities_tags( tag )`)
-        .eq('activity', category);
+        .select(`
+            *, 
+            rivers( name ),
+            activities_tags( tag )`);
+
+        if(category !== "Nearby"){
+            query = query.eq('activity', category);
+        }
+        
+        const {data, error} = await query;
+
+        if(error){
+            return {
+                success: false,
+                error: error?.message
+            }
+        }
+        
         return data;
     } catch (error) {
         return {

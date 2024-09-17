@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.neutral,
         flex: 5,
         paddingVertical: 25,
-        borderTopRightRadius: 32,
-        borderTopLeftRadius: 32,
-        top: 250
+        borderTopRightRadius: 30,
+        borderTopLeftRadius: 30,
+        top: 275,
         
     },
     infoContainer: {
@@ -52,34 +52,61 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        
     },
     category: (item) => ({
-        paddingVertical: SIZES.small / 2,
-        paddingHorizontal: SIZES.small,
+        paddingVertical: 2,
+        paddingHorizontal: 10,
         borderRadius: 10,
         backgroundColor: getTabColors(item),
-        gap: 5,
         flexDirection: "row",
         alignItems: "center",
-        borderColor: COLORS.primary,
-        borderWidth: 2,
+        marginBottom: 5,
+        gap: 2,
     }),
     categoryText: {
         color: COLORS.primary,
         fontFamily: FONT.flex,
         fontWeight: "200",
+        fontSize: 14,
+    },
+    rating: {
+        flex: 1,
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    aveRatingText: {
+        fontSize: 18,
+        fontFamily: FONT.bold,
+        color: COLORS.primary,
+    },
+    reviewNumText: {
+        fontSize: 18,
+        fontFamily: FONT.regular,
+        color: COLORS.primary,
+    },
+    address: {
+        flex: 1,
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginTop: 10,
+        gap: 5,
+    },
+    addressText: {
         fontSize: 16,
+        fontFamily: FONT.regular,
+        color: COLORS.primary,
     },
     activityName: {
         fontSize: 28,
         fontFamily: FONT.bold,
         color: COLORS.primary,
-        textAlign: "left",
+        marginBottom: 5,
     },
     activityDescription: {
-        marginTop: 20,
-        fontSize: 18,
+        marginTop: 5,
+        fontSize: 16,
         fontFamily: FONT.regular,
         color: COLORS.primary,
     },
@@ -96,6 +123,21 @@ const styles = StyleSheet.create({
         fontFamily: FONT.light,
         color: COLORS.primary,
     },
+    button: {
+        marginTop: 10,
+        borderRadius: 15,
+        backgroundColor: COLORS.secondary,
+        width: '100%',
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: "350",
+        fontFamily: FONT.medium,
+        color: COLORS.neutral,
+    }
     
 });
 
