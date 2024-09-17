@@ -39,7 +39,6 @@ const Home = () => {
             }}
           />
           <CategoryList categories={categories} setActiveTab={setActiveTab}/>
-          <Text>{activeTab}</Text>
           <Leavenotrace />
           <Rivers />
           <Activities key={activeTab} category={activeTab}/>
