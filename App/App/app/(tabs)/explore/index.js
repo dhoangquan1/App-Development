@@ -3,11 +3,21 @@
  * @module (Tabs)/Explore
  */
 
-import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Image, Alert} from 'react-native'
+import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Image, Alert, FlatList} from 'react-native'
 import React, { useState } from 'react'
 import styles from './index.style'
 import { Stack, useRouter } from "expo-router";
 import { useAuth } from '../../../context/AuthContext';
+import { COLORS, icons, images, SIZES } from "../../../constants";
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+import CategoryButton from "../../../components/common/categoryButton/CategoryButton.js";
+import { Posts } from "../../../components";
+
+
+const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
+
 
 /**
  * Explore Component for viewing community posts and creating new posts
@@ -18,9 +28,15 @@ import { useAuth } from '../../../context/AuthContext';
  * @param {function} handleClick - handles click event for search
  * @returns {JSX.Element} the explore page
  */
-const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
+const explore = ({ searchTerm, setSearchTerm }) => {
   const router = useRouter()
   const {user} = useAuth();
+
+  const handleClick = () => {
+    if (searchTerm) {
+      router.push(`/search/${searchTerm}`)
+    }
+  }
 
   /**
    * Handles the click event for the create button
@@ -44,61 +60,61 @@ const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   
 
   return (
-    <View style={{flex : 1}} contentContainerStyle={{ flexGrow: 1 }}>
-      
-      <ScrollView style={{backgroundColor: '#FBFAF5'}}>
-        <View style={styles.topPadding}></View>
-        <View style={styles.topBackground}>
-          <View style={styles.topContainer}>
-            <Text style={styles.bigText}>
-              Share your experience
-            </Text>
-            <Text style={styles.smallText}>
-              connect with the community
-            </Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
+        <ScrollView>
+          <View style={styles.topPadding}></View>
+          <View style={styles.topBackground}>
+            <View style={styles.topContainer}>
+            
+{/* ________________________________________ Headers ________________________________________ */}
+              <Text style={styles.shareYourExperience}>Share your experience</Text>
+              
+              <Text style={styles.connectWithThe}>connect with the community</Text>
 
-            <View style={styles.searchContainer}>
-              <View style={styles.searchWrapper}>
-                <TextInput
-                  style={styles.searchInput}
-                  value={searchTerm}
-                  onChangeText={(text) => setSearchTerm(text)}
-                  placeholder='Search...'
+{/* ________________________________________ Search Bar ________________________________________ */}
+              <View style={styles.searchContainer}>
+                <View style={styles.searchWrapper}>
+                  <FontAwesome6 name="magnifying-glass" size={20} color={COLORS.primary} />
+
+                  <TextInput
+                    style={styles.searchInput}
+                    value={searchTerm}
+                    onChangeText={(text) => setSearchTerm(text)}
+                    placeholder='Find your river adventure...'
+                    placeholderTextColor={COLORS.secondary}
+                    onSubmitEditing={handleClick}
+                  />
+
+                  <TouchableOpacity>
+                    <Ionicons name="filter" size={25} color={COLORS.primary} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+{/* ________________________________________ Categories List ________________________________________ */}
+              <View style={styles.tabsContainer}>
+                <FlatList
+                  data={categories}
+                  renderItem={({ item }) => (
+                    <CategoryButton
+                      item={item}
+                      handlePress={handleClick}
+                    />
+                  )}
+                  keyExtractor={(item) => item}
+                  contentContainerStyle={{ columnGap: SIZES.small }}
+                  horizontal
                 />
               </View>
-            </View>
 
-            <View style={styles.createSection}>
-              <Image 
-                style={styles.pfpImage}
-                resizeMode='cover'
-                src={'https://t4.ftcdn.net/jpg/06/78/09/75/360_F_678097580_mgsNEISedI7fngOwIipYtEU0T6SN8qKv.jpg'}
-              />
-              <TouchableOpacity style={styles.createButton} onPress={onPushCreate}>
-                <Text style={styles.createText}>
-                  Create a new post
-                </Text>
-              </TouchableOpacity>
+{/* ________________________________________ Posts ________________________________________ */}
+              <View>
+                <Text style={styles.recentPosts}>Recent Posts</Text>
+              </View>
+
             </View>
           </View>
-          <View style={styles.stomach}></View>
-        </View>
-
-        <View style={styles.bottomBackground}>
-          <View style={styles.bottomContainer}>
-            <Text style={styles.mainTitle}>
-              <Text style={styles.firstTitle}>
-                {'Latest '}
-              </Text>
-              <Text style={styles.secondTitle}>
-                posts
-              </Text>
-            </Text>
-          </View>
-        </View>
-        
-      </ScrollView>
-    </View>
+        </ScrollView>
+    </SafeAreaView>
   )
 }
 

@@ -6,7 +6,7 @@
  * @module (Tabs)/ExploreStyles
  */
 
-import {StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 
 const spacerHeight = 1000;
@@ -17,7 +17,7 @@ const spacerHeight = 1000;
 const styles = StyleSheet.create({
     topBackground: {
         flex: 1,
-        backgroundColor: '#00450B',
+        backgroundColor: COLORS.secondary,
     },
     topPadding: {
         backgroundColor: '#00450B',
@@ -47,23 +47,29 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
-        marginTop: 10,
+        marginTop: SIZES.large,
         height: 50,
+
     },
     searchWrapper: {
         flex: 1,
-        backgroundColor: '#fbfaf5',
-        marginRight: SIZES.small,
         justifyContent: "center",
         alignItems: "center",
         borderRadius: SIZES.medium,
         height: "100%",
+        borderWidth: 2,
+        borderColor: COLORS.primary,
+        backgroundColor: COLORS.neutral,
+        flexDirection: 'row',
+        paddingHorizontal: 40,
     },
     searchInput: {
         fontFamily: FONT.regular,
+        fontSize: 16,
         width: "100%",
         height: "100%",
         paddingHorizontal: SIZES.medium,
+
     },
     searchBtn: {
         width: 50,
@@ -72,13 +78,14 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.medium,
         justifyContent: "center",
         alignItems: "center",
+        borderWidth: 2,
+        borderColor: COLORS.primary,
     },
     searchBtnImage: {
         width: "50%",
         height: "50%",
         tintColor: COLORS.white,
     },
-
     createSection: {
         marginTop: 10,
         width: '90%',
@@ -91,7 +98,7 @@ const styles = StyleSheet.create({
     pfpImage: {
         height: 65,
         width: 65,
-        borderRadius: 65/2,
+        borderRadius: 65 / 2,
         overflow: 'hidden'
     },
     createButton: {
@@ -140,7 +147,32 @@ const styles = StyleSheet.create({
         fontWeight: "700",
         fontFamily: FONT.bold,
         alignItems: "center",
-    }
+    },
+    shareYourExperience: {
+        fontSize: 30,
+        fontWeight: "700",
+        color: "#f2ecdd",
+        textAlign: "left",
+        display: "flex",
+        alignItems: "center",
+        width: 380,
+        height: 48
+    },
+    connectWithThe: {
+        fontSize: 20,
+        fontWeight: "300",
+        color: "#f2ecdd",
+        textAlign: "left",
+        display: "flex",
+        alignItems: "center",
+        width: 380,
+        height: 28
+    },
+    tabsContainer: {
+        width: "100%",
+        marginTop: SIZES.medium,
+    },
+
 });
 
 export default styles;
