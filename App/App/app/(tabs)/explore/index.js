@@ -1,10 +1,23 @@
+/**
+ * @fileOverview This is a component for the Explore page, which allows users to search for posts and create new posts.
+ * @module (Tabs)/Explore
+ */
+
 import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import styles from './index.style'
 import { Stack, useRouter } from "expo-router";
 import { COLORS } from '../../../constants';
 
-
+/**
+ * Explore Component for viewing community posts and creating new posts
+ * 
+ * @component
+ * @param {string} searchTerm - what the user is searching for
+ * @param {function} setSearchTerm - sets the search term
+ * @param {function} handleClick - handles click event for search
+ * @returns {JSX.Element} the explore page
+ */
 const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter()
 

@@ -1,3 +1,8 @@
+/**
+ * @fileOverview This is a component for the Home page, which displays various sections of the app.
+ * @module (Tabs)/Home
+ */
+
 import { useState } from "react";
 import { SafeAreaView, ScrollView, View, Text } from "react-native";
 import { Stack, useRouter } from "expo-router";
