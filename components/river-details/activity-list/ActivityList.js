@@ -5,7 +5,7 @@ import useSupabase from '../../../services/useSupabase'
 import {getActivityByCategoryAndRiver } from '../../../services/getData'
 import { COLORS, SIZES } from '../../../constants'
 import { useRouter } from 'expo-router'
-import MiniActivitiesCard from '../../common/cards/mini-activities/miniActivitiesCard'
+import MiniActivitiesCard from '../../common/cards/mini-activities/MiniActivitiesCard'
 
 const ActivityList = ({category, riverID}) => {
     const {router} = useRouter();

@@ -1,7 +1,3 @@
-import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
-import CategoryList from "./common/categoryList/CategoryList";
-
-
 // activity details
 import AmenitiesList from "./activity-details/amenities/AmenitiesList";
 import Navigation from "./activity-details/navigation/Navigation";
@@ -10,10 +6,11 @@ import Weather from "./activity-details/weather/Weather";
 
 // common
 //    |cards
-import ActivitiesCard from "./common/cards/ActivitiesCard";
-import MiniActivitiesCard from "./common/cards/MiniActivitiesCard";
-import OrgCard from "./common/cards/OrgCard";
-import RiversCard from "./common/cards/RiversCard";
+import ActivitiesCard from "./common/cards/home-activities/ActivitiesCard";
+import MiniActivitiesCard from "./common/cards/mini-activities/MiniActivitiesCard";
+import OrgCard from "./common/cards/organizations/OrgCard";
+import RiversCard from "./common/cards/rivers/RiversCard";
+
 //    |other
 import CategoryList from "./common/categoryList/CategoryList";
 import FormField from "./common/form-field/FormField";
