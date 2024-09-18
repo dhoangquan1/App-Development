@@ -21,7 +21,7 @@ import TabBar from "./common/tabBar/TabBar";
 
 // home
 import Activities from "./home/activities/Activities";
-import LeaveNoTrace from "./home/leave_no_trace/LeaveNoTrace";
+import Leavenotrace from "./home/leave_no_trace/Leavenotrace";
 import Rivers from "./home/rivers/Rivers";
 import Welcome from "./home/welcome/Welcome";
 
@@ -48,7 +48,7 @@ export {
   TabBar,
 
   Activities,
-  LeaveNoTrace,
+  Leavenotrace,
   Rivers,
   Welcome,
 
