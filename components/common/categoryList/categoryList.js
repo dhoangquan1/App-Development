@@ -1,6 +1,6 @@
 import { View, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native'
 import { SIZES, icons } from '../../../constants'
-import styles from './categoryList.style'
+import styles from './CategoryList.style'
 import React from 'react'
 
 /**

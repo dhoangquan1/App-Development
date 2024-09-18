@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./Activities.style";
 import { COLORS } from "../../../constants";
-import ActivitiesCard from "../../common/cards/home-activities/activitiesCard";
+import ActivitiesCard from "../../common/cards/home-activities/ActivitiesCard";
 import { getActivityByCategory } from "../../../services/getData";
 import useSupabase from "../../../services/useSupabase";
 

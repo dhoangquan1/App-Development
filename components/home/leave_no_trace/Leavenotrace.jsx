@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-native";
 
-import styles from "./Leavenotrace.style";
+import styles from "./LeaveNoTrace.style";
 import { COLORS, SIZES, images } from "../../../constants";
 
 const Leavenotrace = () => {
