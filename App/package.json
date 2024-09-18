@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "create-expo-app": "^3.0.0",
-    "expo": "^51.0.31",
-    "react-native-uuid": "^2.0.2"
-  }
-}
