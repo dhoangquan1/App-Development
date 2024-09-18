@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
-import styles from "./welcome.style";
+import styles from "./Welcome.style";
 import { COLORS, icons, SIZES } from "../../../constants";
 
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';

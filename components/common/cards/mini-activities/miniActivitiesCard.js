@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
-import styles from "./miniActivitiesCard.style";
+import styles from "./MiniActivitiesCard.style";
 
 import { COLORS, icons } from "../../../../constants";
 import Entypo from '@expo/vector-icons/Entypo';
