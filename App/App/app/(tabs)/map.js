@@ -4,13 +4,14 @@
  */
 
 import React, {useState, useEffect, useRef} from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { MapCalloutSubview, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Platform, Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import * as Location from 'expo-location';
+import MapSearch from '../../components/mapSearch';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useSupabase from '../../services/useSupabase';
-import { getAllActivities, getFilteredActivities } from '../../services/getData';
+import { getAllActivities, getFilteredActivities, getAllRivers } from '../../services/getData';
 import { COLORS } from '../../constants';
 import MiniActivitiesCard from '../../components/common/cards/mini-activities/miniActivitiesCard';
 import { Button, CheckBox } from '@rneui/themed';
@@ -21,15 +22,20 @@ import { Button, CheckBox } from '@rneui/themed';
  * @returns {JSX.Element} The map page
  */
 const map = () => {
-  let rivers = [];
-  let activities = [];
 
   const [userLocation, setUserLocation] = useState(null);
-  const { allActivities, isLoadingA, errorA } = useSupabase(getAllActivities);
-  const { data, isLoading, error } = useSupabase(getFilteredActivities);
+  // const { allActivities, isLoadingA, errorA } = useSupabase(getAllActivities);
+  const { data, isLoading, error } = useSupabase(getFilteredActivities(null, null));
+  const [activities, setActivities] = useState(null);
 
   const [show, setShow] = useState(false);
   const [activity, setActivity] = useState(null);
+  
+  const activityFilters = [null, "Land", "Paddling", "Fishing", "Swimming"];
+  const [currentActivity, setCurrentActivity] = useState(activityFilters[0]);
+
+  const ipswich = '09cec781-00d8-4ec2-8217-dea3243f0d48';
+  const nashua = 'a43ddb01-654a-4f7c-a288-d16732a842ce';
 
   const massRivers = {
     longitude: 42.40776531464709,
@@ -55,23 +61,29 @@ const map = () => {
       })
     })()
   }, [])
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getFilteredActivities(currentActivity, ipswich)();
+        setActivities(data);
+
+        // console.log("New Data:")
+        // activities.map(element => {
+        //     console.log(`${element.activity} at ${element.name}`);
+        // }) 
+        // console.log("\n");
+      } catch (error) {
+        console.error('Error updating map:', error);
+      }
+    }
+    
+    fetchData();
+  }, [currentActivity])
 
   const showActivity = (activity) => {
     setShow(true);
     setActivity(activity);
-  }
-
-  const [landOn, setLandOn] = useState(false);
-  const [swimmingOn, setSwimmingOn] = useState(false);
-  const [paddlingOn, setPaddlingOn] = useState(false);
-  const [fishingOn, setFishingOn] = useState(false);
-
-  const [showFilters, setShowFilters] = useState(false);
-  const [showRivers, setShowRivers] = useState(false);
-  const [showActivities, setShowActivities] = useState(false);
-
-  const sendFilter = () => {
-    getFilteredActivities(rivers, activities);
   }
 
   return (
@@ -88,7 +100,7 @@ const map = () => {
               region={userLocation}
               showsUserLocation={true}
             >
-              {data?.map((item) => {
+              {activities?.map((item) => {
                 if(item.longitude !== null)
                   return (
                     <Marker
@@ -98,7 +110,6 @@ const map = () => {
                         latitude: item.latitude,
                       }}
                       title={item.name}
-                      // description='Details'
                       onPress = {() => {showActivity(item), console.log('Marker clicked.')}}
                     >
                       {<FontAwesome name="map-marker" size={24} color='red' />}
@@ -107,52 +118,7 @@ const map = () => {
               })}
             </MapView>
 
-            <View style={{position: 'absolute', top: 150}}>
-              <Button onPress={() => {setShowFilters(true)}} title="Search..."/>
-                {showFilters ? 
-                  (<View>
-                    <Button onPress={() => {setShowRivers(true)}} title="Rivers..."/>
-                    {showRivers ? 
-                    (<></>) 
-                    : <></>}
-                    <Button onPress={() => {setShowActivities(true)}} title="Activities..."/>
-                    {showActivities ? 
-                    (<View>
-                      {isLoadingA ? (
-                        <ActivityIndicator size='large' color={COLORS.primary} />
-                      ) : errorA ? (
-                        <Text>Something went wrong</Text>
-                      ) : (
-                        <View>
-                          <CheckBox 
-                            title="Land Activities" 
-                            checked={landOn}
-                            onPressIn={() => setLandOn(!landOn)}
-                          />
-                          <CheckBox 
-                            title="Swimming" 
-                            checked={swimmingOn}
-                            onPressIn={() => setSwimmingOn(!swimmingOn)}
-                          />
-                          <CheckBox 
-                            title="Paddling" 
-                            checked={paddlingOn}
-                            onPressIn={() => setPaddlingOn(!paddlingOn)}
-                          />
-                          <CheckBox 
-                            title="Fishing" 
-                            checked={fishingOn}
-                            onPressIn={() => setFishingOn(!fishingOn)}
-                          />
-                        </View>
-                      )}
-                    </View>) 
-                    : <></>}
-                    <Button title="Submit" onPress={() => {sendFilter()}}/>
-                  </View>
-                  )
-                : (<></>)}
-            </View>
+            <MapSearch onSelectActivity={setCurrentActivity}/>
 
             <View style={{position: 'absolute', bottom: 75}}>
               {show ?

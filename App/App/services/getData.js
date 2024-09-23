@@ -72,32 +72,31 @@ const fishing = 'Fishing';
 let filterByRivers = null;
 let filterByActivities = null;
 
-export async function getFilteredActivities () {
-    const rivers = [nashua];
-    const activities = [];
-    const riverQuery = riverString(rivers);
-    const activityQuery = activityString(activities);
-    console.log(riverQuery);
-    console.log(activityQuery);
-
-    try {
-        let query = supabase
-        .from('activities')
-        .select(`
-            *, 
-            rivers( name ),
-            activities_tags( tag )`)
-         
-        if (riverQuery) { query = query.or(riverQuery) }
-        if (activityQuery) { query = query.filter('activity', 'in', activityQuery) }
+export function getFilteredActivities (activity, river) {
+    return async () => {
+        if (activity == "Land") {
+            activity = "Hiking, Walk, & Run";
+        }
         
-        const {data, error} = await query
-        
-        return data;
-    } catch (error) {
-        return {
-            success: false,
-            error: error.message
+        try {
+            let query = supabase
+            .from('activities')
+            .select(`
+                *, 
+                rivers( name ),
+                activities_tags( tag )`)
+             
+            if (river) { query = query.eq('river_id', river) }
+            if (activity) { query = query.eq('activity', activity) }
+            
+            const {data, error} = await query
+            
+            return data;
+        } catch (error) {
+            return {
+                success: false,
+                error: error.message
+            }
         }
     }
 }
