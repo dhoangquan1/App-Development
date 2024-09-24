@@ -9,14 +9,15 @@ import {
   RefreshControl,
   ImageBackground,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from "react-native";
 
 import {
   CategoryList,
   ScreenHeaderBtn,
 } from "../../components";
-import { COLORS, icons, SIZES } from "../../constants";
+import { COLORS, icons, SIZES, images } from "../../constants";
 import styles from "./RiversDetails.style.js";
 import { getRiver } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
@@ -56,7 +57,16 @@ const RiverDetails = () => {
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
           ),
-          headerTitle: "",
+          headerTitle: () => (
+            <View style={styles.header}>
+              <Image
+                source={images.logo}
+                resizeMode="contain"
+                style={{width: 30, height: 30}}
+              />
+              <Text style={styles.headerText}> Mass Rivers</Text>
+            </View>
+          ),
         }}
       />
       <ScrollView 
@@ -89,7 +99,7 @@ const RiverDetails = () => {
                 <Text style = {styles.title}>
                   Activities
                 </Text>
-                <CategoryList categories={categories} setActiveTab={setActiveTab}/>
+                <CategoryList categories={categories} setActiveTab={setActiveTab} activeTab={activeTab}/>
                 <ActivityList key={activeTab} category={activeTab} riverID={id}/>
               </View>
 

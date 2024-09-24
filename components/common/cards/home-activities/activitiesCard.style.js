@@ -1,23 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
-
-const getTabColors = (item) => {
-  switch(item) {
-      case 'Swimming':
-          return '#C0EDFD'
-      case 'Fishing':
-          return '#79F3CC'
-      case 'Paddling':
-          return '#FF979E'
-      case 'Boating and Sailing':
-          return '#D6B7FF'
-      case 'Hiking, Walk, & Run':
-          return '#FECEFF'
-      default:
-          return '#C0EDFD'
-  }
-}
+import { COLORS, FONT, SHADOWS, SIZES, getTabColors} from "../../../../constants";
 
 const styles = StyleSheet.create({
   container: {
@@ -36,23 +19,33 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  topDetailsContainer: {
+    gap: 5,
+    flexDirection: "row",
+    alignItems: "center",
+  },
   activityName: {
     fontSize: 20,
     fontWeight: "700",
     fontFamily: FONT.bold,
     color: COLORS.primary,
     alignItems: "center",
-    paddingVertical: 3,
+    paddingVertical: 4,
+  },
+  mainDetailsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 4,
   },
   detailsContainer: {
     gap: 5,
     flexDirection: "row",
     alignItems: "center",
-    paddingBottom: 3,
+    justifyContent: "center"
   },
   detailsText: {
     fontSize: 16,
-    topPadding: 5,
     fontFamily: FONT.regular,
     color: COLORS.primary,
     alignItems: "center",
@@ -71,6 +64,21 @@ const styles = StyleSheet.create({
     fontFamily: FONT.flex,
     fontWeight: "200",
     fontSize: 14,
+  },
+  rating: {
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  aveRatingText: {
+      fontSize: 14,
+      fontFamily: FONT.bold,
+      color: COLORS.primary,
+  },
+  reviewNumText: {
+      fontSize: 14,
+      fontFamily: FONT.regular,
+      color: COLORS.primary,
   },
 });
 

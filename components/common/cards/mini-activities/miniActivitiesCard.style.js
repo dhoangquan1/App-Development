@@ -1,23 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
-
-const getTabColors = (item) => {
-    switch(item) {
-        case 'Swimming':
-            return '#C0EDFD'
-        case 'Fishing':
-            return '#79F3CC'
-        case 'Paddling':
-            return '#FF979E'
-        case 'Boating and Sailing':
-            return '#D6B7FF'
-        case 'Hiking, Walk, & Run':
-            return '#FECEFF'
-        default:
-            return '#C0EDFD'
-    }
-  }
+import { COLORS, FONT, SHADOWS, SIZES, getTabColors } from "../../../../constants";
 
 const styles = StyleSheet.create({
   container: {
