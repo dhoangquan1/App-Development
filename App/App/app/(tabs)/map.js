@@ -33,6 +33,7 @@ const map = () => {
   
   const activityFilters = [null, "Land", "Paddling", "Fishing", "Swimming"];
   const [currentActivity, setCurrentActivity] = useState(activityFilters[0]);
+  const [currentRiver, setCurrentRiver] = useState(null);
 
   const ipswich = '09cec781-00d8-4ec2-8217-dea3243f0d48';
   const nashua = 'a43ddb01-654a-4f7c-a288-d16732a842ce';
@@ -65,21 +66,19 @@ const map = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getFilteredActivities(currentActivity, ipswich)();
+        const data = await getFilteredActivities(currentActivity, currentRiver)();
         setActivities(data);
-
-        // console.log("New Data:")
-        // activities.map(element => {
-        //     console.log(`${element.activity} at ${element.name}`);
-        // }) 
-        // console.log("\n");
+        console.log(`Ipswich River ID: ${ipswich}`);
+        console.log(`Nashua River ID: ${nashua}`);
+        console.log(`Our River ID: ${currentRiver}`);
+        console.log("\n");
       } catch (error) {
         console.error('Error updating map:', error);
       }
     }
     
     fetchData();
-  }, [currentActivity])
+  }, [currentActivity, currentRiver])
 
   const showActivity = (activity) => {
     setShow(true);
@@ -118,7 +117,10 @@ const map = () => {
               })}
             </MapView>
 
-            <MapSearch onSelectActivity={setCurrentActivity}/>
+            <MapSearch 
+              onSelectActivity={setCurrentActivity}
+              onSelectRiver={setCurrentRiver}
+            />
 
             <View style={{position: 'absolute', bottom: 75}}>
               {show ?

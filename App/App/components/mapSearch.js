@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { StyleSheet, View, ScrollView, VirtualizedList } from "react-native";
 
 import useSupabase from "../services/useSupabase";
 import { getFilteredActivities, getAllRivers } from "../services/getData";
@@ -14,18 +14,26 @@ import { Button, CheckBox } from "@rneui/themed";
  * Map Component for displaying activities on the map
  * @returns {JSX.Element} The map page
  */
-const MapSearch = ({onSelectActivity}) => {
-  const { rivers, isLoadingR, errorR } = useSupabase(getAllRivers);
+const MapSearch = ({onSelectActivity, onSelectRiver}) => {
+  const { dataR, isLoadingR, errorR } = useSupabase(getAllRivers);
+  const [rivers, setRivers] = useState(null);
+  const [currentRiver, setCurrentRiver] = useState(null);
 
-  console.log(".....");
-  rivers?.map(river => {
-    console.log(river.name);
+  useEffect(() => {
+    const fetchRivers = async () => {
+      try {
+        const dataR = await getAllRivers();
+        setRivers(dataR);
+        // console.log(".....");
+        // rivers?.map((river) => {
+        //   console.log(river.name);
+        // })
+      } catch (error) {
+        console.error('Error updating map:', error);
+      }}
+
+      fetchRivers();
   })
-
-  // const rivers = [
-  //   {name: 'Nashua'},
-  //   {name: 'Ipswich'}
-  // ];
 
   const activityFilters = [null, "Land", "Paddling", "Fishing", "Swimming"];
   const [currentActivity, setCurrentActivity] = useState(activityFilters[0]);
@@ -50,18 +58,28 @@ const MapSearch = ({onSelectActivity}) => {
             {
               showRivers ? (
                 <View>
-                  {rivers?.map((river) => {
-                    return (
-                      <CheckBox
-                        title={river.name}
-                        // checked={river == currentActivity}
-                        // onPress={() => {
-                        //   setCurrentActivity(river);
-                        //   onSelectActivity(river);
-                        // }}
-                      />
-                    );
-                  })}
+                  <ScrollView style={styles.scrollView}>
+                    <CheckBox
+                      title="None"
+                      checked={currentRiver == null}
+                      onPress={() => {
+                        setCurrentRiver(null);
+                        onSelectRiver(null);
+                      }}
+                    />
+                    {rivers?.map((river) => {
+                      return (
+                        <CheckBox
+                          title={river.name}
+                          checked={river.id == currentRiver}
+                          onPress={() => {
+                            setCurrentRiver(river.id);
+                            onSelectRiver(river.id);
+                          }}
+                        />
+                      );
+                    })}
+                  </ScrollView>
                 </View>
               ) : (<></>)
             }
@@ -94,5 +112,13 @@ const MapSearch = ({onSelectActivity}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  scrollView: {
+    // backgroundColor: 'pink',
+    marginHorizontal: 10,
+    height: 300,
+  },
+});
 
 export default MapSearch;
