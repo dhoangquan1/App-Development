@@ -174,6 +174,18 @@ export async function getAllActivitiesByCategory_GeoSort(longitude, latitude, ca
     }
 }
 
+export async function getAllUserContents() {
+    try {
+        const { data, error } = await supabase.rpc('get_user_contents');
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
 export async function getActivityReviews(activityId) {
     try {
         const {data, error} = await supabase
