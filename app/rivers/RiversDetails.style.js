@@ -22,6 +22,17 @@ const styles = StyleSheet.create({
         top: 250
         
     },
+    header: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+    headerText: {
+        color: COLORS.primary,
+        fontFamily: FONT.bold,
+        fontWeight: "200",
+        fontSize: 18,
+    },
     infoContainer: {
         flex: 1,
         width: "100%",

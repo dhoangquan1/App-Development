@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
       flex: 1,
       width: '100%',
       height: 250,
-      marginTop: 20,
+      marginTop: 10,
       borderTopLeftRadius: 15,
       borderTopRightRadius: 15,
       overflow: 'hidden'

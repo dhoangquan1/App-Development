@@ -29,9 +29,9 @@ const Rivers = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Discover Rivers</Text>
-        <TouchableOpacity>
+        {/*<TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </View>
 
         {isLoading ? (

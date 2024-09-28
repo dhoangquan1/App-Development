@@ -157,3 +157,48 @@ export async function getActivityByCategoryAndRiver(category, riverID) {
         }
     }
 }
+
+export async function getAllActivitiesByCategory_GeoSort(longitude, latitude, category) {
+    try {
+        const { data, error } = await supabase.rpc('nearby_activities', {
+            lat: latitude,
+            long: longitude,
+            category: (category === "Nearby" ? null : category),
+          });
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getAllUserContents() {
+    try {
+        const { data, error } = await supabase.rpc('get_user_contents');
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getActivityReviews(activityId) {
+    try {
+        const {data, error} = await supabase
+        .from('activities_reviews')
+        .select(`*, users!inner(*)`)
+        .eq('activity_id', activityId)
+        .order('created_at', { ascending: false });
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+

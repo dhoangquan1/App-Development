@@ -4,13 +4,13 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./Activities.style";
 import { COLORS } from "../../../constants";
-import ActivitiesCard from "../../common/cards/home-activities/ActivitiesCard";
-import { getActivityByCategory } from "../../../services/getData";
+import ActivitiesCard from "../../common/cards/home-activities/activitiesCard";
+import { getAllActivitiesByCategory_GeoSort } from "../../../services/getData";
 import useSupabase from "../../../services/useSupabase";
 
-const Activities = ({category}) => {
+const Activities = ({longitude, latitude, category}) => {
   const router = useRouter();
-  const { data, isLoading, refetch, error } = useSupabase(() => getActivityByCategory(category));
+  const { data, isLoading, refetch, error } = useSupabase(() => getAllActivitiesByCategory_GeoSort(longitude, latitude, category));
 
 
   const handleNavigate = (item) => {
@@ -24,9 +24,9 @@ const Activities = ({category}) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Find activities</Text>
-        <TouchableOpacity>
+        {/*<TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </View>
 
       <View style={styles.cardsContainer}>

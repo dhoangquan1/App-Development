@@ -3,9 +3,9 @@
  * @module (Auth)/SignUp
  */
 
-import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Dimensions, Alert } from 'react-native'
+import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Image, Alert, ScrollView } from 'react-native'
 import React, { useState } from 'react'
-import {images, FONT} from "../../constants"
+import {images, FONT, COLORS, SHADOWS} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
 import { Link, router } from 'expo-router'
 import { supabase } from '../../lib/supabase'
@@ -59,12 +59,13 @@ const SignUp = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground 
-        source={images.authBG}
-        resizeMethod='cover'
-        style={styles.background}
-      >
+    <ScrollView style={styles.container}>
+      <View style={styles.background}>
+        <Image 
+          source = {images.logo}
+          resizeMode='contain'
+          style={styles.image}
+        />
         <Text style={styles.title}>
           Sign up
         </Text>
@@ -115,8 +116,8 @@ const SignUp = () => {
           </Link>
 
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+    </ScrollView>
   )
 }
 
@@ -125,80 +126,84 @@ export default SignUp
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: '100%',
-    widtht: '100%'
+    backgroundColor: COLORS.neutral,
   },
   background: {
-    width: '100%',
-    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  image: {
+    marginTop: 40,
+    marginBottom: 10,
+    height: 75,
+    width: 75,
+  },
+  imageText:{
+    fontSize: 24,
+    fontWeight: "350",
+    fontFamily: FONT.medium,
+    color: COLORS.primary,
+  },
+  imageSubtext:{
+    fontSize: 18,
+    fontWeight: "350",
+    fontFamily: FONT.regular,
+    color: COLORS.primary,
+  },
   title: {
-    fontSize: 48,
+    fontSize: 40,
     fontWeight: "900",
-    fontFamily: FONT.serifBlack,
-    color: '#fff',
-    textAlign: "center",
-    display: "flex",
+    fontFamily: FONT.bold,
+    color: COLORS.primary,
     alignItems: "center",
     justifyContent: "center",
-    width: 210,
     textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {
     width: 0,
     height: 4
     },
     textShadowRadius: 4,
-    paddingBottom: 40,
+    marginBottom: 20,
   },
   logInContainer: {
     borderRadius: 30,
     width: 300,
-    height: 450,
-    backgroundColor: '#fff',
+    height: 400,
+    backgroundColor: COLORS.tertiary,
     justifyContent: 'center',
-    paddingVertical: 40,
-    paddingHorizontal: 25,
-    shadowColor: 'rgba(67, 206, 162, 0.25)',
-    shadowOffset: {
-    width: 0,
-    height: 4
-    },
-    shadowRadius: 4,
-    elevation: 4,
-    shadowOpacity: 1,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    marginBottom: 20,
+    ...SHADOWS.small,
   },
   button: {
-    borderRadius: 50,
-    backgroundColor: '#000',
+    marginBottom: 20,
+    borderRadius: 15,
     paddingHorizontal: 50,
-    height: 55,
+    backgroundColor: COLORS.secondary,
+    height: 50,
     justifyContent: 'center',
-    //calculation: middle of screen + half (height + half padding verticle) of parent box - half height of the child box
-    position: 'absolute',
-    top: (Dimensions.get('window').height)/2 + (450+20)/2 - 55/2
-},
+    alignItems: 'center',
+    ...SHADOWS.small,
+  },
   buttonText: {
-    fontSize: 15,
-    fontWeight: "900",
-    fontFamily: FONT.serifBlack,
-    color: '#fff',
-    textAlign: "center"
+      fontSize: 16,
+      fontWeight: "350",
+      fontFamily: FONT.medium,
+      color: COLORS.neutral,
   },
   bottomContainer: {
-    paddingTop: 40,
     alignItems: 'center',
     gap: 4,
   },
   bottomText: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "700",
     fontFamily: FONT.bold,
-    color: '#000',
+    color: COLORS.primary,
   },
   bottomLink: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "700",
     fontFamily: FONT.bold,
     color: '#5c99af',
