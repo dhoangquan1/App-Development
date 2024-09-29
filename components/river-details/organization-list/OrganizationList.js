@@ -5,7 +5,7 @@ import styles from './OrganizationList.style'
 import useSupabase from '../../../services/useSupabase'
 import {getOrganizations } from '../../../services/getData'
 import { COLORS, SIZES } from '../../../constants'
-import OrgCard from "../../common/cards/organizations/OrgCard";
+import OrgCard from "../../common/cards/organizations/orgCard";
 
 
 const OrganizationList = ({riverID}) => {

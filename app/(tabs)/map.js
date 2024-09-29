@@ -4,22 +4,41 @@
  */
 
 import React, {useState, useEffect, useRef} from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { MapCalloutSubview, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Platform, Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import * as Location from 'expo-location';
+import MapSearch from '../../components/mapSearch';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useSupabase from '../../services/useSupabase';
-import { getAllActivities } from '../../services/getData';
+import { getAllActivities, getFilteredActivities, getAllRivers } from '../../services/getData';
 import { COLORS } from '../../constants';
+import MiniActivitiesCard from '../../components/common/cards/mini-activities/miniActivitiesCard';
+import { Button, CheckBox } from '@rneui/themed';
+// import { Site } from '../../components/site.js';
+import { supabase } from "../../lib/supabase"
+import { act } from 'react';
 
 /**
  * Map Component for displaying activities on the map
  * @returns {JSX.Element} The map page
  */
 const map = () => {
+
   const [userLocation, setUserLocation] = useState(null);
-  const { data, isLoading, error } = useSupabase(getAllActivities);
+  // const { allActivities, isLoadingA, errorA } = useSupabase(getAllActivities);
+  const { data, isLoading, error } = useSupabase(getFilteredActivities(null, null));
+  const [activities, setActivities] = useState(null);
+
+  const [show, setShow] = useState(false);
+  const [activity, setActivity] = useState(null);
+  
+  const activityFilters = [null, "Land", "Paddling", "Fishing", "Swimming"];
+  const [currentActivity, setCurrentActivity] = useState(activityFilters[0]);
+  const [currentRiver, setCurrentRiver] = useState(null);
+
+  const ipswich = '09cec781-00d8-4ec2-8217-dea3243f0d48';
+  const nashua = 'a43ddb01-654a-4f7c-a288-d16732a842ce';
 
   const massRivers = {
     longitude: 42.40776531464709,
@@ -45,6 +64,38 @@ const map = () => {
       })
     })()
   }, [])
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // console.log("Triggered");
+        const data = await supabase.rpc('filter_activities', {
+          param_activity: (currentActivity != "Land" ? currentActivity : "Hiking, Walk, & Run"),
+          param_lat: 42.3601,
+          param_long: -71.0589,
+          param_name_search: null,
+          param_river_id: currentRiver,
+          param_tags: null,
+          param_town: null,
+          param_user_id: null,
+        });
+        console.log(data);
+        setActivities(data.data);
+        activities?.map((activity) => {
+          console.log(`${activity.activity} at ${activity.name}`);
+        })
+      } catch (error) {
+        console.error('Error updating map:', error);
+      }
+    }
+    
+    fetchData();
+  }, [currentActivity, currentRiver])
+
+  const showActivity = (activity) => {
+    setShow(true);
+    setActivity(activity);
+  }
 
   return (
     <View style={styles.container}>
@@ -54,26 +105,44 @@ const map = () => {
           <Text>Something went wrong</Text>
         ) : (
           <View style={styles.container} >
+            {/* <Site /> */}
             <MapView 
               style={StyleSheet.absoluteFill}
               region={userLocation}
               showsUserLocation={true}
             >
-            {data?.map((item) => {
-              if(item.longitude !== null)
-                return (
-                  <Marker
-                    key={`${item.id}`}
-                    coordinate={{
-                      longitude: item.longitude,
-                      latitude: item.latitude,
-                    }}
-                  >
-                    {<FontAwesome name="map-marker" size={24} color='red' />}
-                  </Marker>
-                )
-            })}
+              {activities?.map((item) => {
+                if(item.longitude !== null)
+                  return (
+                    <Marker
+                      key={`${item.id}`}
+                      coordinate={{
+                        longitude: item.longitude,
+                        latitude: item.latitude,
+                      }}
+                      title={item.name}
+                      onPress = {() => {showActivity(item)}}
+                    >
+                      {<FontAwesome name="map-marker" size={24} color='red' />}
+                    </Marker>
+                  )
+              })}
             </MapView>
+
+            <MapSearch 
+              onSelectActivity={setCurrentActivity}
+              onSelectRiver={setCurrentRiver}
+            />
+
+            <View style={{position: 'absolute', bottom: 75}}>
+              {show ?
+                (<MiniActivitiesCard 
+                  item = {activity}
+                  handleNavigate={() => router.push(`../../app/activities/${activity.id}`)}
+                  />)
+                : (<></>) }
+            </View>
+            
           </View>      
         )
       }

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image, ImageBackground } from "react-native";
 
-import styles from "./RiversCard.style";
+import styles from "./riversCard.style";
 import { COLORS, icons } from "../../../../constants";
 import Entypo from '@expo/vector-icons/Entypo';
 

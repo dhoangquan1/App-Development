@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import { COLORS, SIZES } from "../../../constants";
-import RiversCard from "../../common/cards/rivers/RiversCard";
+import RiversCard from "../../common/cards/rivers/riversCard";
 import styles from "./Rivers.style";
 import { getAllRivers } from "../../../services/getData";
 import useSupabase from "../../../services/useSupabase"
