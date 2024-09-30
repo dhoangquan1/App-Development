@@ -1,0 +1,176 @@
+/**
+ * @fileOverview This file contains styles for the Bookmark page component.
+ * The styles are organized using React Native's StyleSheet for easy and efficient styling management.
+ * It includes styles for layout, text, buttons, images, and other UI elements used in the Bookmark component.
+ * 
+ * @module (Tabs)/ExploreStyles
+ */
+
+import {StyleSheet } from "react-native";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
+
+const spacerHeight = 1000;
+
+/**
+ * Styles for the Bookmark page component.
+ */
+const styles = StyleSheet.create({
+    topBackground: {
+        flex: 1,
+        backgroundColor: '#FBFAF5',
+        marginTop: 70,
+    },
+    
+    topContainer: {
+        padding: 25,
+        rowGap: 5,
+    },
+    bigText: {
+        fontSize: 30,
+        fontWeight: "700",
+        fontFamily: FONT.bold,
+        color: '#03310E', // Dark green
+    },
+    smallText: {
+        fontSize: 20,
+        fontWeight: "300",
+        fontFamily: FONT.light,
+        color: '#fbfaf5',
+    },
+    searchContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        marginTop: 10,
+        height: 50,
+    },
+    searchWrapper: {
+        flex: 1,
+        backgroundColor: '#fbfaf5',
+        marginRight: SIZES.small,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: SIZES.medium,
+        height: "100%",
+    },
+    searchInput: {
+        fontFamily: FONT.regular,
+        width: "100%",
+        height: "100%",
+        paddingHorizontal: SIZES.medium,
+    },
+    searchBtn: {
+        width: 50,
+        height: "100%",
+        backgroundColor: COLORS.tertiary,
+        borderRadius: SIZES.medium,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    searchBtnImage: {
+        width: "50%",
+        height: "50%",
+        tintColor: COLORS.white,
+    },
+
+    createSection: {
+        marginTop: 10,
+        width: '90%',
+        gap: 10,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        alignSelf: 'center'
+    },
+    pfpImage: {
+        height: 65,
+        width: 65,
+        borderRadius: 65/2,
+        overflow: 'hidden'
+    },
+    createButton: {
+        borderRadius: 15,
+        backgroundColor: '#539a5e',
+        flex: 1,
+        width: "100%",
+        height: 50,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: 'center',
+    },
+    createText: {
+        fontSize: 20,
+        fontWeight: "500",
+        fontFamily: FONT.medium,
+        color: '#fbfaf5',
+        textAlign: "center",
+    },
+    stomach: {
+        backgroundColor: '#FBFAF5',
+        flex: 5,
+        paddingVertical: 25,
+        borderTopRightRadius: 32,
+        borderTopLeftRadius: 32,
+    },
+    bottomBackground: {
+        backgroundColor: '#FBFAF5',
+        paddingBottom: 30,
+        flex: 1,
+    },
+    bottomContainer: {
+        paddingLeft: 25,
+        paddingRight: 25,
+        paddingBottom: 25,
+        rowGap: 5,
+    },
+    firstTitle: {
+        color: '#539a5e'
+    },
+    secondTitle: {
+        color: '#00450b'
+    },
+    mainTitle: {
+        fontSize: 40,
+        fontWeight: "700",
+        fontFamily: FONT.bold,
+        alignItems: "center",
+    },
+
+    //Activity Cards:
+    container: {
+        marginTop: SIZES.xLarge,
+      },
+      header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: SIZES.small,
+      },
+      headerTitle: {
+        fontSize: 24,
+        fontFamily: FONT.medium,
+        color: COLORS.primary,
+      },
+      headerBtn: {
+        fontSize: SIZES.medium,
+        fontFamily: FONT.medium,
+        color: COLORS.secondary,
+      },
+      cardsContainer: {
+        ...SHADOWS.small,
+        marginTop: SIZES.medium,
+        gap: SIZES.small,
+        paddingHorizontal: 20,
+      },
+    //   categoryContainer: {
+    //     paddingVertical: 2,
+    //     paddingHorizontal: 10,
+    //     borderRadius: 10,
+    //     //backgroundColor: getTabColors(item),
+    //     gap: 5,
+    //     flexDirection: "row",
+    //     alignItems: "center",
+    //   },
+});
+
+export default styles;

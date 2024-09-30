@@ -1,36 +1,50 @@
-# **Welcome to Mass Rivers App** *<- placeholder name*
+# Welcome to your Expo app 👋
+
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
 
-#### Install Dependencies
-
-- Open App-Development\App\App\ in your terminal
-- Run these commands:
+1. Install dependencies
 
    ```bash
    npm install
-   npm install expo@latest
-   npx expo install --fix
    ```
 
-#### Start The App
-
-- Run this command:
+2. Start the app
 
    ```bash
-   npx expo start --tunnel
+    npx expo start
    ```
 
-#### Use The Expo Go App
+In the output, you'll find options to open the app in a
 
-- Download the Expo Go App
-- Scan the QR code in the terminal
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-## JSDoc
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-- Run this command to update the documentation htmls:  
-^ *for now, this is only when in App-Development\App\App\app\(tabs)*
+## Get a fresh project
 
-   ```bash
-   jsdoc -r . ../../../../readme.md
-   ```
+When you're ready, run:
+
+```bash
+npm run reset-project
+```
+
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
