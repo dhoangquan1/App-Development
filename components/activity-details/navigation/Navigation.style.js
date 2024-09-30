@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
       marginTop: 10,
       borderTopLeftRadius: 15,
       borderTopRightRadius: 15,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      borderWidth: 1,
+      borderColor: COLORS.tertiary,
     },
     map: {
       width: '100%',

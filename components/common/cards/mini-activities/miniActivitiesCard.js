@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
-import styles from "./MiniActivitiesCard.style";
+import styles from "./miniActivitiesCard.style";
 
 import { COLORS, icons } from "../../../../constants";
 import Entypo from '@expo/vector-icons/Entypo';
@@ -29,7 +29,7 @@ const MiniActivitiesCard = ({ item, handleNavigate }) => {
             <Text style={styles.categoryText}>{item.activity}</Text>
           </View>
           {
-            (item.activities_tags.some(tag => tag.tag === "Wheelchair Parking")) ? (
+            (item.activities_tags?.some(tag => tag.tag === "Wheelchair Parking")) ? (
               <FontAwesome6 name="wheelchair" size={15} color="black" />
             ) : (
               null

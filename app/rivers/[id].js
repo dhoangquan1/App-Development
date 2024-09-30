@@ -44,9 +44,13 @@ const RiverDetails = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
       <Stack.Screen
         options={{
-          headerTransparent: true,
+          headerTransparent: false,
           headerShadowVisible: false,
           headerBackVisible: false,
+          headerStyle: {
+            top: 0,
+            backgroundColor: COLORS.neutral
+          },
           headerLeft: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
@@ -54,9 +58,8 @@ const RiverDetails = () => {
               handlePress={() => router.back()}
             />
           ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
-          ),
+          
+          headerTitleAlign: "center",
           headerTitle: () => (
             <View style={styles.header}>
               <Image
@@ -64,7 +67,7 @@ const RiverDetails = () => {
                 resizeMode="contain"
                 style={{width: 30, height: 30}}
               />
-              <Text style={styles.headerText}> Mass Rivers</Text>
+              <Text style={styles.headerText}> Explore Your Rivers</Text>
             </View>
           ),
         }}
@@ -106,7 +109,7 @@ const RiverDetails = () => {
               {/* Organization Section */}
               <View style = {styles.infoTextContainer}> 
                 <Text style = {styles.title}>
-                  Organizations
+                  Local organizations
                 </Text>
                 <Text style = {styles.subTitle}>
                   Check out what the organizations been up to!

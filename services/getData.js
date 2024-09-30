@@ -41,15 +41,24 @@ export async function getAllRivers () {
     }
 }
 
-export async function getAllActivities () {
+
+export async function getAllActivities( longitude, latitude, activeTab, userID) {
     try {
-        const {data, error} = await supabase
-        .from('activities')
-        .select(`
-            *, 
-            rivers( name ),
-            activities_tags( tag ),
-            reviews( count )`);
+        const { data, error } = await supabase.rpc('filter_activities', {
+            param_name_search: null,
+            param_activity: (activeTab === "Nearby" ? null : activeTab), 
+            param_river_id: null, 
+            param_user_id: (userID ? userID : null),
+            param_town: null,
+            param_tags: null,
+            param_lat: latitude, 
+            param_long: longitude
+
+          });
+          if (error) {
+            console.error("Supabase RPC Error:", error.message);
+            throw new Error(error.message);
+          }
         return data;
     } catch (error) {
         return {
@@ -158,13 +167,9 @@ export async function getActivityByCategoryAndRiver(category, riverID) {
     }
 }
 
-export async function getAllActivitiesByCategory_GeoSort(longitude, latitude, category) {
+export async function getAllUserContents() {
     try {
-        const { data, error } = await supabase.rpc('nearby_activities', {
-            lat: latitude,
-            long: longitude,
-            category: (category === "Nearby" ? null : category),
-          });
+        const { data, error } = await supabase.rpc('get_user_contents');
         return data;
     } catch (error) {
         return {
@@ -174,9 +179,27 @@ export async function getAllActivitiesByCategory_GeoSort(longitude, latitude, ca
     }
 }
 
-export async function getAllUserContents() {
+export async function getBookmark(userID, latitude, longitude) {
     try {
-        const { data, error } = await supabase.rpc('get_user_contents');
+        const { data, error } = await supabase.rpc('get_bookmark', {
+            param_user_id: userID,
+            param_lat: latitude,
+            param_long: longitude
+        });
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getUserContents(userID) {
+    try {
+        const { data, error } = await supabase.rpc('get_user_contents_by_user_id', {
+            param_user_id: userID
+        });
         return data;
     } catch (error) {
         return {

@@ -12,39 +12,15 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useSupabase from '../../services/useSupabase';
 import { getAllActivities } from '../../services/getData';
 import { COLORS } from '../../constants';
+import { useAuth } from '../../context/AuthContext';
 
 /**
  * Map Component for displaying activities on the map
  * @returns {JSX.Element} The map page
  */
 const map = () => {
-  const [userLocation, setUserLocation] = useState(null);
-  const { data, isLoading, error } = useSupabase(getAllActivities);
-
-  const massRivers = {
-    longitude: 42.40776531464709,
-    latitude: -71.1246826115983,
-    longitudeDelta: 2,
-    latitudeDelta: 2,
-  }
-  /**
-   * Get user location
-   */
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        return;
-      }
-      const location = await Location.getCurrentPositionAsync();
-      setUserLocation({
-        longitude: location.coords.longitude,
-        latitude: location.coords.latitude,
-        longitudeDelta: 2,
-        latitudeDelta: 2,
-      })
-    })()
-  }, [])
+  const {user, userLocation} = useAuth();
+  const { data, isLoading, error } = useSupabase(() => getAllActivities(userLocation.longitude, userLocation.latitude, null, user?.id));
 
   return (
     <View style={styles.container}>

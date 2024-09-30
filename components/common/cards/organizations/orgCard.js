@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
-import styles from "./OrgCard.style";
+import styles from "./orgCard.style";
 
 import { COLORS } from "../../../../constants";
 

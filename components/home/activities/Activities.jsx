@@ -1,17 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./Activities.style";
 import { COLORS } from "../../../constants";
 import ActivitiesCard from "../../common/cards/home-activities/activitiesCard";
-import { getAllActivitiesByCategory_GeoSort } from "../../../services/getData";
+import { getAllActivities } from "../../../services/getData";
 import useSupabase from "../../../services/useSupabase";
+import { useAuth } from "../../../context/AuthContext";
+import CategoryList from "../../common/categoryList/categoryList";
 
-const Activities = ({longitude, latitude, category}) => {
+const categories = ["Nearby", "Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
+
+const Activities = () => {
   const router = useRouter();
-  const { data, isLoading, refetch, error } = useSupabase(() => getAllActivitiesByCategory_GeoSort(longitude, latitude, category));
+  const { user, userLocation } = useAuth();
+  const [activeTab, setActiveTab] = useState(categories[0]);
+  const { data, isLoading, refetch, error } = useSupabase(() => getAllActivities(userLocation.longitude, userLocation.latitude, activeTab, user?.id));
 
+  useEffect(() => {
+    refetch()
+  }, [activeTab])
 
   const handleNavigate = (item) => {
     router.push({
@@ -29,10 +38,18 @@ const Activities = ({longitude, latitude, category}) => {
         </TouchableOpacity>*/}
       </View>
 
+      <CategoryList categories={categories} setActiveTab={setActiveTab} activeTab={activeTab}/>
       <View style={styles.cardsContainer}>
         {
           isLoading ? (
-            <ActivityIndicator size='large' color={COLORS.primary} />
+            <>
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size='large' color={COLORS.primary} />
+              </View>
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size='large' color={COLORS.primary} />
+              </View>
+            </>
           ) : error ? (
             <Text>Something went wrong</Text>
           ) : (

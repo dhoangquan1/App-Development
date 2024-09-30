@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, Image, ImageBackground } from "react-native";
 
-import styles from "./RiversCard.style";
+import styles from "./riversCard.style";
 import { COLORS, icons } from "../../../../constants";
-import Entypo from '@expo/vector-icons/Entypo';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 const RiversCard = ({ item, handleCardPress }) => {
   return (
@@ -17,12 +17,9 @@ const RiversCard = ({ item, handleCardPress }) => {
 
       <View style={styles.infoContainer}>
         <View style={styles.addressContainer}>
-          <Text style={styles.riverAddress}>
-            {item.activities[0].count}
-          </Text>
-          <Entypo name="location" size={16} color={COLORS.primary} />
+          <FontAwesome6 name="map-location-dot" size={16} color={COLORS.primary} />
           <Text style={styles.riverAddress} numberOfLines={1}>
-            {item.address}
+            {item.activities[0].count} activities
           </Text>
         </View>
         <Text style={styles.riverName} numberOfLines={1}>
