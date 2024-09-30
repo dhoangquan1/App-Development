@@ -10,12 +10,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   imageContainer: {
-    width: '100%',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    marginHorizontal: 10,
+    borderRadius: 15,
     flex: 1,
     height: 200,
-    
+    overflow: 'hidden'
   },
   textContainer: {
     flex: 1,
@@ -27,24 +26,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   activityName: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "700",
     fontFamily: FONT.bold,
     color: COLORS.primary,
     alignItems: "center",
-    paddingVertical: 4,
+    marginBottom: 4,
   },
   mainDetailsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 4,
+    
   },
   detailsContainer: {
     gap: 5,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
+    marginBottom: 4,
   },
   detailsText: {
     fontSize: 16,
@@ -60,6 +56,7 @@ const styles = StyleSheet.create({
     gap: 5,
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 4,
   }),
   categoryText: {
     color: COLORS.primary,
@@ -67,25 +64,33 @@ const styles = StyleSheet.create({
     fontWeight: "200",
     fontSize: 14,
   },
-  rating: {
+  userInfoContainer: {
     flex: 1,
-    alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding: 10,
+    gap: 10,
   },
-  aveRatingText: {
-    fontSize: 14,
+  userNameText: {
+    fontSize: 18,
     fontFamily: FONT.bold,
     color: COLORS.primary,
+    marginBottom: 2,
   },
-  reviewNumText: {
+  dateText: {
+    fontSize: 14,
+    fontFamily: FONT.light,
+    color: COLORS.primary,
+  },
+  profileContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  description: {
+    marginTop: 6,
     fontSize: 14,
     fontFamily: FONT.regular,
     color: COLORS.primary,
-  },
-  bookmarkButton: {
-    top: 10,
-    right: 10,
-    alignSelf:'flex-end'
   }
 });
 

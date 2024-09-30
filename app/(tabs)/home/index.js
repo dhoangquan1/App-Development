@@ -19,13 +19,11 @@ import {
 } from "../../../components";
 import MassRiversCard from "../../../components/home/mass-rivers/massRiversCard";
 
-const categories = ["Nearby", "Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
 const Home = () => {
   const router = useRouter()
   const [userLocation, setUserLocation] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState(categories[0]);
 
   useEffect(() => {
     (async () => {
@@ -63,12 +61,11 @@ const Home = () => {
                 }
               }}
             />
-            <CategoryList categories={categories} setActiveTab={setActiveTab} activeTab={activeTab}/>
             <MassRiversCard />
             <Leavenotrace />
             <Rivers />
-            <Activities key={activeTab} longitude={userLocation.longitude} latitude={userLocation.latitude} category={activeTab}/>
-            
+            <Activities longitude={userLocation.longitude} latitude={userLocation.latitude}/>
+            <View style={{paddingBottom: 75}}/>
           </View>
         )}
       </ScrollView>

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   button: {
-    borderRadius: 15,
+    borderRadius: 10,
     backgroundColor: COLORS.secondary,
     justifyContent: 'center',
     alignItems: 'center',
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
       color: COLORS.neutral,
-      fontFamily: FONT.flex,
+      fontFamily: FONT.medium,
       fontWeight: "200",
       fontSize: 16,
   },

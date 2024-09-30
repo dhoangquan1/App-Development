@@ -54,9 +54,7 @@ const RiverDetails = () => {
               handlePress={() => router.back()}
             />
           ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
-          ),
+         
           headerTitle: () => (
             <View style={styles.header}>
               <Image
@@ -64,7 +62,7 @@ const RiverDetails = () => {
                 resizeMode="contain"
                 style={{width: 30, height: 30}}
               />
-              <Text style={styles.headerText}> Mass Rivers</Text>
+              <Text style={styles.headerText}> Explore Your Rivers</Text>
             </View>
           ),
         }}
@@ -106,7 +104,7 @@ const RiverDetails = () => {
               {/* Organization Section */}
               <View style = {styles.infoTextContainer}> 
                 <Text style = {styles.title}>
-                  Organizations
+                  Local organizations
                 </Text>
                 <Text style = {styles.subTitle}>
                   Check out what the organizations been up to!

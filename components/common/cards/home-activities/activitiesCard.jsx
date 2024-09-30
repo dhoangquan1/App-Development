@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import { useEffect, useState } from "react";
 
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -8,20 +9,28 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import styles from "./activitiesCard.style";
 import { COLORS, icons } from "../../../../constants";
 import {StarRatingDisplay} from 'react-native-star-rating-widget';
+import BookmarkButton from "../../bookmarkButton/bookmarkButton";
 
 
-const ActivitiesCard = ({ item, handleNavigate }) => {
+const ActivitiesCard = ({ item, handleNavigate}) => {
+
+  const [isBookmarked, setIsBookmarked] = useState(item.is_bookmarked)
 
   if(item.name !== 'special')
   return (
     <TouchableOpacity style={styles.container} onPress={() => handleNavigate(item)}>
-        <Image
+        <ImageBackground
           source={{
             uri: item.image,
           }}
           resizeMode='cover'
           style={styles.imageContainer}
-        />
+        >
+          <View style={styles.bookmarkButton}>
+            <BookmarkButton isBookmarked={isBookmarked} setIsBookmarked={setIsBookmarked} activityID={item.id}/>
+          </View>
+          
+        </ImageBackground>
 
       <View style={styles.textContainer}>
         

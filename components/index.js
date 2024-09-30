@@ -3,20 +3,12 @@ import AmenitiesList from "./activity-details/amenities/AmenitiesList";
 import Navigation from "./activity-details/navigation/Navigation";
 import Weather from "./activity-details/weather/Weather";
 
-
-// common
-//    |cards
-import ActivitiesCard from "./common/cards/home-activities/ActivitiesCard";
-import MiniActivitiesCard from "./common/cards/mini-activities/MiniActivitiesCard";
-import OrgCard from "./common/cards/organizations/OrgCard";
-import RiversCard from "./common/cards/rivers/RiversCard";
-
 //    |other
-import CategoryList from "./common/categoryList/CategoryList";
-import FormField from "./common/form-field/FormField";
-import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
-import ReviewModal from "./common/reviewModal/ReviewModal";
-import TabBar from "./common/tabBar/TabBar";
+import CategoryList from "../components/common/categoryList/categoryList";
+import FormField from "../components/common/form-field/FormField";
+import ScreenHeaderBtn from "../components/common/header/ScreenHeaderBtn";
+import ReviewModal from "../components/common/reviewModal/ReviewModal";
+import TabBar from "../components/common/tabBar/TabBar";
 
 
 // home
@@ -35,11 +27,6 @@ export {
   AmenitiesList,
   Navigation,
   Weather,
-
-  ActivitiesCard,
-  MiniActivitiesCard,
-  OrgCard,
-  RiversCard,
 
   CategoryList,
   FormField,

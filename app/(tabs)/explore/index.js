@@ -7,7 +7,8 @@ import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Imag
 import React, { useState } from 'react'
 import styles from './index.style'
 import { Stack, useRouter } from "expo-router";
-import { COLORS } from '../../../constants';
+import { COLORS, images } from '../../../constants';
+import PostsList from '../../../components/explore/postsList/postsList';
 
 /**
  * Explore Component for viewing community posts and creating new posts
@@ -26,59 +27,29 @@ const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   }
 
   return (
-    <View style={{flex : 1}} contentContainerStyle={{ flexGrow: 1 }}>
-      
-      <ScrollView style={{backgroundColor: COLORS.neutral}}>
-        <View style={styles.topPadding}></View>
-        <View style={styles.topBackground}>
-          <View style={styles.topContainer}>
-            <Text style={styles.bigText}>
-              Share your experience
-            </Text>
-            <Text style={styles.smallText}>
-              connect with the community
-            </Text>
+    <View style={styles.container}>
+      <View style={styles.logoContainer}>
+        <Image
+          source={images.logo}
+          resizeMode='contain'
+          style={styles.logo}
+        />
+        <Text style={styles.logoText}> Explore Your Rivers</Text>
+      </View>
+      <ScrollView style={{backgroundColor: COLORS.neutral}} showsVerticalScrollIndicator={false}>
+        {/*<Text style={styles.pageSubTitle}>Share your experience with</Text>*/}
+        <Text style={styles.pageTitle}>Community</Text>
 
-            <View style={styles.searchContainer}>
-              <View style={styles.searchWrapper}>
-                <TextInput
-                  style={styles.searchInput}
-                  value={searchTerm}
-                  onChangeText={(text) => setSearchTerm(text)}
-                  placeholder='Search...'
-                />
-              </View>
-            </View>
-
-            <View style={styles.createSection}>
-              <Image 
-                style={styles.pfpImage}
-                resizeMode='cover'
-                src={'https://t4.ftcdn.net/jpg/06/78/09/75/360_F_678097580_mgsNEISedI7fngOwIipYtEU0T6SN8qKv.jpg'}
-              />
-              <TouchableOpacity style={styles.createButton}>
-                <Text style={styles.createText}>
-                  Create a new post
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.stomach}></View>
-        </View>
-
-        <View style={styles.bottomBackground}>
-          <View style={styles.bottomContainer}>
-            <Text style={styles.mainTitle}>
-              <Text style={styles.firstTitle}>
-                {'Latest '}
-              </Text>
-              <Text style={styles.secondTitle}>
-                posts
-              </Text>
-            </Text>
-          </View>
-        </View>
         
+        <TouchableOpacity style={styles.button} onPress={onPushCreate}>
+          <Text style={styles.buttonText}>Create a new post</Text>
+        </TouchableOpacity>
+        <Text style={styles.tiptoolText}>Don't see an activity on here yet?</Text>
+        
+        <Text style={styles.title}>Latest posts</Text>
+        <PostsList/>
+
+        <View style={{paddingBottom: 75}}/>
       </ScrollView>
     </View>
   )

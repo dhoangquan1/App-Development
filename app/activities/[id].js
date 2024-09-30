@@ -56,9 +56,7 @@ const ActivitiesDetails = () => {
               handlePress={() => router.back()}
             />
           ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
-          ),
+          
           headerTitle: () => (
             <View style={styles.header}>
               <Image
@@ -66,7 +64,7 @@ const ActivitiesDetails = () => {
                 resizeMode="contain"
                 style={{width: 30, height: 30}}
               />
-              <Text style={styles.headerText}> Mass Rivers</Text>
+              <Text style={styles.headerText}> Explore Your Rivers</Text>
             </View>
           ),
         }}
@@ -142,7 +140,7 @@ const ActivitiesDetails = () => {
                   <View style={styles.infoTextContainer}>
                     <TouchableOpacity 
                       style={styles.button}
-                      handleNavigate={() => Linking.openURL(`${data.link}`)}
+                      onPress={() => Linking.openURL(`${data.link}`)}
                     >
                       <Text style={styles.buttonText}>Visit website</Text>
                     </TouchableOpacity>
@@ -173,7 +171,7 @@ const ActivitiesDetails = () => {
                   <Text style = {styles.title}>
                     Reviews
                   </Text>
-                  <ReviewDisplay ave_rating={data.ave_rating} rating_count={data.rating_count} activityId={id}/>
+                  <ReviewDisplay ave_rating={data.ave_rating} rating_count={data.rating_count} activityID={id} refetch={refetch}/>
                   <ReviewList activityId={id}/>
                 </View>
 
