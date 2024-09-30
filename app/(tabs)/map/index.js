@@ -5,20 +5,20 @@
 
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, { MapCalloutSubview, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { Platform, Text, View, StyleSheet, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { Platform, Text, View,, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
-import MapSearch from '../../components/mapSearch';
+import MapSearch from '../../../components/mapSearch';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import useSupabase from '../../services/useSupabase';
-import { getAllActivities, getFilteredActivities, getAllRivers } from '../../services/getData';
-import { COLORS, FONT, SIZES, SHADOWS } from '../../constants';
-import MiniActivitiesCard from '../../components/common/cards/mini-activities/miniActivitiesCard';
+import useSupabase from '../../../services/useSupabase';
+import { getAllActivities, getFilteredActivities, getAllRivers } from '../../../services/getData';
+import { COLORS, FONT, SIZES, SHADOWS } from '../../../constants';
+import MiniActivitiesCard from '../../../components/common/cards/mini-activities/miniActivitiesCard';
 import { Button, CheckBox } from '@rneui/themed';
 // import { Site } from '../../components/site.js';
-import { supabase } from "../../lib/supabase"
+import { supabase } from "../../../lib/supabase"
 import { act } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 /**
  * Map Component for displaying activities on the map
@@ -162,32 +162,3 @@ const map = () => {
 }
 
 export default map
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-  infoContainer: {
-    flex: 1,
-    bottom: 100,
-    heigh: 50,
-    position: 'absolute',
-  },
-  cardsContainer: {
-    gap: 10,
-  },
-  button: {
-    marginTop: 10,
-    borderRadius: 15,
-    backgroundColor: COLORS.secondary,
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...SHADOWS.small,
-  },
-});

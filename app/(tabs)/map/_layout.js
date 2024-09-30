@@ -1,12 +1,12 @@
 /**
- * @fileOverview This is a component for the Profile page, which displays various sections of the app.
+ * @fileOverview This is a component for the Map page, which displays various sections of the app.
  */
 
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 
 /**
- * Layout Component for the Profile Page
+ * Layout Component for the Map Page
  * @returns {JSX.Element} 
  */
 const Layout = () => {
