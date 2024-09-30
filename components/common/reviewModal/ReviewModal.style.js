@@ -9,14 +9,13 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalView: {
         backgroundColor: COLORS.neutral,
         borderTopRightRadius: 30,
         borderTopLeftRadius: 30,
         padding: 20,
-        bottom: 0,
     },
     modalText: {
         fontSize: 20,
@@ -36,6 +35,25 @@ const styles = StyleSheet.create({
         height: 100,
         paddingHorizontal: 10,
     },
+    cancelButton: {
+        marginTop: 10,
+        borderRadius: 15,
+        backgroundColor: COLORS.neutral,
+        borderWidth: 2,
+        borderColor: COLORS.secondary,
+        width: '100%',
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...SHADOWS.small,
+        marginBottom: 100,
+    },
+    cancelButtonText: {
+        fontSize: 16,
+        fontWeight: "350",
+        fontFamily: FONT.medium,
+        color: COLORS.secondary,
+    },
     button: {
         marginTop: 10,
         borderRadius: 15,
@@ -52,6 +70,27 @@ const styles = StyleSheet.create({
         fontFamily: FONT.medium,
         color: COLORS.neutral,
     },
+    imageContainer: {
+        paddingHorizontal: 0,
+        borderWidth: 1,
+        borderColor: COLORS.primary,
+        height: 200,
+        borderRadius: 15,
+        overflow: 'hidden',
+    },
+    uploadButton: {
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        
+    },
+    image: {
+        height: '100%',
+        width: '100%',
+        borderRadius: 15,
+    }
     
 });
 

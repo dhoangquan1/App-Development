@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     backgroundRiver: {
         flex: 1,
         width: "100%",
-        height: 300,
-        top: 0
+        height: 300
     },
     stomach: {
         backgroundColor: COLORS.neutral,
@@ -34,6 +33,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
+        alignSelf: 'center',
+        paddingVertical: 10
     },
     headerText: {
         color: COLORS.primary,

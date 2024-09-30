@@ -18,6 +18,7 @@ import { Button, CheckBox } from '@rneui/themed';
 // import { Site } from '../../components/site.js';
 import { supabase } from "../../lib/supabase"
 import { act } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 /**
  * Map Component for displaying activities on the map
@@ -25,9 +26,8 @@ import { act } from 'react';
  */
 const map = () => {
 
-  const [userLocation, setUserLocation] = useState(null);
-  // const { allActivities, isLoadingA, errorA } = useSupabase(getAllActivities);
-  const { data, isLoading, error } = useSupabase(getFilteredActivities(null, null));
+  const {user, userLocation} = useAuth();
+  const { data, isLoading, error } = useSupabase(() => getAllActivities(userLocation.longitude, userLocation.latitude, null, user?.id));
   const [activities, setActivities] = useState(null);
 
   const [show, setShow] = useState(false);
@@ -96,6 +96,7 @@ const map = () => {
   //   setShow(true);
   //   setActivity(activity);
   // }
+
 
   return (
     <View style={styles.container}>

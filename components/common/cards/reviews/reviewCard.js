@@ -18,10 +18,9 @@ const ReviewCard = ({ item }) => {
                 />
                 <View>
                     <Text style={styles.userNameText}>{item.users?.name}</Text>
-                    <Text style={styles.dateText}>posted on {item.created_at.substring(0,10)}</Text>
+                    <Text style={styles.dateText}>reviewed on {item.created_at.substring(0,10)}</Text>
                 </View>
             </View>
-
             <View style={styles.ratingContainer}>
                 <StarRatingDisplay
                     rating={item.rating}
@@ -30,8 +29,18 @@ const ReviewCard = ({ item }) => {
                     starStyle={{marginHorizontal: 0}}
                 />
             </View>
-
         </View>
+
+      {/*if image then show */}
+      {item.image && (
+        <View>
+          <Image
+            src={item.image}
+            resizeMode='cover'
+            style={styles.reviewImage}
+          />
+        </View>
+      )}
 
       <View style={styles.descriptionContainer}>
         <Text style={styles.titleText}>

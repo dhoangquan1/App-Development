@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   topInfoContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    padding: 10,
   },
   userInfoContainer: {
     flex: 1,
@@ -51,6 +52,12 @@ const styles = StyleSheet.create({
     fontFamily: FONT.regular,
     color: COLORS.primary,
   },
+  reviewImage: {
+    marginTop: 10,
+    height: 200,
+    width: '100%',
+    borderRadius: 15,
+  }
 });
 
 export default styles;

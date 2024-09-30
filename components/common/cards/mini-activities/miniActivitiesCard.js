@@ -29,7 +29,7 @@ const MiniActivitiesCard = ({ item, handleNavigate }) => {
             <Text style={styles.categoryText}>{item.activity}</Text>
           </View>
           {
-            (item.activities_tags.some(tag => tag.tag === "Wheelchair Parking")) ? (
+            (item.activities_tags?.some(tag => tag.tag === "Wheelchair Parking")) ? (
               <FontAwesome6 name="wheelchair" size={15} color="black" />
             ) : (
               null

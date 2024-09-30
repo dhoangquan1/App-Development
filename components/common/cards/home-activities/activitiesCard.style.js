@@ -7,13 +7,15 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 15,
     backgroundColor: COLORS.tertiary,
+    overflow: 'hidden'
   },
   imageContainer: {
     width: '100%',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     flex: 1,
-    height: 200
+    height: 200,
+    
   },
   textContainer: {
     flex: 1,
@@ -71,15 +73,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   aveRatingText: {
-      fontSize: 14,
-      fontFamily: FONT.bold,
-      color: COLORS.primary,
+    fontSize: 14,
+    fontFamily: FONT.bold,
+    color: COLORS.primary,
   },
   reviewNumText: {
-      fontSize: 14,
-      fontFamily: FONT.regular,
-      color: COLORS.primary,
+    fontSize: 14,
+    fontFamily: FONT.regular,
+    color: COLORS.primary,
   },
+  bookmarkButton: {
+    top: 10,
+    right: 10,
+    alignSelf:'flex-end'
+  }
 });
 
 export default styles;
