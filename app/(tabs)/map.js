@@ -5,14 +5,14 @@
 
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, { MapCalloutSubview, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { Platform, Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { Platform, Text, View, StyleSheet, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
 import MapSearch from '../../components/mapSearch';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useSupabase from '../../services/useSupabase';
 import { getAllActivities, getFilteredActivities, getAllRivers } from '../../services/getData';
-import { COLORS } from '../../constants';
+import { COLORS, FONT, SIZES, SHADOWS } from '../../constants';
 import MiniActivitiesCard from '../../components/common/cards/mini-activities/miniActivitiesCard';
 import { Button, CheckBox } from '@rneui/themed';
 // import { Site } from '../../components/site.js';
@@ -92,10 +92,10 @@ const map = () => {
     fetchData();
   }, [currentActivity, currentRiver])
 
-  const showActivity = (activity) => {
-    setShow(true);
-    setActivity(activity);
-  }
+  // const showActivity = (activity) => {
+  //   setShow(true);
+  //   setActivity(activity);
+  // }
 
   return (
     <View style={styles.container}>
@@ -129,7 +129,17 @@ const map = () => {
               })}
             </MapView>
 
+            <TouchableOpacity style={styles.button}
+              onPress={() => setShow(true)}
+            >
+                <Text style={styles.buttonText}>
+                Filter
+                </Text>
+            </TouchableOpacity>
+
             <MapSearch 
+              isVisible={show}
+              closeModal={setShow(!show)}
               onSelectActivity={setCurrentActivity}
               onSelectRiver={setCurrentRiver}
             />
@@ -168,5 +178,15 @@ const styles = StyleSheet.create({
   },
   cardsContainer: {
     gap: 10,
+  },
+  button: {
+    marginTop: 10,
+    borderRadius: 15,
+    backgroundColor: COLORS.secondary,
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...SHADOWS.small,
   },
 });

@@ -4,17 +4,20 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, VirtualizedList } from "react-native";
+import { Text, StyleSheet, View, ScrollView, VirtualizedList, Modal } from "react-native";
 
 import useSupabase from "../services/useSupabase";
 import { getFilteredActivities, getAllRivers } from "../services/getData";
 import { Button, CheckBox } from "@rneui/themed";
+import { TouchableOpacity } from "react-native";
+
+import { COLORS, FONT, SIZES, SHADOWS } from "../constants";
 
 /**
  * Map Component for displaying activities on the map
  * @returns {JSX.Element} The map page
  */
-const MapSearch = ({onSelectActivity, onSelectRiver}) => {
+const MapSearch = ({isVisible, closeModal, onSelectActivity, onSelectRiver}) => {
   const { dataR, isLoadingR, errorR } = useSupabase(getAllRivers);
   const [rivers, setRivers] = useState(null);
   const [currentRiver, setCurrentRiver] = useState(null);
@@ -39,82 +42,112 @@ const MapSearch = ({onSelectActivity, onSelectRiver}) => {
   const [showActivities, setShowActivities] = useState(false);
 
   return (
-    <View style={{ position: "absolute", top: 150 }}>
-      <Button
-        onPress={() => setShowFilters(true)}
-        title="Search..."
-      />
-      {
-        showFilters ? (
-          <View>
-            <Button
-              onPress={() => setShowRivers(!showRivers)}
-              title="Rivers..."
-            />
+    <Modal 
+        animationType='slide'
+        transparent={false}
+        visible={isVisible}
+        onRequestClose={closeModal}
+    >
+        <View style={styles.modal}>
+            <TouchableOpacity style={styles.button}
+            onPress={() => setShowRivers(!showRivers)}
+            >
+                <Text style={styles.buttonText}>
+                Rivers...
+                </Text>
+            </TouchableOpacity>
             {
-              showRivers ? (
+            showRivers ? (
                 <View>
-                  <ScrollView style={styles.scrollView}>
+                <ScrollView style={styles.scrollView}>
                     <CheckBox
-                      title="None"
-                      checked={currentRiver == null}
-                      onPress={() => {
+                    title="None"
+                    checked={currentRiver == null}
+                    onPress={() => {
                         setCurrentRiver(null);
                         onSelectRiver(null);
-                      }}
+                    }}
                     />
                     {rivers?.map((river) => {
-                      return (
+                    return (
                         <CheckBox
-                          title={river.name}
-                          checked={river.id == currentRiver}
-                          onPress={() => {
+                        title={river.name}
+                        checked={river.id == currentRiver}
+                        onPress={() => {
                             setCurrentRiver(river.id);
                             onSelectRiver(river.id);
-                          }}
+                        }}
                         />
-                      );
+                    );
                     })}
-                  </ScrollView>
+                </ScrollView>
                 </View>
-              ) : (<></>)
+            ) : (<></>)
             }
 
-            <Button
-              onPress={() => setShowActivities(!showActivities)}
-              title="Activities..."
-            />
+            <TouchableOpacity style={styles.button}
+            onPress={() => setShowActivities(!showActivities)}
+            >
+                <Text style={styles.buttonText}>
+                    Activities...
+                </Text>
+            </TouchableOpacity>
             {
-              showActivities ? (
+            showActivities ? (
                 <View>
-                  {activityFilters?.map((activity) => {
+                {activityFilters?.map((activity) => {
                     return (
-                      <CheckBox
+                    <CheckBox
                         title={activity ?? "None"}
                         checked={activity == currentActivity}
                         onPress={() => {
-                          setCurrentActivity(activity);
-                          onSelectActivity(activity);
+                        setCurrentActivity(activity);
+                        onSelectActivity(activity);
                         }}
-                      />
+                    />
                     );
-                  })}
+                })}
                 </View>
-              ) : (<></>)
+            ) : (<></>)
             }
-          </View>
-        ) : (<></>)
-      }
-    </View>
+
+            <TouchableOpacity style={styles.button}
+                onPress={() => closeModal}
+            >
+                <Text style={styles.buttonText}>
+                    Close
+                </Text>
+            </TouchableOpacity>
+        </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    // backgroundColor: 'pink',
-    marginHorizontal: 10,
-    height: 300,
-  },
+    scrollView: {
+        // backgroundColor: 'pink',
+        marginHorizontal: 10,
+        height: 300,
+    },
+    button: {
+        marginTop: 10,
+        borderRadius: 15,
+        backgroundColor: COLORS.secondary,
+        width: '100%',
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...SHADOWS.small,
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: "350",
+        fontFamily: FONT.medium,
+        color: COLORS.neutral,
+    },
+    modal: {
+        height: 700,
+    }
 });
 
 export default MapSearch;
