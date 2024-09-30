@@ -22,6 +22,8 @@ import Welcome from "./home/welcome/Welcome";
 import ActivityList from "./river-details/activity-list/ActivityList";
 import OrganizationList from "./river-details/organization-list/OrganizationList";
 
+// profile
+import UserPostsList from "./profile/userPostsList/userPostsList"
 
 export {
   AmenitiesList,
@@ -40,5 +42,7 @@ export {
   Welcome,
 
   ActivityList,
-  OrganizationList
+  OrganizationList,
+
+  UserPostsList,
 };

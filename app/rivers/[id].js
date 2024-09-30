@@ -44,9 +44,13 @@ const RiverDetails = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
       <Stack.Screen
         options={{
-          headerTransparent: true,
+          headerTransparent: false,
           headerShadowVisible: false,
           headerBackVisible: false,
+          headerStyle: {
+            top: 0,
+            backgroundColor: COLORS.neutral
+          },
           headerLeft: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
@@ -54,7 +58,8 @@ const RiverDetails = () => {
               handlePress={() => router.back()}
             />
           ),
-         
+          
+          headerTitleAlign: "center",
           headerTitle: () => (
             <View style={styles.header}>
               <Image

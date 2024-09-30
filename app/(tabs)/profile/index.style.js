@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.neutral,
-        padding: 16,
     },
     button: {
         marginTop: 10,
@@ -39,7 +38,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        marginBottom: 5,
+        paddingVertical: 5,
+        alignSelf: 'center'
     },
     logoText: {
         color: COLORS.primary,
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     userInfoContainer: {
         alignItems: 'center',
         gap: 5,
+        padding: 16,
     },
     title: {
         color: COLORS.primary,
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontFamily: FONT.medium,
         color: COLORS.primary,
+        padding: 16,
     },
 });
 

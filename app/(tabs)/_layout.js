@@ -43,6 +43,7 @@ export default function TabLayout() {
           name="bookmark"
           options={{
             title: 'Saved',
+            headerShown: false,
           }}
         />
         <Tabs.Screen

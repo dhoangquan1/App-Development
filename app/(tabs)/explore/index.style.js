@@ -16,14 +16,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.neutral,
-        padding: 16,
         paddingTop: 20,
+    },
+    padContainer: {
+        flex: 1,
+        paddingHorizontal: 16  
     },
     logoContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        marginBottom: 5,
+        paddingVertical: 5,
+        alignSelf: 'center'
     },
     logoText: {
         color: COLORS.primary,
@@ -43,6 +47,7 @@ const styles = StyleSheet.create({
         color: COLORS.primary,
     },
     pageTitle: {
+        paddingTop: 15,
         fontSize: 30,
         fontWeight: "700",
         fontFamily: FONT.bold,

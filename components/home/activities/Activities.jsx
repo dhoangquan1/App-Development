@@ -12,11 +12,11 @@ import CategoryList from "../../common/categoryList/categoryList";
 
 const categories = ["Nearby", "Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
-const Activities = ({longitude, latitude}) => {
+const Activities = () => {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, userLocation } = useAuth();
   const [activeTab, setActiveTab] = useState(categories[0]);
-  const { data, isLoading, refetch, error } = useSupabase(() => getAllActivities(longitude, latitude, activeTab, user?.id));
+  const { data, isLoading, refetch, error } = useSupabase(() => getAllActivities(userLocation.longitude, userLocation.latitude, activeTab, user?.id));
 
   useEffect(() => {
     refetch()

@@ -41,6 +41,7 @@ export async function getAllRivers () {
     }
 }
 
+
 export async function getAllActivities( longitude, latitude, activeTab, userID) {
     try {
         const { data, error } = await supabase.rpc('filter_activities', {
@@ -169,6 +170,22 @@ export async function getActivityByCategoryAndRiver(category, riverID) {
 export async function getAllUserContents() {
     try {
         const { data, error } = await supabase.rpc('get_user_contents');
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getBookmark(userID, latitude, longitude) {
+    try {
+        const { data, error } = await supabase.rpc('get_bookmark', {
+            param_user_id: userID,
+            param_lat: latitude,
+            param_long: longitude
+        });
         return data;
     } catch (error) {
         return {

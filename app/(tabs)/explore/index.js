@@ -27,31 +27,33 @@ const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image
-          source={images.logo}
-          resizeMode='contain'
-          style={styles.logo}
-        />
-        <Text style={styles.logoText}> Explore Your Rivers</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.padContainer}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={images.logo}
+            resizeMode='contain'
+            style={styles.logo}
+          />
+          <Text style={styles.logoText}> Explore Your Rivers</Text>
+        </View>
+        <ScrollView style={{backgroundColor: COLORS.neutral}} showsVerticalScrollIndicator={false}>
+          {/*<Text style={styles.pageSubTitle}>Share your experience with</Text>*/}
+          <Text style={styles.pageTitle}>Community</Text>
+
+          
+          <TouchableOpacity style={styles.button} onPress={onPushCreate}>
+            <Text style={styles.buttonText}>Create a new post</Text>
+          </TouchableOpacity>
+          <Text style={styles.tiptoolText}>Don't see an activity on here yet?</Text>
+          
+          <Text style={styles.title}>Latest posts</Text>
+          <PostsList/>
+
+          <View style={{paddingBottom: 75}}/>
+        </ScrollView>
       </View>
-      <ScrollView style={{backgroundColor: COLORS.neutral}} showsVerticalScrollIndicator={false}>
-        {/*<Text style={styles.pageSubTitle}>Share your experience with</Text>*/}
-        <Text style={styles.pageTitle}>Community</Text>
-
-        
-        <TouchableOpacity style={styles.button} onPress={onPushCreate}>
-          <Text style={styles.buttonText}>Create a new post</Text>
-        </TouchableOpacity>
-        <Text style={styles.tiptoolText}>Don't see an activity on here yet?</Text>
-        
-        <Text style={styles.title}>Latest posts</Text>
-        <PostsList/>
-
-        <View style={{paddingBottom: 75}}/>
-      </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 

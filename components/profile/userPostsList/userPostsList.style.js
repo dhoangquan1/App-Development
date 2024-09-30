@@ -5,6 +5,7 @@ import { COLORS, FONT, SIZES, SHADOWS } from "../../../constants";
 const styles = StyleSheet.create({
   container: {
     marginTop: 0,
+    marginHorizontal: 16,
   },
   cardsContainer: {
     ...SHADOWS.small,

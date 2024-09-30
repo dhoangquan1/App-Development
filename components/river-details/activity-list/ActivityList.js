@@ -27,7 +27,7 @@ const ActivityList = ({category, riverID}) => {
                     item.name !== 'special' ? (
                         <MiniActivitiesCard
                             item={item}
-                            key={`${item.id}`}
+                            key={`mini${item.id}`}
                             handleNavigate={() => router.push(`/activities/${item.id}`)}
                         /> 
                     ) : (

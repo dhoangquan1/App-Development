@@ -11,7 +11,7 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
-  TurboModuleRegistry
+
 } from "react-native";
 import * as Linking from 'expo-linking';
 import { ScreenHeaderBtn} from "../../components/index.js";
@@ -49,6 +49,10 @@ const ActivitiesDetails = () => {
           headerTransparent: true,
           headerShadowVisible: false,
           headerBackVisible: false,
+          headerStyle: {
+            top: 0,
+            backgroundColor: COLORS.neutral,
+          },
           headerLeft: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
@@ -57,6 +61,7 @@ const ActivitiesDetails = () => {
             />
           ),
           
+          headerTitleAlign: "center",
           headerTitle: () => (
             <View style={styles.header}>
               <Image
@@ -71,7 +76,7 @@ const ActivitiesDetails = () => {
       />
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        styles={{position: 'absolute'}}
+        styles={{flex: 1}}
         refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >

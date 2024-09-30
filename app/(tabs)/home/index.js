@@ -6,7 +6,6 @@
 import { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView, View, Text, ActivityIndicator } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import * as Location from 'expo-location';
 
 import { COLORS, icons, images, SIZES } from "../../../constants";
 import {
@@ -18,30 +17,13 @@ import {
   CategoryList
 } from "../../../components";
 import MassRiversCard from "../../../components/home/mass-rivers/massRiversCard";
+import { useAuth } from "../../../context/AuthContext";
 
 
 const Home = () => {
   const router = useRouter()
-  const [userLocation, setUserLocation] = useState(null);
+  const {userLocation} = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setUserLocation({
-          longitude: 42.40776531464709,
-          latitude: -71.1246826115983,
-        })
-        return;
-      }
-      const location = await Location.getCurrentPositionAsync();
-      setUserLocation({
-        longitude: location.coords.longitude,
-        latitude: location.coords.latitude,
-      })
-    })()
-  }, [])
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
