@@ -1,23 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { FONT, SIZES, COLORS } from "../../constants";
-
-const getTabColors = (item) => {
-    switch(item) {
-        case 'Swimming':
-            return '#C0EDFD'
-        case 'Fishing':
-            return '#79F3CC'
-        case 'Paddling':
-            return '#FF979E'
-        case 'Boating and Sailing':
-            return '#D6B7FF'
-        case 'Hiking, Walk, & Run':
-            return '#FECEFF'
-        default:
-            return '#C0EDFD'
-    }
-}
+import { FONT, SIZES, COLORS, getTabColors, SHADOWS } from "../../constants";
 
 const styles = StyleSheet.create({
     infoMainContainer: {
@@ -27,8 +10,7 @@ const styles = StyleSheet.create({
     backgroundRiver: {
         flex: 1,
         width: "100%",
-        height: 300,
-        top: 0
+        height: 300
     },
     stomach: {
         backgroundColor: COLORS.neutral,
@@ -37,7 +19,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 30,
         borderTopLeftRadius: 30,
         top: 275,
-        
     },
     infoContainer: {
         flex: 1,
@@ -48,12 +29,24 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         flex: 1,
     },
+    header: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        alignSelf: 'center',
+        paddingVertical: 10
+    },
+    headerText: {
+        color: COLORS.primary,
+        fontFamily: FONT.bold,
+        fontWeight: "200",
+        fontSize: 18,
+    },
     infoTopContainer: {
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        
     },
     category: (item) => ({
         paddingVertical: 2,
@@ -130,7 +123,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        ...SHADOWS.small,
     },
     buttonText: {
         fontSize: 16,

@@ -1,17 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./Activities.style";
 import { COLORS } from "../../../constants";
-import ActivitiesCard from "../../common/cards/home-activities/ActivitiesCard";
-import { getActivityByCategory } from "../../../services/getData";
+import ActivitiesCard from "../../common/cards/home-activities/activitiesCard";
+import { getAllActivities } from "../../../services/getData";
 import useSupabase from "../../../services/useSupabase";
+import { useAuth } from "../../../context/AuthContext";
+import CategoryList from "../../common/categoryList/categoryList";
 
-const Activities = ({category}) => {
+const categories = ["Nearby", "Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
+
+const Activities = () => {
   const router = useRouter();
-  const { data, isLoading, refetch, error } = useSupabase(() => getActivityByCategory(category));
+  const { user, userLocation } = useAuth();
+  const [activeTab, setActiveTab] = useState(categories[0]);
+  const { data, isLoading, refetch, error } = useSupabase(() => getAllActivities(userLocation.longitude, userLocation.latitude, activeTab, user?.id));
 
+  useEffect(() => {
+    refetch()
+  }, [activeTab])
 
   const handleNavigate = (item) => {
     router.push({
@@ -24,15 +33,23 @@ const Activities = ({category}) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Find activities</Text>
-        <TouchableOpacity>
+        {/*<TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </View>
 
+      <CategoryList categories={categories} setActiveTab={setActiveTab} activeTab={activeTab}/>
       <View style={styles.cardsContainer}>
         {
           isLoading ? (
-            <ActivityIndicator size='large' color={COLORS.primary} />
+            <>
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size='large' color={COLORS.primary} />
+              </View>
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size='large' color={COLORS.primary} />
+              </View>
+            </>
           ) : error ? (
             <Text>Something went wrong</Text>
           ) : (

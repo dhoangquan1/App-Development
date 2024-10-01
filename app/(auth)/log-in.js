@@ -3,7 +3,7 @@
  * @module (Auth)/LogIn
  */
 
-import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Dimensions, Alert } from 'react-native'
+import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, Image, Alert, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import {images, FONT, SHADOWS, COLORS} from "../../constants"
 import FormField from '../../components/common/form-field/FormField'
@@ -54,24 +54,26 @@ const LogIn = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground 
-        source={images.authBG}
-        resizeMethod='cover'
-        style={styles.background}
-      >
+    <ScrollView style={styles.container}>
+      <View style={styles.background}>
+
+        <Image 
+          source = {images.logo}
+          resizeMode='contain'
+          style={styles.image}
+        />
         <Text style={styles.title}>
           Log in
         </Text>
 
         <TouchableOpacity 
-            style={styles.button}
-            onPress={signInGuest}>
-            <Text style={styles.buttonText}>
-              Continue as Guest
-            </Text>
-          </TouchableOpacity>
-        
+          style={styles.button}
+          onPress={signInGuest}>
+          <Text style={styles.buttonText}>
+            Continue as Guest
+          </Text>
+        </TouchableOpacity>
+
         <>
           <View style={styles.logInContainer}>
             <FormField
@@ -109,8 +111,8 @@ const LogIn = () => {
           </Link>
 
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+    </ScrollView>
   )
 }
 
@@ -119,18 +121,35 @@ export default LogIn
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.neutral,
   },
   background: {
-    width: '100%',
-    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  image: {
+    marginTop: 50,
+    marginBottom: 10,
+    height: 75,
+    width: 75,
+  },
+  imageText:{
+    fontSize: 24,
+    fontWeight: "350",
+    fontFamily: FONT.medium,
+    color: COLORS.primary,
+  },
+  imageSubtext:{
+    fontSize: 18,
+    fontWeight: "350",
+    fontFamily: FONT.regular,
+    color: COLORS.primary,
+  },
   title: {
-    fontSize: 48,
+    fontSize: 45,
     fontWeight: "900",
-    fontFamily: FONT.serifBlack,
-    color: '#fff',
+    fontFamily: FONT.bold,
+    color: COLORS.primary,
     alignItems: "center",
     justifyContent: "center",
     textShadowColor: 'rgba(0, 0, 0, 0.25)',
@@ -144,41 +163,42 @@ const styles = StyleSheet.create({
   logInContainer: {
     borderRadius: 30,
     width: 300,
-    height: 300,
-    backgroundColor: COLORS.neutral,
+    height: 250,
+    backgroundColor: COLORS.tertiary,
     justifyContent: 'center',
-    paddingVertical: 40,
-    paddingHorizontal: 25,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
     marginBottom: 20,
     ...SHADOWS.small,
   },
   button: {
-    borderRadius: 50,
-    backgroundColor: '#000',
-    paddingHorizontal: 50,
-    height: 55,
-    justifyContent: 'center',
     marginBottom: 20,
+    borderRadius: 15,
+    paddingHorizontal: 50,
+    backgroundColor: COLORS.secondary,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...SHADOWS.small,
   },
   buttonText: {
-    fontSize: 15,
-    fontWeight: "900",
-    fontFamily: FONT.serifBlack,
-    color: '#fff',
-    textAlign: "center"
+      fontSize: 16,
+      fontWeight: "350",
+      fontFamily: FONT.medium,
+      color: COLORS.neutral,
   },
   bottomContainer: {
     alignItems: 'center',
     gap: 4,
   },
   bottomText: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "700",
     fontFamily: FONT.bold,
-    color: '#000',
+    color: COLORS.primary,
   },
   bottomLink: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "700",
     fontFamily: FONT.bold,
     color: '#5c99af',

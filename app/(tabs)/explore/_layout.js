@@ -18,7 +18,6 @@ const Layout = () => {
   return (
     <Stack initialRouteName="index">
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="create" options={{ headerShown: false }} />
     </Stack>
   )
 };

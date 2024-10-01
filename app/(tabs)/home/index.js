@@ -3,8 +3,8 @@
  * @module (Tabs)/Home
  */
 
-import { useState } from "react";
-import { SafeAreaView, ScrollView, View, Text } from "react-native";
+import { useState, useEffect } from "react";
+import { SafeAreaView, ScrollView, View, Text, ActivityIndicator } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
 import { COLORS, icons, images, SIZES } from "../../../constants";
@@ -16,39 +16,40 @@ import {
   Welcome,
   CategoryList
 } from "../../../components";
+import MassRiversCard from "../../../components/home/mass-rivers/massRiversCard";
+import { useAuth } from "../../../context/AuthContext";
 
-const categories = ["Nearby", "Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
 const Home = () => {
   const router = useRouter()
+  const {userLocation} = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState(categories[0]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
       
       <ScrollView>
-        <View
-          style={{
-            flex: 1,
-            padding: SIZES.medium,
-          }}
-        >
-          <Welcome
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            handleClick={() => {
-              if (searchTerm) {
-                router.push(`/search/${searchTerm}`)
-              }
-            }}
-          />
-          <CategoryList categories={categories} setActiveTab={setActiveTab}/>
-          <Leavenotrace />
-          <Rivers />
-          <Activities key={activeTab} category={activeTab}/>
-          
-        </View>
+        {userLocation===null ? (
+          <ActivityIndicator size='large' color={COLORS.primary} />
+        ) : (
+          <View style={{flex: 1, padding: SIZES.medium}}>
+
+            <Welcome
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              handleClick={() => {
+                if (searchTerm) {
+                  router.push(`/search/${searchTerm}`)
+                }
+              }}
+            />
+            <MassRiversCard />
+            <Leavenotrace />
+            <Rivers />
+            <Activities longitude={userLocation.longitude} latitude={userLocation.latitude}/>
+            <View style={{paddingBottom: 75}}/>
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

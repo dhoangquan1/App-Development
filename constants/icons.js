@@ -2,16 +2,17 @@ import { View, Text } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { COLORS, FONT } from './theme';
-const IconSelect = (activity, size, ...props) => {
+
+const IconSelect = (activity, size, color, ...props) => {
   const icons = {
-    "Nearby" : <FontAwesome6 name="location-arrow" size={24} size={size} color={COLORS.primary} {...props}/>,
-    "Swimming": <FontAwesome6 name="person-swimming" size={size} color={COLORS.primary} {...props}/>,
-    "Fishing": <FontAwesome6 name="fish-fins" size={size} color={COLORS.primary} {...props}/>,
-    "Paddling": <MaterialIcons name="kayaking" size={size} color={COLORS.primary} {...props}/>,
-    "Boating and Sailing": <FontAwesome6 name="sailboat" size={size} color={COLORS.primary} {...props}/>,
-    "Hiking, Walk, & Run": <FontAwesome6 name="person-walking" size={size} color={COLORS.primary} {...props}/>,
+    "Nearby" : <FontAwesome6 name="location-arrow" size={size} color={color ? color : COLORS.primary} {...props}/>,
+    "Swimming": <FontAwesome6 name="person-swimming" size={size} color={color ? color : COLORS.primary} {...props}/>,
+    "Fishing": <FontAwesome6 name="fish-fins" size={size} color={color ? color : COLORS.primary} {...props}/>,
+    "Paddling": <MaterialIcons name="kayaking" size={size} color={color ? color : COLORS.primary} {...props}/>,
+    "Boating and Sailing": <FontAwesome6 name="sailboat" size={size} color={color ? color : COLORS.primary} {...props}/>,
+    "Hiking, Walk, & Run": <FontAwesome6 name="person-walking" size={size} color={color ? color : COLORS.primary} {...props}/>,
   }
-  return icons[activity] || <MaterialIcons name="local-activity" size={size} color={COLORS.primary} {...props}/>
+  return icons[activity] || <MaterialIcons name="local-activity" size={size} color={color} {...props}/>
 }
 
 const AmenitiesIconSelect = (amenity, size, ...props) => {

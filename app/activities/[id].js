@@ -9,17 +9,22 @@ import {
   RefreshControl,
   ImageBackground,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Image,
+
 } from "react-native";
+import * as Linking from 'expo-linking';
 import { ScreenHeaderBtn} from "../../components/index.js";
-import { COLORS, icons, SIZES } from "../../constants/index.js";
+import { COLORS, icons, images, SIZES } from "../../constants/index.js";
 import {StarRatingDisplay} from 'react-native-star-rating-widget';
 import styles from "./ActivitiesDetails.style.js";
 import Entypo from '@expo/vector-icons/Entypo';
-import { getActivity, getAverageRating } from "../../services/getData.js";
+import { getActivity, getActivityReviews } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
 import Navigation from "../../components/activity-details/navigation/Navigation.js";
 import AmenitiesList from "../../components/activity-details/amenities/AmenitiesList.js";
+import ReviewList from "../../components/common/reviewList/reviewList.js";
+import ReviewDisplay from "../../components/common/reviewDisplay/reviewDisplay.js";
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
@@ -44,6 +49,10 @@ const ActivitiesDetails = () => {
           headerTransparent: true,
           headerShadowVisible: false,
           headerBackVisible: false,
+          headerStyle: {
+            top: 0,
+            backgroundColor: COLORS.neutral,
+          },
           headerLeft: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
@@ -51,15 +60,23 @@ const ActivitiesDetails = () => {
               handlePress={() => router.back()}
             />
           ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
+          
+          headerTitleAlign: "center",
+          headerTitle: () => (
+            <View style={styles.header}>
+              <Image
+                source={images.logo}
+                resizeMode="contain"
+                style={{width: 30, height: 30}}
+              />
+              <Text style={styles.headerText}> Explore Your Rivers</Text>
+            </View>
           ),
-          headerTitle: "",
         }}
       />
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        styles={{position: 'absolute'}}
+        styles={{flex: 1}}
         refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
@@ -128,7 +145,7 @@ const ActivitiesDetails = () => {
                   <View style={styles.infoTextContainer}>
                     <TouchableOpacity 
                       style={styles.button}
-                      handleNavigate={() => Linking.openURL(`${data.link}`)}
+                      onPress={() => Linking.openURL(`${data.link}`)}
                     >
                       <Text style={styles.buttonText}>Visit website</Text>
                     </TouchableOpacity>
@@ -152,6 +169,15 @@ const ActivitiesDetails = () => {
                     Navigation
                   </Text>
                   <Navigation item={data} />
+                </View>
+
+                {/*Reviews Section */}
+                <View style = {styles.infoTextContainer}>
+                  <Text style = {styles.title}>
+                    Reviews
+                  </Text>
+                  <ReviewDisplay ave_rating={data.ave_rating} rating_count={data.rating_count} activityID={id} refetch={refetch}/>
+                  <ReviewList activityId={id}/>
                 </View>
 
               </View>

@@ -5,7 +5,9 @@ import useSupabase from '../../../services/useSupabase'
 import {getActivityByCategoryAndRiver } from '../../../services/getData'
 import { COLORS, SIZES } from '../../../constants'
 import { useRouter } from 'expo-router'
-import MiniActivitiesCard from '../../common/cards/mini-activities/MiniActivitiesCard'
+
+import MiniActivitiesCard from '../../common/cards/mini-activities/miniActivitiesCard'
+import SpecialActivity from '../../common/specialActivities/specialActivities'
 
 const ActivityList = ({category, riverID}) => {
     const {router} = useRouter();
@@ -18,13 +20,21 @@ const ActivityList = ({category, riverID}) => {
                 <ActivityIndicator size='large' color={COLORS.primary} />
             ) : error ? (
                 <Text>Something went wrong</Text>
+            ) : data.length < 1 ? (
+                <SpecialActivity item={null}/>
             ) : (
                 data?.map((item) => (
-                <MiniActivitiesCard
-                    item={item}
-                    key={`${item.id}`}
-                    handleNavigate={() => router.push(`/activities/${item.id}`)}
-                />  
+                    item.name !== 'special' ? (
+                        <MiniActivitiesCard
+                            item={item}
+                            key={`mini${item.id}`}
+                            handleNavigate={() => router.push(`/activities/${item.id}`)}
+                        /> 
+                    ) : (
+                        <SpecialActivity
+                            item={item}
+                        />
+                    )
                 ))
             )}
         </View>

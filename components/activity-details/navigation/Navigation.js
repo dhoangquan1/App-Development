@@ -78,7 +78,7 @@ const Navigation = ({item}) => {
         </View>
         <TouchableOpacity style={styles.button} onPress={getDirection}>
           <FontAwesome5 name="directions" size={24} color={COLORS.primary} />
-          <Text style={styles.text}> Get Direction </Text>  
+          <Text style={styles.text}> Get directions </Text>  
         </TouchableOpacity>
     </View>
   );

@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
         flex: 1,
         width: "100%",
         height: 300,
-        top: 0
     },
     stomach: {
         backgroundColor: COLORS.neutral,
@@ -19,8 +18,20 @@ const styles = StyleSheet.create({
         paddingVertical: 25,
         borderTopRightRadius: 32,
         borderTopLeftRadius: 32,
-        top: 250
-        
+        top: 250  
+    },
+    header: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        alignSelf: 'center',
+        paddingVertical: 5,
+    },
+    headerText: {
+        color: COLORS.primary,
+        fontFamily: FONT.bold,
+        fontWeight: "200",
+        fontSize: 18,
     },
     infoContainer: {
         flex: 1,

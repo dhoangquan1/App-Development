@@ -1,5 +1,88 @@
 import { supabase } from "../lib/supabase";
-import uuid from "react-native-uuid"
+import {decode} from "base64-arraybuffer"
+import { Alert } from "react-native";
+import uuid from "uuid"
+
+export async function uploadBookmark (userID, activityID) {
+
+    try {
+        const { error } = await supabase
+        .from('bookmark')
+        .insert({
+            user_id: userID,
+            activity_id: activityID,
+        });
+        if(error){
+            return {
+                success: false,
+                error: error.message
+            }
+        }
+        return {success: true};
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function uploadReviewImage (file, userID, activityID) {
+
+    try {
+        const {data: uploadData, error: uploadError} = await supabase
+        .storage
+        .from('images')
+        .upload(`${userID}/reviews/${activityID}.jpg`, decode(file), {
+            contentType: 'image/jpeg'
+        })
+
+        // Check for any errors during upload
+        if (uploadError) {
+            Alert.alert(uploadError.message);
+        }
+
+        const { data: url } = supabase
+        .storage
+        .from('images')
+        .getPublicUrl(`${uploadData.path}`)
+        
+        return url;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function uploadReview (form, imageURL) {
+
+    try {
+        const { error } = await supabase
+        .from('activities_reviews')
+        .insert({
+            user_id: form.user_id,
+            activity_id: form.activity_id,
+            rating: form.rating,
+            title: form.title,
+            description: form.description,
+            image: imageURL,
+        });
+        if(error){
+            return {
+                success: false,
+                error: error.message
+            }
+        }
+        return {success: true};
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
 
 export async function uploadPostImageToStorage (event, userID, postID) {
     let file = event.target.files[0];

@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from "../context/AuthContext";
 import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
 import { getUserData } from "../services/getData"; 
+import * as Location from 'expo-location';
 
 
 //import * as SplashScreen from "expo-splash-screen";
@@ -11,7 +12,7 @@ import { getUserData } from "../services/getData";
 //SplashScreen.preventAutoHideAsync();
 
 const Layout = () => {
-  const {setAuth, setUserData} = useAuth();
+  const {user, setAuth, setUserData, setUserLocation} = useAuth();
   const router = useRouter();
   
   useEffect(() => {
@@ -21,11 +22,29 @@ const Layout = () => {
         updateUserData(session?.user);
         router.replace('/home');
       } else{
-        setAuth(null);
         router.replace('/log-in')
+        setAuth(null);
       }
     })
   }, [])
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setUserLocation({
+          longitude: -71.1246826115983,
+          latitude: 42.40776531464709,
+        })
+        return;
+      }
+      const location = await Location.getCurrentPositionAsync();
+      setUserLocation({
+        longitude: location.coords.longitude,
+        latitude: location.coords.latitude,
+      })
+    })()
+  }, [user])
 
   const updateUserData = async (user) => {
     let res = await getUserData(user?.id);
@@ -50,7 +69,7 @@ const Layout = () => {
       <Stack initialRouteName="index">
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="onboard" options={{ headerShown: false }} />
       </Stack>
   )
 };

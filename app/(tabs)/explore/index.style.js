@@ -6,173 +6,85 @@
  * @module (Tabs)/ExploreStyles
  */
 
-import { StyleSheet } from "react-native";
+import {StyleSheet } from "react-native";
 import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
-
-const spacerHeight = 1000;
 
 /**
  * Styles for the Explore page component.
  */
 const styles = StyleSheet.create({
-    topBackground: {
+    container: {
         flex: 1,
-        backgroundColor: COLORS.secondary,
+        backgroundColor: COLORS.neutral,
+        paddingTop: 20,
     },
-    topPadding: {
-        backgroundColor: '#00450B',
-        height: spacerHeight,
-        position: 'absolute',
-        top: -spacerHeight,
-        left: 0,
-        right: 0,
+    padContainer: {
+        flex: 1,
+        paddingHorizontal: 16  
     },
-    topContainer: {
-        padding: 25,
-        rowGap: 5,
+    logoContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingVertical: 5,
+        alignSelf: 'center'
     },
-    bigText: {
-        fontSize: 30,
-        fontWeight: "700",
+    logoText: {
+        color: COLORS.primary,
         fontFamily: FONT.bold,
-        color: '#fbfaf5',
+        fontWeight: "200",
+        fontSize: 18,
     },
-    smallText: {
+    logo: {
+        height: 30,
+        width: 30,
+    },
+    pageSubTitle: {
+        paddingTop: 20,
         fontSize: 20,
         fontWeight: "300",
         fontFamily: FONT.light,
-        color: '#fbfaf5',
+        color: COLORS.primary,
     },
-    searchContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-        marginTop: SIZES.large,
-        height: 50,
-
-    },
-    searchWrapper: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: SIZES.medium,
-        height: "100%",
-        borderWidth: 2,
-        borderColor: COLORS.primary,
-        backgroundColor: COLORS.neutral,
-        flexDirection: 'row',
-        paddingHorizontal: 40,
-    },
-    searchInput: {
-        fontFamily: FONT.regular,
-        fontSize: 16,
-        width: "100%",
-        height: "100%",
-        paddingHorizontal: SIZES.medium,
-
-    },
-    searchBtn: {
-        width: 50,
-        height: "100%",
-        backgroundColor: COLORS.tertiary,
-        borderRadius: SIZES.medium,
-        justifyContent: "center",
-        alignItems: "center",
-        borderWidth: 2,
-        borderColor: COLORS.primary,
-    },
-    searchBtnImage: {
-        width: "50%",
-        height: "50%",
-        tintColor: COLORS.white,
-    },
-    createSection: {
-        marginTop: 10,
-        width: '90%',
-        gap: 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        alignSelf: 'center'
-    },
-    pfpImage: {
-        height: 65,
-        width: 65,
-        borderRadius: 65 / 2,
-        overflow: 'hidden'
-    },
-    createButton: {
-        borderRadius: 15,
-        backgroundColor: '#539a5e',
-        flex: 1,
-        width: "100%",
-        height: 50,
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: 'center',
-    },
-    createText: {
-        fontSize: 20,
-        fontWeight: "500",
-        fontFamily: FONT.medium,
-        color: '#fbfaf5',
-        textAlign: "center",
-    },
-    stomach: {
-        backgroundColor: '#FBFAF5',
-        flex: 5,
-        paddingVertical: 25,
-        borderTopRightRadius: 32,
-        borderTopLeftRadius: 32,
-    },
-    bottomBackground: {
-        backgroundColor: '#FBFAF5',
-        paddingBottom: 30,
-        flex: 1,
-    },
-    bottomContainer: {
-        paddingLeft: 25,
-        paddingRight: 25,
-        paddingBottom: 25,
-        rowGap: 5,
-    },
-    firstTitle: {
-        color: '#539a5e'
-    },
-    secondTitle: {
-        color: '#00450b'
-    },
-    mainTitle: {
-        fontSize: 40,
-        fontWeight: "700",
-        fontFamily: FONT.bold,
-        alignItems: "center",
-    },
-    shareYourExperience: {
+    pageTitle: {
+        paddingTop: 15,
         fontSize: 30,
         fontWeight: "700",
-        color: "#f2ecdd",
-        textAlign: "left",
-        display: "flex",
-        alignItems: "center",
-        width: 380,
-        height: 48
+        fontFamily: FONT.bold,
+        color: COLORS.primary,
+        marginBottom: 15,
     },
-    connectWithThe: {
-        fontSize: 20,
-        fontWeight: "300",
-        color: "#f2ecdd",
-        textAlign: "left",
-        display: "flex",
-        alignItems: "center",
-        width: 380,
-        height: 28
+    tiptoolText: {
+        fontSize: 16,
+        fontWeight: "350",
+        fontFamily: FONT.light,
+        color: COLORS.secondary,
+        marginHorizontal: 25,
+        textAlign: 'center',
+        paddingBottom: 15,
     },
-    tabsContainer: {
-        width: "100%",
-        marginTop: SIZES.medium,
+    button: {
+        marginBottom: 5,
+        borderRadius: 15,
+        backgroundColor: COLORS.secondary,
+        height: 50,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...SHADOWS.small,
     },
-
+    buttonText: {
+        fontSize: 16,
+        fontWeight: "350",
+        fontFamily: FONT.medium,
+        color: COLORS.neutral,
+    },
+    title: {
+        fontSize: 24,
+        fontFamily: FONT.medium,
+        color: COLORS.primary,
+    }
+    
 });
 
 export default styles;

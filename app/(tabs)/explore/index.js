@@ -3,25 +3,12 @@
  * @module (Tabs)/Explore
  */
 
-import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Image, Alert, FlatList} from 'react-native'
+import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import styles from './index.style'
 import { Stack, useRouter } from "expo-router";
-<<<<<<< HEAD:App/App/app/(tabs)/explore/index.js
-import { useAuth } from '../../../context/AuthContext';
-import { COLORS, icons, images, SIZES } from "../../../constants";
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import Ionicons from '@expo/vector-icons/Ionicons';
-
-import CategoryButton from "../../../components/common/categoryButton/CategoryButton.js";
-import { Posts } from "../../../components";
-
-
-const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
-
-=======
-import { COLORS } from '../../../constants';
->>>>>>> 529ba4c7d8428b80e095174aa5c53797e33c5275:app/(tabs)/explore/index.js
+import { COLORS, images } from '../../../constants';
+import PostsList from '../../../components/explore/postsList/postsList';
 
 /**
  * Explore Component for viewing community posts and creating new posts
@@ -32,108 +19,40 @@ import { COLORS } from '../../../constants';
  * @param {function} handleClick - handles click event for search
  * @returns {JSX.Element} the explore page
  */
-const explore = ({ searchTerm, setSearchTerm }) => {
+const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter()
-  const {user} = useAuth();
 
-  const handleClick = () => {
-    if (searchTerm) {
-      router.push(`/search/${searchTerm}`)
-    }
-  }
-
-<<<<<<< HEAD:App/App/app/(tabs)/explore/index.js
-  /**
-   * Handles the click event for the create button
-   * if the user is not logged in, it will prompt them to sign up
-   * 
-   * @returns {void}
-   */
   const onPushCreate = () => {
-    if(user) {
-      router.push('/explore/create')
-    }
-    else {
-      Alert.alert('Error', 'You must be logged in to create a post',
-        [
-          { text: 'Cancel', style: 'cancel' },
-          { text: 'Sign Up', onPress: () => router.replace('/sign-up') },
-        ]
-      )
-    }
+    router.push('/create')
   }
-  
-=======
-  return (
-    <View style={{flex : 1}} contentContainerStyle={{ flexGrow: 1 }}>
-      
-      <ScrollView style={{backgroundColor: COLORS.neutral}}>
-        <View style={styles.topPadding}></View>
-        <View style={styles.topBackground}>
-          <View style={styles.topContainer}>
-            <Text style={styles.bigText}>
-              Share your experience
-            </Text>
-            <Text style={styles.smallText}>
-              connect with the community
-            </Text>
->>>>>>> 529ba4c7d8428b80e095174aa5c53797e33c5275:app/(tabs)/explore/index.js
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
-        <ScrollView>
-          <View style={styles.topPadding}></View>
-          <View style={styles.topBackground}>
-            <View style={styles.topContainer}>
-            
-{/* ________________________________________ Headers ________________________________________ */}
-              <Text style={styles.shareYourExperience}>Share your experience</Text>
-              
-              <Text style={styles.connectWithThe}>connect with the community</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.padContainer}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={images.logo}
+            resizeMode='contain'
+            style={styles.logo}
+          />
+          <Text style={styles.logoText}> Explore Your Rivers</Text>
+        </View>
+        <ScrollView style={{backgroundColor: COLORS.neutral}} showsVerticalScrollIndicator={false}>
+          {/*<Text style={styles.pageSubTitle}>Share your experience with</Text>*/}
+          <Text style={styles.pageTitle}>Community</Text>
 
-{/* ________________________________________ Search Bar ________________________________________ */}
-              <View style={styles.searchContainer}>
-                <View style={styles.searchWrapper}>
-                  <FontAwesome6 name="magnifying-glass" size={20} color={COLORS.primary} />
+          
+          <TouchableOpacity style={styles.button} onPress={onPushCreate}>
+            <Text style={styles.buttonText}>Create a new post</Text>
+          </TouchableOpacity>
+          <Text style={styles.tiptoolText}>Don't see an activity on here yet?</Text>
+          
+          <Text style={styles.title}>Latest posts</Text>
+          <PostsList/>
 
-                  <TextInput
-                    style={styles.searchInput}
-                    value={searchTerm}
-                    onChangeText={(text) => setSearchTerm(text)}
-                    placeholder='Find your river adventure...'
-                    placeholderTextColor={COLORS.secondary}
-                    onSubmitEditing={handleClick}
-                  />
-
-                  <TouchableOpacity>
-                    <Ionicons name="filter" size={25} color={COLORS.primary} />
-                  </TouchableOpacity>
-                </View>
-              </View>
-{/* ________________________________________ Categories List ________________________________________ */}
-              <View style={styles.tabsContainer}>
-                <FlatList
-                  data={categories}
-                  renderItem={({ item }) => (
-                    <CategoryButton
-                      item={item}
-                      handlePress={handleClick}
-                    />
-                  )}
-                  keyExtractor={(item) => item}
-                  contentContainerStyle={{ columnGap: SIZES.small }}
-                  horizontal
-                />
-              </View>
-
-{/* ________________________________________ Posts ________________________________________ */}
-              <View>
-                <Text style={styles.recentPosts}>Recent Posts</Text>
-              </View>
-
-            </View>
-          </View>
+          <View style={{paddingBottom: 75}}/>
         </ScrollView>
+      </View>
     </SafeAreaView>
   )
 }
