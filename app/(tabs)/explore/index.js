@@ -26,6 +26,7 @@ const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
     router.push('/create')
   }
 
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.padContainer}>

@@ -15,7 +15,7 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
   const [imageBase64, setImageBase64] = useState(null);
   const {user} = useAuth()
   const [form, setForm] = useState({
-    user_id: user.id,
+    user_id: user?.id,
     activity_id: activityID,
     rating: 0,
     title: '',
@@ -49,7 +49,7 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
       { text: 'Discard', 
         onPress: () => {
           setForm({
-            user_id: user.id,
+            user_id: user?.id,
             activity_id: activityID,
             rating: 0,
             title: '',
@@ -82,7 +82,7 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
       }else if (post.success){
         Alert.alert("Success", 'Your review has been successfully added');
         setForm({
-          user_id: user.id,
+          user_id: user?.id,
           activity_id: activityID,
           rating: 0,
           title: '',
@@ -139,7 +139,6 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
 
           <Text style={styles.modalText}>Sum up your experience</Text>
           <FormField 
-            FormField
             value={form.title}
             placeholder={'Great Time, Beautiful Scenery, etc.'}
             handleChangeText={(e) => setForm({ ...form, title: e })}
@@ -147,7 +146,6 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
 
           <Text style={styles.modalText}>Describe your journey</Text>
           <FormField 
-            FormField
             value={form.description}
             placeholder={'This is a good place for kayaking...'}
             textBoxStyle={styles.customTextBox}

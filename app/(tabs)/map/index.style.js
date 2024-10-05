@@ -1,4 +1,4 @@
-import { COLORS, FONT, SIZES, SHADOWS } from '../../../constants';
+import { COLORS, FONT, SIZES, SHADOWS, getTabColors } from '../../../constants';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -28,4 +28,19 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       ...SHADOWS.small,
     },
+    searchBar: {
+      marginHorizontal: 16,
+    },
+    activityMarker: (item) => ({
+      height: 24,
+      width: 24,
+      borderRadius: 12,
+      backgroundColor: COLORS.neutral,
+      borderColor: getTabColors(item),
+      borderWidth: 2,
+      justifyContent: 'center',
+      alignItems: 'center'
+    }),
   });
+
+  export default styles;

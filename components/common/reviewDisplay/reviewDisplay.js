@@ -51,7 +51,6 @@ const ReviewDisplay = ({ave_rating, rating_count, activityID, refetch}) => {
         closeModal={() => {
           setShowReviewModal(false);
         }}
-        handleSubmit={()=>{setShowReviewModal(false)}}
         activityID={activityID}
         refetch={refetch}
       />

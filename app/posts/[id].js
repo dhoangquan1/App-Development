@@ -13,26 +13,27 @@ import {
   Image,
 
 } from "react-native";
-import * as Linking from 'expo-linking';
-import { ScreenHeaderBtn} from "../../components/index.js";
+
+
 import { COLORS, icons, images, SIZES } from "../../constants/index.js";
-import {StarRatingDisplay} from 'react-native-star-rating-widget';
-import styles from "./ActivitiesDetails.style.js";
+import styles from "./PostsDetails.style.js";
 import Entypo from '@expo/vector-icons/Entypo';
-import { getActivity } from "../../services/getData.js";
+
+import { getPost } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
+
+import { ScreenHeaderBtn } from "../../components/index.js";
 import Navigation from "../../components/activity-details/navigation/Navigation.js";
 import AmenitiesList from "../../components/activity-details/amenities/AmenitiesList.js";
-import ReviewList from "../../components/common/reviewList/reviewList.js";
-import ReviewDisplay from "../../components/common/reviewDisplay/reviewDisplay.js";
+
 
 const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "Hiking, Walk, & Run"];
 
-const ActivitiesDetails = () => {
+const PostsDetails = () => {
   const {id} = useLocalSearchParams();
   const router = useRouter();
 
-  const { data, refetch, isLoading, error } = useSupabase(() => getActivity(`${id}`));
+  const { data, refetch, isLoading, error } = useSupabase(() => getPost(`${id}`));
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -41,6 +42,7 @@ const ActivitiesDetails = () => {
     refetch()
     setRefreshing(false)
   }, []);
+
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.neutral }}>
@@ -112,16 +114,6 @@ const ActivitiesDetails = () => {
                   <Text style = {styles.activityName}> 
                     {data.name} 
                   </Text>
-                  <View style={styles.rating}>
-                    <StarRatingDisplay
-                      rating={data.ave_rating}
-                      color={COLORS.secondary}
-                      starSize={25}
-                      starStyle={{marginHorizontal: 2}}
-                    />
-                    <Text style={styles.aveRatingText}> {data.ave_rating.toFixed(1)} </Text>
-                    <Text style={styles.reviewNumText}>({data.rating_count} reviews)</Text>
-                  </View>
                   <View style={styles.address}>
                     <Entypo name="location" size={16} color={COLORS.primary} />
                     <Text style={styles.addressText}>{data.address}</Text>
@@ -140,25 +132,14 @@ const ActivitiesDetails = () => {
                   </View>
                 )}
 
-                {/*Website Link Button */}
-                {data.link && (
-                  <View style={styles.infoTextContainer}>
-                    <TouchableOpacity 
-                      style={styles.button}
-                      onPress={() => Linking.openURL(`${data.link}`)}
-                    >
-                      <Text style={styles.buttonText}>Visit website</Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
 
                 {/*Amenities */}
-                {data.activities_tags[0] && (
+                {data.users_posts_tags[0] && (
                   <View style = {styles.infoTextContainer}>
                     <Text style = {styles.title}>
                       Amenities
                     </Text>
-                    <AmenitiesList data={data.activities_tags}/>
+                    <AmenitiesList data={data.users_posts_tags}/>
                   </View>
                 )}
                 
@@ -171,22 +152,14 @@ const ActivitiesDetails = () => {
                   <Navigation item={data} />
                 </View>
 
-                {/*Reviews Section */}
-                <View style = {styles.infoTextContainer}>
-                  <Text style = {styles.title}>
-                    Reviews
-                  </Text>
-                  <ReviewDisplay ave_rating={data.ave_rating} rating_count={data.rating_count} activityID={id} refetch={refetch}/>
-                  <ReviewList activityId={id}/>
-                </View>
-
               </View>
             </View>
           </>
         )}
+        <View style={{paddingBottom: 75}}/>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default ActivitiesDetails;
+export default PostsDetails;

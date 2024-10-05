@@ -35,15 +35,22 @@ import { useFocusEffect } from '@react-navigation/native';
 const bookmark = () => {
   const router = useRouter();
   const {user, userLocation} = useAuth();
-  if(!user) {
-    Alert.alert('Error', 'You must be logged in to bookmark',
-        [{ text: 'Cancel', style: 'cancel', onPress: () => router.replace('/home') },
-        { text: 'Sign Up', onPress: () => router.replace('/sign-up') },]
-    )
-    return;
-  }
+
+  useEffect(() => {
+    if (!user) {
+      Alert.alert(
+        'Error',
+        'You must be logged in to bookmark',
+        [
+          { text: 'Cancel', style: 'cancel', onPress: () => router.replace('/home') },
+          { text: 'Sign Up', onPress: () => router.replace('/sign-up') }
+        ]
+      );
+    }
+  }, [user, router]);
+
   const [refreshing, setRefreshing] = useState(false);
-  const { data, isLoading, refetch, error } = useSupabase(() => getBookmark(user.id, userLocation.latitude, userLocation.longitude));
+  const { data, isLoading, refetch, error } = useSupabase(() => getBookmark(user?.id, userLocation.latitude, userLocation.longitude));
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -56,6 +63,7 @@ const bookmark = () => {
       refetch();
     }, [])
   );
+  
 
   return (
     

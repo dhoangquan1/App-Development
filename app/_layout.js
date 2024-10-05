@@ -1,10 +1,10 @@
 import { useRouter, Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { AuthProvider, useAuth } from "../context/AuthContext";
+import { FormProvider } from "../context/FormContext";
 import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
 import { getUserData } from "../services/getData"; 
-import * as Location from 'expo-location';
 
 
 //import * as SplashScreen from "expo-splash-screen";
@@ -16,7 +16,7 @@ const Layout = () => {
   const router = useRouter();
   
   useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, session) => {
+    supabase.auth.onAuthStateChange((_event, session) => {      
       if(session){
         setAuth(session?.user);
         updateUserData(session?.user);
@@ -28,23 +28,6 @@ const Layout = () => {
     })
   }, [])
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setUserLocation({
-          longitude: -71.1246826115983,
-          latitude: 42.40776531464709,
-        })
-        return;
-      }
-      const location = await Location.getCurrentPositionAsync();
-      setUserLocation({
-        longitude: location.coords.longitude,
-        latitude: location.coords.latitude,
-      })
-    })()
-  }, [user])
 
   const updateUserData = async (user) => {
     let res = await getUserData(user?.id);
@@ -77,7 +60,9 @@ const Layout = () => {
 const _layout = () => {
   return (
     <AuthProvider>
-      <Layout/>
+      <FormProvider>
+        <Layout/>
+      </FormProvider>
     </AuthProvider>
   )
 }

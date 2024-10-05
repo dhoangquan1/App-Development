@@ -8,7 +8,7 @@ import { Text, StyleSheet, View, ScrollView, VirtualizedList, Modal } from "reac
 
 import useSupabase from "../services/useSupabase";
 import { getFilteredActivities, getAllRivers } from "../services/getData";
-import { Button, CheckBox } from "@rneui/themed";
+import Checkbox from "expo-checkbox";
 import { TouchableOpacity } from "react-native";
 
 import { COLORS, FONT, SIZES, SHADOWS } from "../constants";

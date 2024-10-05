@@ -41,6 +41,20 @@ export async function getAllRivers () {
     }
 }
 
+export async function getAllRiversForFilters () {
+    try {
+        const {data, error} = await supabase
+        .from('rivers')
+        .select(`name, id`);
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
 
 export async function getAllActivities( longitude, latitude, activeTab, userID) {
     try {
@@ -68,44 +82,28 @@ export async function getAllActivities( longitude, latitude, activeTab, userID) 
     }
 }
 
-const river_prefix = 'river_id.eq.';
-const comma = ',';
-const ipswich = '09cec781-00d8-4ec2-8217-dea3243f0d48';
-const nashua = 'a43ddb01-654a-4f7c-a288-d16732a842ce';
+export async function getFilteredActivities(longitude, latitude, form, userID) {
+    try {
+        const { data, error } = await supabase.rpc('filter_activities', {
+            param_name_search: (form.name ? form.name : null),
+            param_activity: (form.activity === "All" ? null : form.activity), 
+            param_river_id: (form.river_id ? form.river_id : null), 
+            param_user_id: (userID ? userID : null),
+            param_town: (form.town ? form.town : null),
+            param_tags: (form.tags.length > 0 ? form.tags : null),
+            param_lat: latitude, 
+            param_long: longitude
 
-const land = 'Hiking, Walk, & Run';
-const swimming = 'Swimming';
-const paddling = 'Paddling';
-const fishing = 'Fishing';
-
-let filterByRivers = null;
-let filterByActivities = null;
-
-export function getFilteredActivities (activity, river) {
-    return async () => {
-        if (activity == "Land") {
-            activity = "Hiking, Walk, & Run";
-        }
-        
-        try {
-            let query = supabase
-            .from('activities')
-            .select(`
-                *, 
-                rivers( name ),
-                activities_tags( tag )`)
-             
-            if (river) { query = query.eq('river_id', river) }
-            if (activity) { query = query.eq('activity', activity) }
-            
-            const {data, error} = await query
-            
-            return data;
-        } catch (error) {
-            return {
-                success: false,
-                error: error.message
-            }
+          });
+          if (error) {
+            console.error("Supabase RPC Error:", error.message);
+            throw new Error(error.message);
+          }
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
         }
     }
 }
@@ -149,6 +147,24 @@ export async function getActivity (activityId) {
             *, 
             activities_tags( tag )`)
         .eq('id', activityId)
+        .single();
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getPost (postID) {
+    try {
+        const {data, error} = await supabase
+        .from('users_posts')
+        .select(`
+            *, 
+            users_posts_tags( tag )`)
+        .eq('id', postID)
         .single();
         return data;
     } catch (error) {
