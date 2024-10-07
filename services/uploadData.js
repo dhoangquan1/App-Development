@@ -130,9 +130,8 @@ export async function uploadPostImage (file, userID, postID) {
 }
 
 export async function uploadPost (form, imageURL, userID, postID ) {
-    console.log('Form data:', form);
     try {
-        const {data, error} = await supabase
+        const {error} = await supabase
         .from('users_posts')
         .insert({
             id: postID,
@@ -146,9 +145,14 @@ export async function uploadPost (form, imageURL, userID, postID ) {
             latitude: form.latitude,
             longitude: form.longitude,
             user_id: userID
-        })
-        .select();
-        return data;
+        });
+        if(error){
+            return {
+                success: false,
+                error: error.message
+            }
+        }
+        return {success: true};
     } catch (error) {
         return {
             success: false,
