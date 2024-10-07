@@ -139,7 +139,6 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
 
           <Text style={styles.modalText}>Sum up your experience</Text>
           <FormField 
-            FormField
             value={form.title}
             placeholder={'Great Time, Beautiful Scenery, etc.'}
             handleChangeText={(e) => setForm({ ...form, title: e })}
@@ -147,7 +146,6 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
 
           <Text style={styles.modalText}>Describe your journey</Text>
           <FormField 
-            FormField
             value={form.description}
             placeholder={'This is a good place for kayaking...'}
             textBoxStyle={styles.customTextBox}

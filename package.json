@@ -18,12 +18,14 @@
     "@expo/vector-icons": "^14.0.2",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/geolocation": "^3.3.0",
+    "@react-native-picker/picker": "^2.8.1",
     "@react-navigation/native": "^6.0.2",
     "@rneui/themed": "^4.0.0-rc.8",
     "@supabase/supabase-js": "^2.45.1",
     "axios": "^1.7.2",
     "base64-arraybuffer": "^1.0.2",
     "expo": "^51.0.32",
+    "expo-checkbox": "^3.0.0",
     "expo-constants": "~16.0.2",
     "expo-document-picker": "^12.0.2",
     "expo-font": "~12.0.8",
@@ -47,6 +49,7 @@
     "react-native-screens": "3.31.1",
     "react-native-star-rating-widget": "^1.9.1",
     "react-native-url-polyfill": "^2.0.0",
+    "react-native-uuid": "^2.0.2",
     "react-native-web": "~0.19.10"
   },
   "devDependencies": {

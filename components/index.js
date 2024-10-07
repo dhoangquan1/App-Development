@@ -10,6 +10,10 @@ import ScreenHeaderBtn from "../components/common/header/ScreenHeaderBtn";
 import ReviewModal from "../components/common/reviewModal/ReviewModal";
 import TabBar from "../components/common/tabBar/TabBar";
 
+// explore
+import PostsList from "./explore/postsList/postsList"
+import CreateModal from "./explore/create/createModal"
+
 
 // home
 import Activities from "./home/activities/Activities";
@@ -35,6 +39,9 @@ export {
   ScreenHeaderBtn,
   ReviewModal,
   TabBar,
+
+  PostsList,
+  CreateModal,
 
   Activities,
   Leavenotrace,
