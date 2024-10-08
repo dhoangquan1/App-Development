@@ -1,7 +1,7 @@
 /**
  * @fileOverview This is a component for the Tabs layout, which provides a tab bar for navigation.
  */
-
+import { useEffect } from 'react';
 import { Redirect, Tabs } from 'expo-router';
 import TabBar from '../../components/common/tabBar/TabBar';
 import { useAuth } from '../../context/AuthContext';
@@ -14,6 +14,7 @@ import { COLORS } from '../../constants';
  */
 
 export default function TabLayout() {
+  
   
   return (
     <>

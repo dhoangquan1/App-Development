@@ -93,7 +93,7 @@ const RiverDetails = () => {
                   {data.name} 
                 </Text>
                 <Text style = {styles.riverDescription}>
-                  The Ipswich River supplies the municipal water for Boxford, Wilmington, Ipswich, Lynnfield, Middleton, Danvers, Topsfield, Beverly, Salem, Lynn, Peabody, Hamilton, and Wenham. Additionally, all communities within the watershed have private wells that draw from the river's aquifer. 
+                  {data.description}
                 </Text>
               </View>
 
@@ -117,7 +117,19 @@ const RiverDetails = () => {
                 <OrganizationList riverID={id}/>
               </View>
 
+              {/* Environmental concern Section */}
+              <View style = {styles.infoTextContainer}>
+                <Text style = {styles.title}> 
+                  Environmental concerns
+                </Text>
+                <View style={styles.issue}>
+                  <Text style = {styles.issueText}>
+                    {data.issue}
+                  </Text>
+                </View>
+              </View>
 
+              <View style={{paddingBottom: 75}}/>
             </View>
           </View>
       </ScrollView>

@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, ImageBackground } from "react-native";
 
 import styles from "./riversCard.style";
-import { COLORS, icons } from "../../../../constants";
+import { COLORS, icons, images } from "../../../../constants";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 const RiversCard = ({ item, handleCardPress }) => {
@@ -10,7 +10,7 @@ const RiversCard = ({ item, handleCardPress }) => {
       onPress={() => handleCardPress(item)}
     >
       <ImageBackground
-          source={{uri: item.image ? item.image : 'https://t3.ftcdn.net/jpg/01/13/46/78/360_F_113467839_JA7ZqfYTcIFQWAkwMf3mVmhqXr7ZOgEX.jpg'}}
+          source={{uri: item.image ? item.image : images.defaultRiver}}
           resizeMode='cover'
           style={styles.riverImage}
       >

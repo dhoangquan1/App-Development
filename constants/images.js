@@ -9,6 +9,9 @@ import fisherman from "../assets/images/fisherman.png"
 import cyclist from "../assets/images/cyclist.png"
 import kayaking from "../assets/images/kayaking.png"
 
+import defaultRiver from "../assets/images/defaultRiver.jpg"
+import defaultActivity from "../assets/images/defaultActivity.jpg"
+
 export default {
   handplant,
   onboardCover,
@@ -18,4 +21,6 @@ export default {
   fisherman,
   cyclist,
   kayaking,
+  defaultActivity,
+  defaultRiver,
 };

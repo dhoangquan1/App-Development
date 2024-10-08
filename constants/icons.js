@@ -27,8 +27,8 @@ const AmenitiesIconSelect = (amenity, size, ...props) => {
         <Text style={{color: COLORS.primary, fontSize: size,fontFamily: FONT.bold}}>E</Text>
         <FontAwesome6 name="wheelchair" size={size} color={COLORS.primary} {...props}/>
       </View>),
-    "Dogs allowed": <FontAwesome6 name="dog" size={size} color={COLORS.primary} {...props}/>,
-    "Kid friendly": <FontAwesome6 name="child-reaching" size={size} color={COLORS.primary} {...props}/>,
+    "Dogs Allowed": <FontAwesome6 name="dog" size={size} color={COLORS.primary} {...props}/>,
+    "Kid Friendly": <FontAwesome6 name="child-reaching" size={size} color={COLORS.primary} {...props}/>,
   }
   return icons[amenity] || <MaterialIcons name="tag" size={size} color={COLORS.primary} {...props}/>
 }

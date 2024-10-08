@@ -71,7 +71,17 @@ const styles = StyleSheet.create({
         width: "100%",
         marginTop: 10,
     },
-    
+    issue: {
+        marginTop: 10,
+        padding: 10,
+        borderRadius: 15,
+        backgroundColor: COLORS.tertiary
+    },
+    issueText: {
+        fontSize: 16,
+        fontFamily: FONT.regular,
+        color: COLORS.primary,
+    },
 });
 
 export default styles;

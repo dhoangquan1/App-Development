@@ -10,7 +10,7 @@ import MiniActivitiesCard from '../../common/cards/mini-activities/miniActivitie
 import SpecialActivity from '../../common/specialActivities/specialActivities'
 
 const ActivityList = ({category, riverID}) => {
-    const {router} = useRouter();
+    const router = useRouter();
     const {data, isLoading, error} = useSupabase(() => getActivityByCategoryAndRiver(category, riverID))
 
     return (

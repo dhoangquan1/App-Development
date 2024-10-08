@@ -19,7 +19,7 @@ import { COLORS, icons, images, SIZES } from "../../constants/index.js";
 import {StarRatingDisplay} from 'react-native-star-rating-widget';
 import styles from "./ActivitiesDetails.style.js";
 import Entypo from '@expo/vector-icons/Entypo';
-import { getActivity, getActivityReviews } from "../../services/getData.js";
+import { getActivity } from "../../services/getData.js";
 import useSupabase from "../../services/useSupabase.js";
 import Navigation from "../../components/activity-details/navigation/Navigation.js";
 import AmenitiesList from "../../components/activity-details/amenities/AmenitiesList.js";

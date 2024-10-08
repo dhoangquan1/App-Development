@@ -41,6 +41,20 @@ export async function getAllRivers () {
     }
 }
 
+export async function getAllRiversForFilters () {
+    try {
+        const {data, error} = await supabase
+        .from('rivers')
+        .select(`name, id`);
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
 
 export async function getAllActivities( longitude, latitude, activeTab, userID) {
     try {
@@ -51,6 +65,32 @@ export async function getAllActivities( longitude, latitude, activeTab, userID) 
             param_user_id: (userID ? userID : null),
             param_town: null,
             param_tags: null,
+            param_lat: latitude, 
+            param_long: longitude
+
+          });
+          if (error) {
+            console.error("Supabase RPC Error:", error.message);
+            throw new Error(error.message);
+          }
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getFilteredActivities(longitude, latitude, form, userID) {
+    try {
+        const { data, error } = await supabase.rpc('filter_activities', {
+            param_name_search: (form.name ? form.name : null),
+            param_activity: (form.activity === "All" ? null : form.activity), 
+            param_river_id: (form.river_id ? form.river_id : null), 
+            param_user_id: (userID ? userID : null),
+            param_town: (form.town ? form.town : null),
+            param_tags: (form.tags.length > 0 ? form.tags : null),
             param_lat: latitude, 
             param_long: longitude
 
@@ -107,6 +147,25 @@ export async function getActivity (activityId) {
             *, 
             activities_tags( tag )`)
         .eq('id', activityId)
+        .single();
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
+export async function getPost (postID) {
+    try {
+        const {data, error} = await supabase
+        .from('users_posts')
+        .select(`
+            *, 
+            users_posts_tags( tag ),
+            users ( * )`)
+        .eq('id', postID)
         .single();
         return data;
     } catch (error) {
