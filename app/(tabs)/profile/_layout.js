@@ -6,7 +6,7 @@ import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 
 /**
- * Layout Component for the Profile Page
+ * Layout Component for the Home Page
  * @returns {JSX.Element} 
  */
 const Layout = () => {

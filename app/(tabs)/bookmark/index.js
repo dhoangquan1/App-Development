@@ -20,7 +20,6 @@ import { getAllActivities, getBookmark, getUserContents } from "../../../service
 import useSupabase from "../../../services/useSupabase";
 import { useAuth } from '../../../context/AuthContext';
 import { useFocusEffect } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 //Directory ../ based test
 // import {
@@ -36,22 +35,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const bookmark = () => {
   const router = useRouter();
   const {user, userLocation} = useAuth();
-
-  useEffect(() => {
-    if (!user) {
-      Alert.alert(
-        'Error',
-        'You must be logged in to bookmark',
-        [
-          { text: 'Cancel', style: 'cancel', onPress: () => router.replace('/home') },
-          { text: 'Sign Up', onPress: () => router.replace('/sign-up') }
-        ]
-      );
-    }
-  }, [user, router]);
-
+  if(!user) {
+    Alert.alert('Error', 'You must be logged in to bookmark',
+        [{ text: 'Cancel', style: 'cancel', onPress: () => router.replace('/home') },
+        { text: 'Sign Up', onPress: () => router.replace('/sign-up') },]
+    )
+    return;
+  }
   const [refreshing, setRefreshing] = useState(false);
-  const { data, isLoading, refetch, error } = useSupabase(() => getBookmark(user?.id, userLocation.latitude, userLocation.longitude));
+  const { data, isLoading, refetch, error } = useSupabase(() => getBookmark(user.id, userLocation.latitude, userLocation.longitude));
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -64,54 +56,51 @@ const bookmark = () => {
       refetch();
     }, [])
   );
-  
 
   return (
     
-      <SafeAreaView style={{flex: 1,backgroundColor: COLORS.neutral}}>
-        <View style={{flex : 1, marginTop: 20}}>
-          <ScrollView style={{backgroundColor: COLORS.neutral}}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-          >
-            {/* #FBFAF5 is tan color */}
-            
-            <View>
-              {/* <View style={styles.topPadding}></View> 
-              // This makes the Top Padding that appears when you scroll beyond what you're suppposed to: -> as dark green*/ }
-                {/* <View style={styles.topBackground}> // This makes the background dark green*/}
-                  <View style={styles.topContainer}>
-                    <Text style={styles.bigText}>
-                        Bookmark
-                    </Text>
-                  </View>
-                {/* </View>     */}
-
-                {/* Activities Cards to stand in for Saved Activities */}
-                    <View style={styles.cardsContainer}>
-                      {
-                        isLoading ? (
-                          <ActivityIndicator size='large' color={COLORS.primary} />
-                        ) : error ? (
-                          <Text>Something went wrong</Text>
-                        ) : (
-                          user && data?.map((item) => (
-                            <ActivitiesCard
-                              item={item}
-                              key={`${item.id}`}
-                              handleNavigate={() => router.push(`/activities/${item.id}`)}
-                            />  
-                          ))
-                        )
-                      }
+      <View style={{flex : 1, marginTop: 20}} contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView style={{backgroundColor: COLORS.neutral}}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        >
+          {/* #FBFAF5 is tan color */}
+          
+          <View>
+            {/* <View style={styles.topPadding}></View> 
+            // This makes the Top Padding that appears when you scroll beyond what you're suppposed to: -> as dark green*/ }
+              {/* <View style={styles.topBackground}> // This makes the background dark green*/}
+                <View style={styles.topContainer}>
+                  <Text style={styles.bigText}>
+                      Bookmark
+                  </Text>
                 </View>
-                {/* Activities Cards to stand in for Saved Activities */}
-                {/* <Activities /> // Activities Test */}
-            </View>
-            <View style={{paddingBottom: 75}}/>
-          </ScrollView>
-        </View>
-      </SafeAreaView>
+              {/* </View>     */}
+
+              {/* Activities Cards to stand in for Saved Activities */}
+                  <View style={styles.cardsContainer}>
+                    {
+                      isLoading ? (
+                        <ActivityIndicator size='large' color={COLORS.primary} />
+                      ) : error ? (
+                        <Text>Something went wrong</Text>
+                      ) : (
+                        user && data?.map((item) => (
+                          <ActivitiesCard
+                            item={item}
+                            key={`${item.id}`}
+                            handleNavigate={() => router.push(`/activities/${item.id}`)}
+                          />  
+                        ))
+                      )
+                    }
+              </View>
+              {/* Activities Cards to stand in for Saved Activities */}
+              {/* <Activities /> // Activities Test */}
+          </View>
+          <View style={{paddingBottom: 75}}/>
+        </ScrollView>
+      </View>
     
   )
 }
