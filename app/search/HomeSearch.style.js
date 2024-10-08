@@ -6,9 +6,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.neutral,
     },
-    infoContainer: {
-        flex: 1,
-    },
     scrollContainer: {
         marginHorizontal: 16,
     },
@@ -26,10 +23,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     title: {
+        marginTop: 16,
         fontSize: 24,
         fontFamily: FONT.medium,
         color: COLORS.primary,
         paddingVertical: 10,
+    },
+    infoContainer: {
+        flex: 1,
     },
     cardsContainer: {
         ...SHADOWS.small,
@@ -43,6 +44,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 15,
+    },
+    pageTitle: {
+        marginTop: 16,
+        fontSize: 30,
+        fontWeight: "700",
+        fontFamily: FONT.bold,
+        color: COLORS.primary,
     }
   });
 

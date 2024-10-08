@@ -82,6 +82,7 @@ const PostsDetails = () => {
         refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
+        
         {isLoading ? (
           <ActivityIndicator size='large' color={COLORS.primary} />
         ) : error ? (

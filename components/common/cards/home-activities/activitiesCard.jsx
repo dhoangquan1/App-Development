@@ -7,7 +7,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import styles from "./activitiesCard.style";
-import { COLORS, icons } from "../../../../constants";
+import { COLORS, icons, images } from "../../../../constants";
 import {StarRatingDisplay} from 'react-native-star-rating-widget';
 import BookmarkButton from "../../bookmarkButton/bookmarkButton";
 
@@ -20,9 +20,7 @@ const ActivitiesCard = ({ item, handleNavigate}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={() => handleNavigate(item)}>
         <ImageBackground
-          source={{
-            uri: item.image,
-          }}
+          source={{uri: item.image ? item.image : images.defaultActivity}}
           resizeMode='cover'
           style={styles.imageContainer}
         >

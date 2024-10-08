@@ -81,7 +81,10 @@ const HomeSearch = () => {
                 }}
             />
             <ScrollView style={styles.scrollContainer}>
-                <View style={styles.cardsContainer}>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.pageTitle}>
+                        Search results
+                    </Text>
                     <SearchBar 
                         form={form} 
                         setForm={setForm} 
@@ -101,13 +104,15 @@ const HomeSearch = () => {
                     ) : error ? (
                         <Text>Something went wrong</Text>
                     ) : (
-                        data?.map((item) => (
-                        <ActivitiesCard
-                            item={item}
-                            key={`${item.id}`}
-                            handleNavigate={handleNavigate}
-                        />  
-                        ))
+                        <View style={styles.cardsContainer}>
+                            {data?.map((item) => (
+                            <ActivitiesCard
+                                item={item}
+                                key={`${item.id}`}
+                                handleNavigate={handleNavigate}
+                            />  
+                            ))}
+                        </View>
                     )}
                 </View>
             </ScrollView>

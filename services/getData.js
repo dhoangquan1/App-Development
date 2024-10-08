@@ -163,7 +163,8 @@ export async function getPost (postID) {
         .from('users_posts')
         .select(`
             *, 
-            users_posts_tags( tag )`)
+            users_posts_tags( tag ),
+            users ( * )`)
         .eq('id', postID)
         .single();
         return data;

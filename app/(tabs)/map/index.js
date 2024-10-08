@@ -8,6 +8,7 @@ import {Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import {Text, View, StyleSheet, SafeAreaView, ActivityIndicator, TouchableOpacity} from 'react-native';
 import MapView from 'react-native-map-clustering';
 import * as Location from 'expo-location';
+import { useRouter } from 'expo-router'
 
 import styles from './index.style';
 import { COLORS, FONT, SIZES, SHADOWS, icons } from '../../../constants';
@@ -29,6 +30,7 @@ const categories = ["All", "Swimming", "Fishing", "Paddling", "Boating and Saili
  * @returns {JSX.Element} The map page
  */
 const Map = () => {
+  const router = useRouter();
   const [showActivityCard, setShowActivityCard] = useState(false);
   const [isFiltering, setIsFiltering] = useState(false);
   const {user, userLocation, setUserLocation} = useAuth();
@@ -65,6 +67,13 @@ const Map = () => {
     refetch()
   }, [form])
 
+
+  const handleNavigate = (item) => {
+    router.push({
+      pathname: `/activities/[id]`,
+      params: {id : item.id}
+    });
+  };
 
   const handleMarkerPress = (item) => {
     setShowActivityCard(item);
@@ -124,7 +133,7 @@ const Map = () => {
               {showActivityCard && (
                 <MiniActivitiesCard 
                   item = {showActivityCard}
-                  handleNavigate={() => router.push(`../../app/activities/${activity.id}`)}
+                  handleNavigate={() => router.push(`/activities/${showActivityCard.id}`)}
                 />
               )}
             </View>
