@@ -175,7 +175,7 @@ const createModal = ({isVisible, closeModal, refetch}) => {
         setSelectedTown(null);
         setSelectedStreet(null);
         setSelectedZipCode(null);
-        setSelectedTags(null);
+        setSelectedTags([]);
         setSelectedCoordinate(null);
         
         closeModal();
