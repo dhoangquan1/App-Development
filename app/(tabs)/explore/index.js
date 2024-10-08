@@ -3,16 +3,12 @@
  * @module (Tabs)/Explore
  */
 
-import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Image, Alert } from 'react-native'
+import { View, Text, ScrollView, SafeAreaView, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import styles from './index.style'
 import { Stack, useRouter } from "expo-router";
 import { COLORS, images } from '../../../constants';
-import { PostsList, CreateModal } from '../../../components';
-import useSupabase from "../../../services/useSupabase";
-import { getAllUserContents } from "../../../services/getData";
-import { useAuth } from '../../../context/AuthContext';
-
+import PostsList from '../../../components/explore/postsList/postsList';
 
 /**
  * Explore Component for viewing community posts and creating new posts
@@ -25,19 +21,9 @@ import { useAuth } from '../../../context/AuthContext';
  */
 const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter()
-  const [showCreateModal, setShowCreateModal] = useState(false)
-  const { data, isLoading, refetch, error } = useSupabase(() => getAllUserContents());
-  const {user} = useAuth()
 
   const onPushCreate = () => {
-    if(!user) {
-      Alert.alert('Error', 'You must be logged in to leave a review',
-          [{ text: 'Cancel', style: 'cancel' },
-          { text: 'Sign Up', onPress: () => router.replace('/sign-up') },]
-      )
-    }else{
-      setShowCreateModal(true)
-    }
+    router.push('/create')
   }
 
   
@@ -52,24 +38,20 @@ const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
           />
           <Text style={styles.logoText}> Explore Your Rivers</Text>
         </View>
-        <ScrollView style={{ backgroundColor: COLORS.neutral }} showsVerticalScrollIndicator={false}>
+        <ScrollView style={{backgroundColor: COLORS.neutral}} showsVerticalScrollIndicator={false}>
+          {/*<Text style={styles.pageSubTitle}>Share your experience with</Text>*/}
           <Text style={styles.pageTitle}>Community</Text>
 
-
+          
           <TouchableOpacity style={styles.button} onPress={onPushCreate}>
             <Text style={styles.buttonText}>Create a new post</Text>
           </TouchableOpacity>
           <Text style={styles.tiptoolText}>Don't see an activity on here yet?</Text>
-
+          
           <Text style={styles.title}>Latest posts</Text>
-          <PostsList />
+          <PostsList/>
 
-          <CreateModal
-            isVisible={showCreateModal}
-            closeModal={() => { setShowCreateModal(false) }}
-            refetch={refetch}/>
-
-          <View style={{ paddingBottom: 75 }} />
+          <View style={{paddingBottom: 75}}/>
         </ScrollView>
       </View>
     </SafeAreaView>

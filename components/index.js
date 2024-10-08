@@ -12,10 +12,6 @@ import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
 import ReviewModal from "./common/reviewModal/ReviewModal";
 import TabBar from "./common/tabBar/TabBar";
 
-// explore
-import PostsList from "./explore/postsList/postsList"
-import CreateModal from "./explore/create/createModal"
-
 
 // home
 import Activities from "./home/activities/Activities";
@@ -41,9 +37,6 @@ export {
   ScreenHeaderBtn,
   ReviewModal,
   TabBar,
-
-  PostsList,
-  CreateModal,
 
   Activities,
   Leavenotrace,

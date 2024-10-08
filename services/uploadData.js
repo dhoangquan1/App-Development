@@ -84,6 +84,23 @@ export async function uploadReview (form, imageURL) {
     }
 }
 
+export async function uploadPostImageToStorage (event, userID, postID) {
+    let file = event.target.files[0];
+
+    try {
+        const {data, error} = await supabase
+        .storage
+        .from('images')
+        .upload('posts/' + userID + '/' + postID + '/' + uuid.v4, file);
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}
+
 export async function uploadAvatarImageToStorage (event, userID) {
     let file = event.target.files[0];
 
@@ -101,58 +118,29 @@ export async function uploadAvatarImageToStorage (event, userID) {
     }
 }
 
-export async function uploadPostImage (file, userID, postID) {
+export async function uploadPost (form, userID, postID ) {
     try {
-        const {data: uploadData, error: uploadError} = await supabase
-        .storage
+        const {data, error} = await supabase
         .from('images')
-        .upload(`${userID}/posts/${postID}.jpg`, decode(file), {
-            contentType: 'image/jpeg'
-        })
-
-        // Check for any errors during upload
-        if (uploadError) {
-            Alert.alert(uploadError.message);
-        }
-
-        const { data: url } = supabase
-        .storage
-        .from('images')
-        .getPublicUrl(`${uploadData.path}`)
-        
-        return url;
-    } catch (error) {
-        return {
-            success: false,
-            error: error.message
-        }
-    }
-}
-
-export async function uploadPost (form, imageURL, userID, postID ) {
-    try {
-        const {error} = await supabase
-        .from('users_posts')
         .insert({
             id: postID,
+            user_id: userID,
             river_id: form.river_id,
-            activity: form.activity_type,
-            name: form.post_name,
+            activity: form.activity,
+            name: form.name,
             town: form.town,
             description: form.description,
-            address: `${form.street}, ${form.town}, MA ${form.zip_code}`,
-            image: imageURL,
+            address: form.address,
+            wc_entrance: form.wc_entrance,
+            wc_parking: form.wc_parking,
+            pet: form.pet,
+            image: form.image,
+            note: form.note,
             latitude: form.latitude,
             longitude: form.longitude,
-            user_id: userID
-        });
-        if(error){
-            return {
-                success: false,
-                error: error.message
-            }
-        }
-        return {success: true};
+        })
+        .select();
+        return data;
     } catch (error) {
         return {
             success: false,
