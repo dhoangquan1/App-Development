@@ -3,14 +3,16 @@ import AmenitiesList from "./activity-details/amenities/AmenitiesList";
 import Navigation from "./activity-details/navigation/Navigation";
 import Weather from "./activity-details/weather/Weather";
 
-
-// common
 //    |other
-import CategoryList from "./common/categoryList/categoryList";
-import FormField from "./common/form-field/FormField";
-import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
-import ReviewModal from "./common/reviewModal/ReviewModal";
-import TabBar from "./common/tabBar/TabBar";
+import CategoryList from "../components/common/categoryList/categoryList";
+import FormField from "../components/common/form-field/FormField";
+import ScreenHeaderBtn from "../components/common/header/ScreenHeaderBtn";
+import ReviewModal from "../components/common/reviewModal/ReviewModal";
+import TabBar from "../components/common/tabBar/TabBar";
+
+// explore
+import PostsList from "./explore/postsList/postsList"
+import CreateModal from "./explore/create/createModal"
 
 
 // home
@@ -37,6 +39,9 @@ export {
   ScreenHeaderBtn,
   ReviewModal,
   TabBar,
+
+  PostsList,
+  CreateModal,
 
   Activities,
   Leavenotrace,
