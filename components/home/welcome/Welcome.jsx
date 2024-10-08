@@ -21,8 +21,6 @@ const categories = ["Swimming", "Fishing", "Paddling", "Boating and Sailing", "H
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
   const {user} = useAuth();
-  const [activeJobType, setActiveJobType] = useState("Swimming");
-
 
   return (
     <View>
@@ -34,26 +32,6 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
           Explore your rivers!
         </Text>
       </View>
-      <View style={styles.searchContainer}>
-        <View style={styles.searchWrapper}>
-          <FontAwesome6 name="magnifying-glass" size={20} color={COLORS.primary} />
-
-          <TextInput
-            style={styles.searchInput}
-            value={searchTerm}
-            onChangeText={(text) => setSearchTerm(text)}
-            placeholder='Find your river adventure...'
-            placeholderTextColor={COLORS.secondary}
-            onSubmitEditing={handleClick}
-          />
-
-          <TouchableOpacity>
-            <Ionicons name="filter" size={25} color={COLORS.primary} />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      
 
     </View>
   );

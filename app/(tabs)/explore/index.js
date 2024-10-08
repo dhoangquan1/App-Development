@@ -40,6 +40,7 @@ const explore = ({ searchTerm, setSearchTerm, handleClick }) => {
     }
   }
 
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.padContainer}>
