@@ -1,21 +1,18 @@
 /**
- * @fileOverview This is a component for the Bookmark page, which allows users to search for posts and create new posts.
+ * @fileOverview This is a component for the Bookmark page, which displays various sections of the app.
  */
 
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 
 /**
- * The Layout component for the Bookmark Page.
- *
- * @component
- * 
- * @returns {JSX.Element} The layout component with a configured navigation stack.
+ * Layout Component for the Bookmark Page
+ * @returns {JSX.Element} 
  */
-
 const Layout = () => {
 
   return (
+    
     <Stack initialRouteName="index">
       <Stack.Screen name="index" options={{ headerShown: false }} />
     </Stack>

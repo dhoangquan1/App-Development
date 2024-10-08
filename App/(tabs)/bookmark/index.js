@@ -151,5 +151,3 @@ const bookmark = ({ navigation, route }) => {
 
 export default bookmark;
 */
-
-
