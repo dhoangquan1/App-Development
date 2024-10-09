@@ -160,3 +160,23 @@ export async function uploadPost (form, imageURL, userID, postID ) {
         }
     }
 }
+
+export async function uploadPostTags (updatedTags) {
+    try {
+        const {error} = await supabase
+        .from('users_posts_tags')
+        .insert(updatedTags);
+        if(error){
+            return {
+                success: false,
+                error: error.message
+            }
+        }
+        return {success: true};
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        }
+    }
+}

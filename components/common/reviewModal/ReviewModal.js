@@ -33,7 +33,7 @@ const ReviewModal = ({isVisible, closeModal, activityID, refetch}) => {
 
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images, // Only allow images
-      quality: 1, // Quality of the image (0 to 1)
+      quality: 0, // Quality of the image (0 to 1)
       base64: true,
     });
 

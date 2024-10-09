@@ -18,7 +18,7 @@ import { getAllRivers } from "../../../services/getData";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FormField from '../../../components/common/form-field/FormField'
 import { useAuth } from '../../../context/AuthContext';
-import { uploadPost, uploadPostImage } from '../../../services/uploadData';
+import { uploadPost, uploadPostImage, uploadPostTags } from '../../../services/uploadData';
 import { Picker } from "@react-native-picker/picker";
 import Checkbox from "expo-checkbox";
 
@@ -72,7 +72,7 @@ const createModal = ({isVisible, closeModal, refetch}) => {
 
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images, // Only allow images
-      quality: 1, // Quality of the image (0 to 1)
+      quality: 0, // Quality of the image (0 to 1)
       base64: true,
     });
 
@@ -155,12 +155,19 @@ const createModal = ({isVisible, closeModal, refetch}) => {
       latitude: selectedCoordinate.latitude
     };
 
+    const updatedTags = selectedTags.map(tag => ({
+      id: postID,
+      tag: tag
+    }));
+    
     // console.log('Form data:', updatedForm);
 
     try {
       const url = await uploadPostImage(imageBase64, user?.id, postID);
 
-      const post = await uploadPost(updatedForm, url.publicUrl, user?.id, postID)
+      const post = await uploadPost(updatedForm, url.publicUrl, user?.id, postID);
+      
+      const tagsInsert = await uploadPostTags(updatedTags);
       
 
       if (post.error) {
