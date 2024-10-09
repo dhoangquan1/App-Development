@@ -1,16 +1,14 @@
-# **Welcome to Mass Rivers App** *<- placeholder name*
+# Explore Your Rivers
 
 ## Get started
 
 #### Install Dependencies
 
-- Open App-Development\App\App\ in your terminal
-- Run these commands:
+- Open App-Development\ in your terminal
+- Run this command:
 
    ```bash
    npm install
-   npm install expo@latest
-   npx expo install --fix
    ```
 
 #### Start The App
@@ -23,14 +21,5 @@
 
 #### Use The Expo Go App
 
-- Download the Expo Go App
+- Download the Expo Go App on your phone
 - Scan the QR code in the terminal
-
-## JSDoc
-
-- Run this command to update the documentation htmls:  
-^ *for now, this is only when in App-Development\App\App\app\(tabs)*
-
-   ```bash
-   jsdoc -r . ../../../../readme.md
-   ```
